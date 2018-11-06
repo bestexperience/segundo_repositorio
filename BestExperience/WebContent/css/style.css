@@ -1,0 +1,94 @@
+* {
+	box-sizing: border-box;
+}
+
+#regForm {
+	background-color: #ffffff;
+	margin: 100px auto;
+	margin-top: 0px;
+	font-family: Raleway;
+	padding: 20px;
+	width: 70%;
+	min-width: 300px;
+}
+
+.regFormMargin {
+	margin-bottom: 0px !important;
+	padding-bottom: 0px !important;
+}
+
+.form-control {
+	border-radius: 0px;
+	padding: 20px;
+	font-family: Raleway;
+	border: 1px solid #aaaaaa;
+	font-size: 17px;
+	width: 100%;
+}
+
+.pad {
+	padding-bottom: 30px;
+}
+
+body {
+	
+}
+
+#navstyle {
+	transition: padding-left .5s;
+	padding-left: 16px;
+	border-bottom: 1px solid black;
+	border-radius: 0px;
+}
+
+.sidenav {
+	height: 100%;
+	width: 0;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #222;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
+}
+
+.sidenav a {
+	padding: 0px 0px 8px 32px;
+	text-decoration: none;
+	font-size: 18px;
+	color: #818181;
+	display: block;
+	transition: 0.3s;
+}
+
+.sidenav a:hover {
+	color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
+}
+
+#main {
+	transition: margin-left .5s;
+	padding: 16px;
+}
+
+.span-no-display {
+	display: none;
+}
+
+@media screen and (max-height: 450px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+	.sidenav a {
+		font-size: 18px;
+	}
+}
