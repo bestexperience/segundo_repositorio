@@ -25,8 +25,8 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="usuario.jsp">Perfil</a></li>
-				<li><a href="manterdados.do?acao=carregarStatus">Novo
+				<li><a href="usuario_logado">Perfil</a></li>
+				<li><a href="carregar_status">Novo
 						Campeonato+</a></li>
 				<li><a href="cadastroDeTimesNovo.jsp">Inserir Times</a></li>
 				<li><a href="#">Campeonatos</a></li>
@@ -42,7 +42,7 @@
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="login.jsp"><span
+				<li><a href="logout"><span
 						class="glyphicon glyphicon-log-out"></span> Sair</a></li>
 			</ul>
 		</div>

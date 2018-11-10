@@ -22,7 +22,7 @@
 				width="304" height="300">
 		</div>
 
-		<form action="manterdados.do" method="post" id="regForm">
+		<form action="efetuar_cadastro" method="post" id="regForm">
 			<div class="form-group">
 				<label for="nome">Nome</label> <input type="text"
 					class="form-control" id="nome" name="nome"

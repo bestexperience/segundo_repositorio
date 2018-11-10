@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.usjt.ads.best.model.entity.Campeonato;
@@ -86,5 +87,95 @@ public class ManterDadosController{
 	}
 	/*Menu inicial*/
 
+	
+	/*Menu Usuario*/
+	
+	@RequestMapping("usuario_logado")
+	public String usuarioLogado(HttpSession session){
+		return "usuario";
+	}
+	
+	@RequestMapping("logout")
+	public String logout(HttpSession session){
+		session.invalidate();
+		return "login";
+	}
+	
+	@RequestMapping("carregar_status")
+	public String carregarStatus(HttpSession session){
+		
+		try {
+			/*Carregando o Status*/
+			sService = new StatusService();
+			
+			ArrayList<Status> status;
+			
+			status = sService.listarStatus();
+			session.setAttribute("status", status);
+			/**/
+			
+			return "novoCampeonatoAtual";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
+	}
+	
+	/*Menu Usuario*/
+	
+	@RequestMapping("fazer_login")
+	public String logar(Usuario usuario, HttpSession session){
+		
+		try {
+			UService = new UsuarioService();
+			Usuario usuAutenticado;
+			
+			usuAutenticado = UService.consultarLogin(usuario);
+			
+			if(usuAutenticado != null)
+			{
+				usuario = UService.buscarUsuarioId(usuario);
+				
+				session.setAttribute("usuario", usuario);
+				return "usuario";
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "errorLogin";
+	}
+	
+	@RequestMapping("efetuar_cadastro")
+	public String cadastrarUsuario(Usuario usuario, HttpSession session){
+		
+		try {
+			UService = new UsuarioService();
+			int id1 = UService.inserirUsuario(usuario);
+			
+			Usuario usuAutenticado;
+			usuAutenticado = UService.consultarLogin(usuario);
+			
+			if(usuAutenticado != null)
+			{
+				/*HttpSession sessao = request.getSession();
+				sessao.setAttribute("uauAutenticado", validacao);*/
+				usuario = UService.buscarUsuarioId(usuario);
+				
+				session.setAttribute("usuario", usuario);
+				return "usuario";
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "errorLogin";
+	}
+	
 	
 }

@@ -23,7 +23,7 @@
 				width="304" height="300">
 		</div>
 
-		<form action="manterdados.do" method="post" id="regForm">
+		<form action="fazer_login" method="post" id="regForm">
 
 			<div class="form-group">
 				<div class="input-group">
