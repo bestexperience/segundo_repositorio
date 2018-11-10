@@ -28,6 +28,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter{
                         uri.contains("css/bootstrap.min.css")||
                         uri.contains("css/form-style.css")||
                         uri.contains("css/style.css")||
+                        uri.contains("css/style-menubar.css")||
                         
                         uri.contains("js/bootstrap-tagsinput.min.js")||
                         uri.contains("js/bootstrap.js")||
