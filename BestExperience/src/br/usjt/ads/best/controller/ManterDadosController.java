@@ -123,6 +123,46 @@ public class ManterDadosController{
 		return "usuario";
 	}
 	
+	@RequestMapping("cadastrar_campeonato")
+	public String cadastrarCampeonato(Model model, Campeonato campeonato, Usuario usuario, HttpSession session,
+			@RequestParam("pontos1") String idP1,
+			@RequestParam("pontos2") String idP2,
+			@RequestParam("pontos3") String idP3,
+			@RequestParam("pontos4") String idP4
+			){
+	
+		try {
+			int idCampeonato;
+			
+			idCampeonato = cService.inserirCampeonato(campeonato, usuario);
+			
+			int id10 = 0; 
+			int p1 = Integer.parseInt(idP1);
+			id10 = sService.inserirPontos(p1, idCampeonato, 1);
+			
+			int p2 = Integer.parseInt(idP2);
+			id10 = sService.inserirPontos(p2, idCampeonato, 2);
+			
+			int p3 = Integer.parseInt(idP3);
+			id10 = sService.inserirPontos(p3, idCampeonato, 3);
+			
+			int p4 = Integer.parseInt(idP4);
+			id10 = sService.inserirPontos(p4, idCampeonato, 4);
+			
+			cService = new CampeonatoService();
+			
+			ArrayList<Campeonato> lista;
+			lista = cService.listarCampeonatos(campeonato.getNome());
+			model.addAttribute("lista", lista);
+			
+			return "listarCampeonatos";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
+	}
+	
 	@RequestMapping("buscar_campeonatos")
 	public String buscarCampeonatos(HttpSession session){
 		return "listarCampeonatos";
@@ -178,13 +218,11 @@ public class ManterDadosController{
 	
 	@RequestMapping("cadastrar_times")
 	public String papararCadastroDeTimes(HttpSession session){
-		
 		return "cadastroDeTimesNovo";
 	}
 	
 	@RequestMapping("efetivar_time")
 	public String cadastrarTimes(HttpSession session){
-		
 		return "cadastroDeTimesNovo";
 	}
 	

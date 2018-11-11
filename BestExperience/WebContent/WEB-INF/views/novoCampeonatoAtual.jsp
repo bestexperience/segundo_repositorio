@@ -26,7 +26,7 @@
 				height="300">
 		</div>
 
-		<form id="regForm" action="manterdados.do?acao=cadastrarCampeonato"
+		<form id="regForm" action="cadastrar_campeonato"
 			method="post">
 			<h1>Criar Campeonato</h1>
 			<!-- One "tab" for each step in the form: -->
@@ -41,11 +41,11 @@
 
 				<p>
 					<input placeholder="Nome do campeonato"
-						oninput="this.className = ''" name="nome_campeonato">
+						oninput="this.className = ''" name="nome">
 				</p>
 				<p>
 					<input type="number" placeholder="Numero de rodadas"
-						oninput="this.className = ''" name="numero_rodadas">
+						oninput="this.className = ''" name="numeroRodadas">
 				</p>
 			</div>
 
