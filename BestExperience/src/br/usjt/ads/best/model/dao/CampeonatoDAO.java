@@ -95,11 +95,11 @@ public class CampeonatoDAO {
 	public ArrayList<Campeonato> listarCampeonatos(String chave) throws IOException {
 		ArrayList<Campeonato> lista = new ArrayList<>();
 		String sql = "select c.id, c.nome, c.numeroRodadas, c.usuario_id, u.nome from campeonato c, "
-				+ "usuario u where c.usuario_id = u.id and upper(c.nome) like ?";
+				+ "usuario u where c.usuario_id = u.id and c.nome like ?";
 		try(Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement pst = conn.prepareStatement(sql);){
 			
-			pst.setString(1, "%" + chave.toUpperCase() + "%");
+			pst.setString(1, chave);
 		
 			try(ResultSet rs = pst.executeQuery();){
 			
@@ -124,37 +124,31 @@ public class CampeonatoDAO {
 				
 		return lista;
 	}
-	/*
-	public ArrayList<Filme> listarFilmes() throws IOException {
-		ArrayList<Filme> lista = new ArrayList<>();
-		String sql = "select f.id, f.titulo, f.descricao, f.diretor, f.posterpath, "
-				+ "f. popularidade, f.data_lancamento, f.id_genero, g.nome "
-				+ "from filme f, genero g "
-				+ "where f.id_genero = g.id";
+
+	public ArrayList<Campeonato> listarCampeonatos() throws IOException {
+		ArrayList<Campeonato> lista = new ArrayList<>();
+		String sql = "select c.id, c.nome, c.numeroRodadas, c.usuario_id, u.nome from campeonato c, usuario u where c.usuario_id = u.id";
 		try(Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement pst = conn.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();){
 			
-			Filme filme;
-			Genero genero;
+			Campeonato campeonato;
+			Usuario usuario;
 			while(rs.next()) {
-				filme = new Filme();
-				filme.setId(rs.getInt("f.id"));
-				filme.setTitulo(rs.getString("f.titulo"));
-				filme.setDescricao(rs.getString("f.descricao"));
-				filme.setDiretor(rs.getString("f.diretor"));
-				filme.setPosterPath(rs.getString("f.posterpath"));
-				filme.setDataLancamento(rs.getDate("f.data_lancamento"));
-				genero = new Genero();
-				genero.setId(rs.getInt("f.id_genero"));
-				genero.setNome(rs.getString("g.nome"));
-				filme.setGenero(genero);
-				lista.add(filme);
+				campeonato = new Campeonato();
+				campeonato.setIdCampeonato(rs.getInt("c.id"));
+				campeonato.setNome(rs.getString("c.nome"));
+				campeonato.setNumeroRodadas(rs.getInt("c.numeroRodadas"));
+				usuario = new Usuario();
+				usuario.setId(rs.getInt("c.usuario_id"));
+				usuario.setNome(rs.getString("u.nome"));
+				campeonato.setUsuario(usuario);
+				lista.add(campeonato);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new IOException(e);
 		}				
 		return lista;
-	}*/
+	}
 }

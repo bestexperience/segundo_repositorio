@@ -125,23 +125,22 @@ public class ManterDadosController{
 	
 	@RequestMapping("buscar_campeonatos")
 	public String buscarCampeonatos(HttpSession session){
-		
 		return "listarCampeonatos";
 	}
 	
 	@RequestMapping("listar_campeonatos")
-	public String listarFilmes(HttpSession session, @RequestParam("data[search]") String chave){
+	public String listarCampeonatos(Model model, @RequestParam("data[search]") String chave){
 			try {
 				cService = new CampeonatoService();
 				ArrayList<Campeonato> lista;
 				
-				//if (chave != null && chave.length() > 0) {
+				if (chave != null && chave.length() > 0) {
 				lista = cService.listarCampeonatos(chave);
 				
-				//} else {
-					//lista = fService.listarFilmes();
-				//}
-				session.setAttribute("lista", lista);
+				} else {
+					lista = cService.listarCampeonatos();
+				}
+				model.addAttribute("lista", lista);
 				return "listarCampeonatos";
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -151,6 +150,31 @@ public class ManterDadosController{
 		
 	}
 	
+	@RequestMapping("buscar_times")
+	public String listarTimes(HttpSession session){
+		return "listarEquipes";
+	}
+	
+	@RequestMapping("listar_times")
+	public String listarTimes(Model model,@RequestParam("data[search]") String chave){
+			try {
+				tService = new TimeService();
+				ArrayList<Time> lista;
+				
+				if (chave != null && chave.length() > 0) {
+				lista = tService.listarTime(chave);
+				
+				} else {
+					lista = tService.listarTime();
+				}
+				model.addAttribute("lista", lista);
+				return "listarEquipes";
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return "usuario";
+	}
 	
 	@RequestMapping("cadastrar_times")
 	public String papararCadastroDeTimes(HttpSession session){

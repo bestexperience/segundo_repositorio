@@ -33,4 +33,8 @@ import br.usjt.ads.best.model.entity.Usuario;
 	public ArrayList<Campeonato> listarCampeonatos(String chave) throws IOException{
 		return dao.listarCampeonatos(chave);
 	}
+	
+	public ArrayList<Campeonato> listarCampeonatos() throws IOException{
+		return dao.listarCampeonatos();
+	}
 }

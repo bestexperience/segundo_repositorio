@@ -22,15 +22,15 @@
 
         <body>
             <!-- Barra superior com os menus de navegação -->
-			<c:import url="Menu.jsp"/>
+			<c:import url="MenuUsuario.jsp"/>
             <!-- Container Principal -->
             <div id="main" class="container">
-                <form action="manterfilmes.do" method="post">
+                <form action="listar_times" method="post">
                     <div id="top" class="row">
                         <div class="col-md-3">
-                            <h2>Equipes</h2>
+                            <h2>Times</h2>
                         </div>
-
+	
                         <div class="col-md-6">
                             <div class="input-group h2">
                                 <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Equipes (deixe vazio para trazer todas)">
@@ -58,16 +58,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-          					<c:forEach var="filme" items="${lista}">
+          					<c:forEach var="time" items="${lista}">
                                        <tr>
                                             <td>
-                                               ${filme.id }
+                                               ${time.idTime}
                                             </td>
                                             <td>
-                                                ${filme.titulo }
+                                                ${time.nome}
                                             </td>
                                             <td class="actions">
-                                                <a class="btn btn-success btn-xs" href="manterfilmes.do?acao=visualizar&id=${filme.id}">Visualizar</a>
+                                                <a class="btn btn-success btn-xs" href="manterfilmes.do?acao=visualizar&id=${time.idTime}">Visualizar</a>
                                             </td>
                                         </tr>
                             </c:forEach>

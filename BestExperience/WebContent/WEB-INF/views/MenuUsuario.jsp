@@ -30,6 +30,7 @@
 						Campeonato+</a></li>
 				<li><a href="cadastrar_times">Inserir Times</a></li>
 				<li><a href="buscar_campeonatos">Campeonatos</a></li>
+				<li><a href="buscar_times">Times</a></li>
 				<li><a href="#">Inserir Resultados</a></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Manutenção<span class="caret"></span></a>
