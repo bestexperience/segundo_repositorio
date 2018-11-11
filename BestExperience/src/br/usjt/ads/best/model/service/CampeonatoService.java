@@ -1,6 +1,7 @@
 package br.usjt.ads.best.model.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import br.usjt.ads.best.model.dao.CampeonatoDAO;
 import br.usjt.ads.best.model.entity.Campeonato;
@@ -27,5 +28,9 @@ import br.usjt.ads.best.model.entity.Usuario;
 	
 	public void atualizarCampeonato(Campeonato campeonato) {
 		dao.atualizarCampeonato(campeonato);
+	}
+	
+	public ArrayList<Campeonato> listarCampeonatos(String chave) throws IOException{
+		return dao.listarCampeonatos(chave);
 	}
 }

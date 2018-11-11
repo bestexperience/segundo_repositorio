@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.usjt.ads.best.model.entity.Campeonato;
 import br.usjt.ads.best.model.entity.Status;
@@ -121,6 +122,48 @@ public class ManterDadosController{
 		}
 		return "usuario";
 	}
+	
+	@RequestMapping("buscar_campeonatos")
+	public String buscarCampeonatos(HttpSession session){
+		
+		return "listarCampeonatos";
+	}
+	
+	@RequestMapping("listar_campeonatos")
+	public String listarFilmes(HttpSession session, @RequestParam("data[search]") String chave){
+			try {
+				cService = new CampeonatoService();
+				ArrayList<Campeonato> lista;
+				
+				//if (chave != null && chave.length() > 0) {
+				lista = cService.listarCampeonatos(chave);
+				
+				//} else {
+					//lista = fService.listarFilmes();
+				//}
+				session.setAttribute("lista", lista);
+				return "listarCampeonatos";
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return "usuario";
+		
+	}
+	
+	
+	@RequestMapping("cadastrar_times")
+	public String papararCadastroDeTimes(HttpSession session){
+		
+		return "cadastroDeTimesNovo";
+	}
+	
+	@RequestMapping("efetivar_time")
+	public String cadastrarTimes(HttpSession session){
+		
+		return "cadastroDeTimesNovo";
+	}
+	
 	
 	/*Menu Usuario*/
 	
