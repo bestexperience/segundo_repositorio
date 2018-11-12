@@ -26,9 +26,9 @@
 			<div class="row">
 		        <div class="col-lg-4">
 		          <img class="img-circle col-md-offset-1" src="img/screen.jpg" alt="Generic placeholder image" width="300" height="300">
-		          <h2>${campeonato.nome}</h2>
-		          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-		          <p align="center"><a class="btn btn-default" href="gerar_turnos" role="button">Gerar Turnos</a></p>
+		          <h2 align="center">${campeonato.nome}</h2>
+		          <p>O campeonato ${campeonato.nome} ainda não contem seus turnos. Clique no botão abaixo para gerar os turnos.</p>
+		          <p align="center"><a class="btn btn-default" href="gerando_turnos" role="button">Gerar Turnos</a></p>
 		        </div>
 		      </div>
 			</div>

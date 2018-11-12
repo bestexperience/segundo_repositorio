@@ -26,8 +26,7 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li><a href="usuario_logado">Perfil</a></li>
-				<li><a href="carregar_status">Novo
-						Campeonato+</a></li>
+				<li><a href="carregar_status">Novo Campeonato</a></li>
 				<li><a href="cadastrar_times">Inserir Times</a></li>
 				<li><a href="#">Gerar Turnos</a></li>
 				<li><a href="#">Inserir Resultados</a></li>

@@ -76,7 +76,7 @@
                                             </td>
                                             <td class="actions">
                                             	<!-- <a class="btn btn-success btn-xs" href="gerar_turnos2&id=${campeonato.idCampeonato}">Gerar Turnos</a> -->
-                                                <a class="btn btn-success btn-xs" href="gerar_turnos">Visualizar</a>
+                                                <a class="btn btn-success btn-xs" href="gerar_turnos?nome=${campeonato.nome}">Visualizar</a>
                                             </td>
                                         </tr>
                             </c:forEach>

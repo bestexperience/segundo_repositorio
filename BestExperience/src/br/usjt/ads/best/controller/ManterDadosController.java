@@ -225,20 +225,37 @@ public class ManterDadosController{
 	public String cadastrarTimes(HttpSession session){
 		return "cadastroDeTimesNovo";
 	}
-	
+	/*
 	@RequestMapping("gerar_turnos")
-	public String gerarTurnos(Model model, Campeonato campeonato){
+	public String gerarTurnos(HttpSession session, Campeonato campeonato){
 		try {
 			cService = new CampeonatoService();
 			campeonato = cService.buscarUsuario(campeonato);
-			model.addAttribute("campeonato", campeonato);
+			session.setAttribute("campeonato", campeonato);
 			return "gerarTurnos";
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return "gerarTurnos";
+		return "errorLogin";
+		
+	}*/
+	
+	@RequestMapping("/gerar_turnos")
+	public String gerarTurnos(HttpSession session, @RequestParam("nome") String nome, Campeonato campeonato){
+		try {
+			cService = new CampeonatoService();
+			campeonato.setNome(nome);
+			campeonato = cService.buscarUsuario(campeonato);
+			session.setAttribute("campeonato", campeonato);
+			return "gerarTurnos";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "errorLogin";
 		
 	}
 	
@@ -294,6 +311,26 @@ public class ManterDadosController{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return "errorLogin";
+	}
+	
+	@RequestMapping("gerando_turnos")
+	public String gerandoTurnos(Usuario usuario, HttpSession session){
+			try {
+				/*pegando os times*/
+				tService = new TimeService();
+				ArrayList<Time> lista;
+				lista = tService.listarTime();
+				
+				
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		
 		return "errorLogin";
 	}
