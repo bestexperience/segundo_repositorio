@@ -1,22 +1,8 @@
 package br.usjt.ads.best.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.Format;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.regex.Pattern;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -25,10 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.usjt.ads.best.model.entity.Campeonato;
+import br.usjt.ads.best.model.entity.Jogador;
+//import br.usjt.ads.best.model.entity.Juiz;
 import br.usjt.ads.best.model.entity.Status;
 import br.usjt.ads.best.model.entity.Time;
 import br.usjt.ads.best.model.entity.Usuario;
 import br.usjt.ads.best.model.service.CampeonatoService;
+import br.usjt.ads.best.model.service.JogadorService;
+import br.usjt.ads.best.model.service.JuizService;
 import br.usjt.ads.best.model.service.StatusService;
 import br.usjt.ads.best.model.service.TimeService;
 import br.usjt.ads.best.model.service.UsuarioService;
@@ -42,12 +32,16 @@ public class ManterDadosController{
 	private StatusService sService;
 	private TimeService tService;
 	private CampeonatoService cService;
+	private JogadorService jService;
+	//private JuizService juizService;
 	
 	public ManterDadosController(){
 		UService = new UsuarioService();
 		sService = new StatusService();
 		tService = new TimeService();
 		cService = new CampeonatoService();
+		jService = new JogadorService();
+		//juizService = new JuizService();
 	}
 	
 	
@@ -101,6 +95,8 @@ public class ManterDadosController{
 		session.invalidate();
 		return "login";
 	}
+	
+	/*Carregar status, Cadastrar Campeonatos e Listar Campeonatos*/
 	
 	@RequestMapping("carregar_status")
 	public String carregarStatus(HttpSession session){
@@ -190,6 +186,20 @@ public class ManterDadosController{
 		
 	}
 	
+	
+	
+	/*Cadastro de Times*/
+	@RequestMapping("cadastrar_times")
+	public String papararCadastroDeTimes(HttpSession session){
+		return "cadastroDeTimesNovo";
+	}
+	
+	@RequestMapping("efetivar_time")
+	public String cadastrarTimes(HttpSession session){
+		return "cadastroDeTimesNovo";
+	}
+	
+	/*Listar Times*/
 	@RequestMapping("buscar_times")
 	public String listarTimes(HttpSession session){
 		return "listarEquipes";
@@ -216,15 +226,62 @@ public class ManterDadosController{
 		return "usuario";
 	}
 	
-	@RequestMapping("cadastrar_times")
-	public String papararCadastroDeTimes(HttpSession session){
-		return "cadastroDeTimesNovo";
+	
+	
+	/*Jogadores*/
+	@RequestMapping("buscar_jogador")
+	public String buscarJogador(HttpSession session){
+		return "listarJogadores";
 	}
 	
-	@RequestMapping("efetivar_time")
-	public String cadastrarTimes(HttpSession session){
-		return "cadastroDeTimesNovo";
+	@RequestMapping("listar_jogadores")
+	public String listarJogadores(Model model,@RequestParam("data[search]") String chave){
+			try {
+				jService = new JogadorService();
+				ArrayList<Jogador> lista;
+				
+				if (chave != null && chave.length() > 0) {
+				lista = jService.listarJogador(chave);
+				
+				} else {
+					lista = jService.listarJogador();
+				}
+				model.addAttribute("lista", lista);
+				return "listarJogadores";
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return "usuario";
 	}
+	
+	
+	/*Juizes
+
+	@RequestMapping("buscar_juizes")
+	public String buscarJuiz(HttpSession session){
+		return "listarJuizes";
+	}
+	
+	@RequestMapping("listar_juizes")
+	public String listarJuizes(Model model,@RequestParam("data[search]") String chave){
+			try {
+				juizService = new JuizService();
+				ArrayList<Juiz> lista;
+				
+				lista = juizService.listarJuiz(chave);
+				
+				model.addAttribute("lista", lista);
+				return "listarJuizes";
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return "usuario";
+	}*/
+	
+	
+	
 	/*
 	@RequestMapping("gerar_turnos")
 	public String gerarTurnos(HttpSession session, Campeonato campeonato){
@@ -315,6 +372,8 @@ public class ManterDadosController{
 		return "errorLogin";
 	}
 	
+	
+	/*Código incompleto*/
 	@RequestMapping("gerando_turnos")
 	public String gerandoTurnos(Usuario usuario, HttpSession session){
 			try {
@@ -322,9 +381,7 @@ public class ManterDadosController{
 				tService = new TimeService();
 				ArrayList<Time> lista;
 				lista = tService.listarTime();
-				
-				
-				
+
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

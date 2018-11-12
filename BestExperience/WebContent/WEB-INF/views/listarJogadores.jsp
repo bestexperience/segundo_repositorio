@@ -9,59 +9,37 @@
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>Buscar Jogadores</title>
-
+			<link rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+			<!--  <link rel="stylesheet" href="./css/style.css">-->
+			<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+			<link rel="stylesheet" href="./css/style-menubar.css">
+			<!-- 
             <link href="css/bootstrap.min.css" rel="stylesheet">
-            <link href="css/style1.css" rel="stylesheet">
+            <link href="css/style1.css" rel="stylesheet"> -->
 
         </head>
 
         <body>
-            <!-- Modal -->
-            <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title" id="modalLabel">Excluir Filme</h4>
-                        </div>
-                        <div class="modal-body">
-                            Deseja realmente excluir este filme?
-                        </div>
-                        <div class="modal-footer">
-                            <form action="manterfilmes.do" method="post">
-                                <input type="hidden" name="id" id="id_excluir" />
-                                <button type="submit" class="btn btn-primary" name="acao" value="Excluir">Sim</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.modal -->
             <!-- Barra superior com os menus de navegação -->
-			<c:import url="Menu.jsp"/>
+			<c:import url="MenuUsuario.jsp"/>
             <!-- Container Principal -->
             <div id="main" class="container">
-                <form action="manterfilmes.do" method="post">
+                <form action=listar_jogadores method="post">
                     <div id="top" class="row">
                         <div class="col-md-3">
-                            <h2>Filmes</h2>
+                            <h2>Jogadores</h2>
                         </div>
-
+	
                         <div class="col-md-6">
                             <div class="input-group h2">
-                                <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Filmes (deixe vazio para trazer todos)">
+                                <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Jogador (deixe vazio para trazer todos)">
                                 <span class="input-group-btn">
                 <button class="btn btn-primary" type="submit" name="acao" value="listar">
                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
                                 </span>
                             </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <a href="manterfilmes.do?acao=novo" class="btn btn-primary pull-right h2">Novo Filme</a>
                         </div>
                     </div>
                     <!-- /#top -->
@@ -75,35 +53,21 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Título</th>
-                                    <th>Direção</th>
-                                    <th>Lançamento</th>
-                                    <th>Gênero</th>
+                                    <th>Nome</th>
                                     <th class="actions">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-          					<c:forEach var="filme" items="${lista}">
+          					<c:forEach var="jogador" items="${lista}">
                                        <tr>
                                             <td>
-                                               ${filme.id }
+                                               ${jogador.idJogador}
                                             </td>
                                             <td>
-                                                ${filme.titulo }
-                                            </td>
-                                            <td>
-                                                ${filme.diretor }
-                                            </td>
-                                            <td>
-                                                <fmt:formatDate value="${filme.dataLancamento}" pattern="dd/MM/yyyy"/>
-                                            </td>
-                                            <td>
-                                                ${filme.genero.nome}
+                                                ${jogador.nomeJogador}
                                             </td>
                                             <td class="actions">
-                                                <a class="btn btn-success btn-xs" href="manterfilmes.do?acao=visualizar&id=${filme.id}">Visualizar</a>
-                                                <a class="btn btn-warning btn-xs" href="manterfilmes.do?acao=editar&id=${filme.id}">Editar</a>
-                                                <button id="btn${filme.id }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-filme="${filme.id }">Excluir</button>
+                                                <a class="btn btn-success btn-xs" href="visualizar_jogador?id=${jogador.idJogador}">Visualizar</a>
                                             </td>
                                         </tr>
                             </c:forEach>
