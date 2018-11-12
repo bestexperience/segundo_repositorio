@@ -226,6 +226,22 @@ public class ManterDadosController{
 		return "cadastroDeTimesNovo";
 	}
 	
+	@RequestMapping("gerar_turnos")
+	public String gerarTurnos(Model model, Campeonato campeonato){
+		try {
+			cService = new CampeonatoService();
+			campeonato = cService.buscarUsuario(campeonato);
+			model.addAttribute("campeonato", campeonato);
+			return "gerarTurnos";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "gerarTurnos";
+		
+	}
+	
 	
 	/*Menu Usuario*/
 	

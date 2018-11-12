@@ -75,7 +75,8 @@
                                                 ${campeonato.usuario.nome}
                                             </td>
                                             <td class="actions">
-                                                <a class="btn btn-success btn-xs" href="manterfilmes.do?acao=visualizar&id=${campeonato.idCampeonato}">Visualizar</a>
+                                            	<!-- <a class="btn btn-success btn-xs" href="gerar_turnos2&id=${campeonato.idCampeonato}">Gerar Turnos</a> -->
+                                                <a class="btn btn-success btn-xs" href="gerar_turnos">Visualizar</a>
                                             </td>
                                         </tr>
                             </c:forEach>

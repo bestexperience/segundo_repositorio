@@ -40,9 +40,8 @@ public class CampeonatoDAO {
 	}
 	
 	public Campeonato buscarUsuario(Campeonato campeonato) throws IOException{
-		String sql = "select * from campeonato where nome = ?;";
+		String sql = "select * from campeonato.campeonato where nome = ?";
 		
-		/*Validação do usuario*/
 		
 		try(Connection conn = ConnectionFactory.getConnection();
 				PreparedStatement pst = conn.prepareStatement(sql);){
@@ -50,7 +49,7 @@ public class CampeonatoDAO {
 			
 			try(ResultSet rs = pst.executeQuery();){
 				while(rs.next()) {
-					campeonato.setIdCampeonato(rs.getInt("idCampeonato"));
+					campeonato.setIdCampeonato(rs.getInt("id"));
 					campeonato.setNome(rs.getString("nome"));
 				}
 			}

@@ -20,8 +20,8 @@
 			<div class="row justify-content-center">
 				<div class="col-md-12 text-center">
 					<span class="display-1 d-block">404</span>
-					<div class="mb-4 lead">Login e Senha incorretos.</div>
-					<a href="login.jsp" class="btn btn-link">Voltar</a>
+					<div class="mb-4 lead">Não foi possivel conectar ao servidor.</div>
+					<a href="login" class="btn btn-link">Voltar</a>
 				</div>
 			</div>
 		</div>
