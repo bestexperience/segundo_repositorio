@@ -9,13 +9,13 @@ import java.util.ArrayList;
 
 import br.usjt.ads.best.model.entity.Cidade;
 import br.usjt.ads.best.model.entity.Juiz;
-import br.usjt.ads.best.model.entity.Pais;
+import br.usjt.ads.best.model.entity.Estado;
 
 
 public class JuizDAO {
 	public ArrayList<Juiz> listarJuiz(String chave) throws IOException {
 		ArrayList<Juiz> lista = new ArrayList<>();
-		String sql = "select j.id, j.nome, j.data_nascimento, j.cidade_id, j.pais_id, c.nome, p.nome from juiz j, cidade c, pais p where j.cidade_id = c.id and j.pais_id = p.id and j.nome like ?";
+		String sql = "select j.id, j.nome, j.data_nascimento, j.cidade_id, j.estado_id, c.nome, e.nome from juiz j, cidade c, estado e where j.cidade_id = c.id and j.estado_id = e.id and j.nome like ?";
 		try(Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement pst = conn.prepareStatement(sql);){
 			
@@ -25,7 +25,7 @@ public class JuizDAO {
 			
 				Juiz juiz;
 				Cidade cidade;
-				Pais pais;
+				Estado estado;
 				while(rs.next()) {
 					juiz = new Juiz();
 					juiz.setIdJuiz(rs.getInt("j.id"));
@@ -35,10 +35,10 @@ public class JuizDAO {
 					cidade.setIdCidade(rs.getInt("j.cidade_id"));
 					cidade.setNomeCidade(rs.getString("c.nome"));
 					juiz.setCidade(cidade);
-					pais = new Pais();
-					pais.setIdPais(rs.getInt("j.pais_id"));
-					pais.setNomePais(rs.getString("p.nome"));
-					juiz.setPais(pais);
+					estado = new Estado();
+					estado.setIdEstado(rs.getInt("j.estado_id"));
+					estado.setNomeEstado(rs.getString("e.nome"));
+					juiz.setEstado(estado);
 					lista.add(juiz);
 				}
 			}
@@ -49,7 +49,7 @@ public class JuizDAO {
 				
 		return lista;
 	}
-
+/*
 	public ArrayList<Juiz> listarJogador() throws IOException {
 		ArrayList<Juiz> lista = new ArrayList<>();
 		String sql = "SELECT * FROM campeonato.juiz";
@@ -59,7 +59,7 @@ public class JuizDAO {
 			
 			Juiz juiz;
 			Cidade cidade;
-			Pais pais;
+			Estado estado;
 			while(rs.next()) {
 				juiz = new Juiz();
 				juiz.setIdJuiz(rs.getInt("j.id"));
@@ -69,10 +69,10 @@ public class JuizDAO {
 				cidade.setIdCidade(rs.getInt("j.cidade_id"));
 				cidade.setNomeCidade(rs.getString("c.nome"));
 				juiz.setCidade(cidade);
-				pais = new Pais();
-				pais.setIdPais(rs.getInt("j.pais_id"));
-				pais.setNomePais(rs.getString("p.nome"));
-				juiz.setPais(pais);
+				estado = new Estado();
+				estado.setIdEstado(rs.getInt("j.estado_id"));
+				estado.setNomeEstado(rs.getString("e.nome"));
+				juiz.setEstado(estado);
 				lista.add(juiz);
 			}
 		} catch (SQLException e) {
@@ -80,5 +80,5 @@ public class JuizDAO {
 			throw new IOException(e);
 		}				
 		return lista;
-	}
+	}*/
 }

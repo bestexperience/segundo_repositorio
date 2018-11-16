@@ -4,7 +4,7 @@ public class ComissaoExecutiva {
 	private int idComissao;
 	private String nomeComissao;
 	private Cidade cidade;
-	private Pais pais;
+	private Estado pais;
 	private Funcao funcao;
 	
 	public int getIdComissao() {
@@ -25,10 +25,10 @@ public class ComissaoExecutiva {
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-	public Pais getPais() {
+	public Estado getPais() {
 		return pais;
 	}
-	public void setPais(Pais pais) {
+	public void setPais(Estado pais) {
 		this.pais = pais;
 	}
 	public Funcao getFuncao() {

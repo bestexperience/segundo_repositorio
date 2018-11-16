@@ -56,7 +56,7 @@
                                     <th>Nome</th>
                                     <th>Nascimento</th>
                                     <th>Cidade</th>
-                                    <th>País</th>
+                                    <th>Estado</th>
                                     <th class="actions">Ações</th>
                                 </tr>
                             </thead>
@@ -73,10 +73,10 @@
                                                 <fmt:formatDate value="${juiz.data_nascimento}" pattern="dd/MM/yyyy"/>
                                             </td>
                                             <td>
-                                                ${jogador.cidade.nomeCidade}
+                                                ${juiz.cidade.nomeCidade}
                                             </td>
                                             <td>
-                                                ${jogador.pais.nomePais}
+                                                ${juiz.estado.nomeEstado}
                                             </td>
                                             <td class="actions">
                                                 <a class="btn btn-success btn-xs" href="visualizar_juiz?id=${juiz.idJuiz}">Visualizar</a>

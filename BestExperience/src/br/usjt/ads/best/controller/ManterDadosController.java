@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.usjt.ads.best.model.entity.Campeonato;
 import br.usjt.ads.best.model.entity.Jogador;
-//import br.usjt.ads.best.model.entity.Juiz;
+import br.usjt.ads.best.model.entity.Juiz;
 import br.usjt.ads.best.model.entity.Status;
 import br.usjt.ads.best.model.entity.Time;
 import br.usjt.ads.best.model.entity.Usuario;
@@ -33,7 +33,7 @@ public class ManterDadosController{
 	private TimeService tService;
 	private CampeonatoService cService;
 	private JogadorService jService;
-	//private JuizService juizService;
+	private JuizService juService;
 	
 	public ManterDadosController(){
 		UService = new UsuarioService();
@@ -41,7 +41,7 @@ public class ManterDadosController{
 		tService = new TimeService();
 		cService = new CampeonatoService();
 		jService = new JogadorService();
-		//juizService = new JuizService();
+		juService = new JuizService();
 	}
 	
 	
@@ -256,7 +256,7 @@ public class ManterDadosController{
 	}
 	
 	
-	/*Juizes
+	/*Juizes*/
 
 	@RequestMapping("buscar_juizes")
 	public String buscarJuiz(HttpSession session){
@@ -264,12 +264,12 @@ public class ManterDadosController{
 	}
 	
 	@RequestMapping("listar_juizes")
-	public String listarJuizes(Model model,@RequestParam("data[search]") String chave){
+	public String listarJuizes(Model model, @RequestParam("data[search]") String chave){
 			try {
-				juizService = new JuizService();
+				juService = new JuizService();
 				ArrayList<Juiz> lista;
 				
-				lista = juizService.listarJuiz(chave);
+				lista = juService.listarJuiz(chave);
 				
 				model.addAttribute("lista", lista);
 				return "listarJuizes";
@@ -278,7 +278,7 @@ public class ManterDadosController{
 				e.printStackTrace();
 			}
 		return "usuario";
-	}*/
+	}
 	
 	
 	

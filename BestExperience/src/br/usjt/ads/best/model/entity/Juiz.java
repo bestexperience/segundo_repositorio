@@ -7,7 +7,7 @@ public class Juiz{
 	private String nomeJuiz;
 	private Date data_nascimento;
 	private Cidade cidade;
-	private Pais pais;
+	private Estado estado;
 	
 	public int getIdJuiz() {
 		return idJuiz;
@@ -33,12 +33,13 @@ public class Juiz{
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-	public Pais getPais() {
-		return pais;
+	public Estado getEstado() {
+		return estado;
 	}
-	public void setPais(Pais pais) {
-		this.pais = pais;
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
+	
 	
 	
 }

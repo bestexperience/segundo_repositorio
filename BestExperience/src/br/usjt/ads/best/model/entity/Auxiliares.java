@@ -4,7 +4,7 @@ public class Auxiliares {
 	private int idAuxiliar;
 	private String nomeAuxiliar;
 	private Cidade cidade;
-	private Pais pais;
+	private Estado pais;
 	private Funcao funcao;
 	
 	public int getIdAuxiliar() {
@@ -25,10 +25,10 @@ public class Auxiliares {
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-	public Pais getPais() {
+	public Estado getPais() {
 		return pais;
 	}
-	public void setPais(Pais pais) {
+	public void setPais(Estado pais) {
 		this.pais = pais;
 	}
 	public Funcao getFuncao() {
