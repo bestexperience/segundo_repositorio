@@ -21,4 +21,8 @@ private JogadorDAO dao;
 	public ArrayList<Jogador> listarJogador() throws IOException{
 		return dao.listarJogador();
 	}
+	
+	public int inserirJogador(Jogador jogador) throws IOException {
+		return dao.inserirJogador(jogador);
+	}
 }

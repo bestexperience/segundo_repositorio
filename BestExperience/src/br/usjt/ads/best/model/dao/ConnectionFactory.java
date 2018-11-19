@@ -1,5 +1,4 @@
 package br.usjt.ads.best.model.dao;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,8 +10,6 @@ public class ConnectionFactory {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			// porque este erro nao pode ser prevenido via programa usa-se RuntimeException,
-			// que é unchecked.
 			throw new RuntimeException(e);
 		}
 	}

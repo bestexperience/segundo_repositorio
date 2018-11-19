@@ -10,6 +10,35 @@ import java.util.ArrayList;
 import br.usjt.ads.best.model.entity.Jogador;
 
 public class JogadorDAO {
+	public int inserirJogador(Jogador jogador) throws IOException {
+		int id = -1;
+		String sql = "INSERT INTO campeonato.jogador (nome, time_id) VALUES (?, ?)";
+		
+		try(Connection conn = ConnectionFactory.getConnection();
+			PreparedStatement pst = conn.prepareStatement(sql);){
+			
+			pst.setString(1, jogador.getNomeJogador());
+			pst.setInt(2, 1);	
+			pst.execute();
+			
+			//obter o id criado
+			String query = "select LAST_INSERT_ID()";
+			try(PreparedStatement pst1 = conn.prepareStatement(query);
+				ResultSet rs = pst1.executeQuery();){
+
+				if (rs.next()) {
+					id = rs.getInt(1);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
+		return id;
+	}
+	
+	
+	
 	public ArrayList<Jogador> listarJogador(String chave) throws IOException {
 		ArrayList<Jogador> lista = new ArrayList<>();
 		String sql = "select * from campeonato.jogador where nome like ?";

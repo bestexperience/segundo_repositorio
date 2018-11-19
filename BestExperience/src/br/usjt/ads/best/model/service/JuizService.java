@@ -17,8 +17,11 @@ public class JuizService {
 		return dao.listarJuiz(chave);
 	}
 	
-	/*
-	public ArrayList<Jogador> listarJogador() throws IOException{
-		return dao.listarJogador();
-	}*/
+	public ArrayList<Juiz> listarJuiz() throws IOException{
+		return dao.listarJuiz();
+	}
+	
+	public int inserirJuiz(Juiz juiz) throws IOException {
+		return dao.inserirJuiz(juiz);
+	}
 }

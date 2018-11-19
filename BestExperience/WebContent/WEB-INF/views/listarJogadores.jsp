@@ -41,6 +41,10 @@
                                 </span>
                             </div>
                         </div>
+                        
+                        <div class="col-md-3">
+                            <a href="novo_jogador" class="btn btn-primary pull-right h2">Novo Jogador</a>
+                        </div>
                     </div>
                     <!-- /#top -->
                 </form>

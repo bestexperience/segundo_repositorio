@@ -13,6 +13,40 @@ import br.usjt.ads.best.model.entity.Estado;
 
 
 public class JuizDAO {
+	public int inserirJuiz(Juiz juiz) throws IOException {
+		int id = -1;
+		String sql = "INSERT INTO campeonato.juiz (nome, data_nascimento, cidade_id, estado_id) VALUES (?, ?, ?, ?)";
+		
+		try(Connection conn = ConnectionFactory.getConnection();
+			PreparedStatement pst = conn.prepareStatement(sql);){
+			
+			pst.setString(1, juiz.getNomeJuiz());
+			if(juiz.getData_nascimento() != null) {
+				pst.setDate(2, new java.sql.Date(juiz.getData_nascimento().getTime()));
+			} else {
+				pst.setDate(2,  null);
+			}
+			pst.setInt(3, juiz.getCidade().getIdCidade());	
+			pst.setInt(4, juiz.getEstado().getIdEstado());	
+			pst.execute();
+			
+			//obter o id criado
+			String query = "select LAST_INSERT_ID()";
+			try(PreparedStatement pst1 = conn.prepareStatement(query);
+				ResultSet rs = pst1.executeQuery();){
+
+				if (rs.next()) {
+					id = rs.getInt(1);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
+		return id;
+	}
+	
+	
 	public ArrayList<Juiz> listarJuiz(String chave) throws IOException {
 		ArrayList<Juiz> lista = new ArrayList<>();
 		String sql = "select j.id, j.nome, j.data_nascimento, j.cidade_id, j.estado_id, c.nome, e.nome from juiz j, cidade c, estado e where j.cidade_id = c.id and j.estado_id = e.id and j.nome like ?";
@@ -49,10 +83,11 @@ public class JuizDAO {
 				
 		return lista;
 	}
-/*
-	public ArrayList<Juiz> listarJogador() throws IOException {
+
+	public ArrayList<Juiz> listarJuiz() throws IOException {
 		ArrayList<Juiz> lista = new ArrayList<>();
-		String sql = "SELECT * FROM campeonato.juiz";
+		String sql = "select j.id, j.nome, j.data_nascimento, j.cidade_id, j.estado_id, c.nome, e.nome from juiz j, cidade c, estado e where j.cidade_id = c.id and j.estado_id = e.id";
+		
 		try(Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement pst = conn.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();){
@@ -80,5 +115,5 @@ public class JuizDAO {
 			throw new IOException(e);
 		}				
 		return lista;
-	}*/
+	}
 }

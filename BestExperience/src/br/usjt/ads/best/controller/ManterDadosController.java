@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.usjt.ads.best.model.entity.Campeonato;
+import br.usjt.ads.best.model.entity.Cidade;
+import br.usjt.ads.best.model.entity.Estado;
 import br.usjt.ads.best.model.entity.Jogador;
 import br.usjt.ads.best.model.entity.Juiz;
 import br.usjt.ads.best.model.entity.Status;
 import br.usjt.ads.best.model.entity.Time;
 import br.usjt.ads.best.model.entity.Usuario;
 import br.usjt.ads.best.model.service.CampeonatoService;
+import br.usjt.ads.best.model.service.CidadeService;
+import br.usjt.ads.best.model.service.EstadoService;
 import br.usjt.ads.best.model.service.JogadorService;
 import br.usjt.ads.best.model.service.JuizService;
 import br.usjt.ads.best.model.service.StatusService;
@@ -34,6 +38,8 @@ public class ManterDadosController{
 	private CampeonatoService cService;
 	private JogadorService jService;
 	private JuizService juService;
+	private CidadeService cityService;
+	private EstadoService estadoService;
 	
 	public ManterDadosController(){
 		UService = new UsuarioService();
@@ -42,6 +48,8 @@ public class ManterDadosController{
 		cService = new CampeonatoService();
 		jService = new JogadorService();
 		juService = new JuizService();
+		cityService = new CidadeService();
+		estadoService = new EstadoService();
 	}
 	
 	
@@ -255,6 +263,25 @@ public class ManterDadosController{
 		return "usuario";
 	}
 	
+	@RequestMapping("novo_jogador")
+	public String novoJogador(HttpSession session){
+		return "novoJogador";
+	}
+	
+	@RequestMapping("cadastrar_jogador")
+	public String cadastrarJogador(HttpSession session, Jogador jogador){
+		try {
+			jService = new JogadorService();
+			jService.inserirJogador(jogador);
+			
+			return "listarJogadores";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	return "usuario";
+	}
+	
 	
 	/*Juizes*/
 
@@ -268,9 +295,11 @@ public class ManterDadosController{
 			try {
 				juService = new JuizService();
 				ArrayList<Juiz> lista;
-				
-				lista = juService.listarJuiz(chave);
-				
+				if (chave != null && chave.length() > 0) {
+					lista = juService.listarJuiz(chave);
+				}else{
+					lista = juService.listarJuiz();
+				}
 				model.addAttribute("lista", lista);
 				return "listarJuizes";
 			} catch (IOException e) {
@@ -280,7 +309,53 @@ public class ManterDadosController{
 		return "usuario";
 	}
 	
+	@RequestMapping("novo_juiz")
+	public String novoJuiz(HttpSession session, Model model){
+		try {
+			cityService = new CidadeService();
+			estadoService = new EstadoService();
+			ArrayList<Cidade> cidades;
+			ArrayList<Estado> estados;
+			
+			estados = estadoService.listarEstados();
+			cidades = cityService.listarCidades();
+			
+			session.setAttribute("cidades", cidades);
+			session.setAttribute("estados", estados);
+			return "novoJuiz";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "usuario";
+	}
 	
+	@RequestMapping("cadastrar_juiz")
+	public String cadastrarJuiz(HttpSession session, Juiz juiz){
+		try {
+			cityService = new CidadeService();
+			estadoService = new EstadoService();
+			juService = new JuizService();
+			
+			Estado estado;
+			estado = estadoService.buscarCidade(juiz.getEstado().getIdEstado());
+			juiz.setEstado(estado);
+			Cidade cidade;
+			cidade = cityService.buscarCidade(juiz.getCidade().getIdCidade());
+			juiz.setCidade(cidade);
+			
+			int idJuiz = juService.inserirJuiz(juiz);
+			
+			return "listarJuizes";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return "usuario";
+	}
 	
 	/*
 	@RequestMapping("gerar_turnos")

@@ -41,6 +41,10 @@
                                 </span>
                             </div>
                         </div>
+                        
+                        <div class="col-md-3">
+                            <a href="#" class="btn btn-primary pull-right h2">Novo Campeonato</a>
+                        </div>
                     </div>
                     <!-- /#top -->
                 </form>
