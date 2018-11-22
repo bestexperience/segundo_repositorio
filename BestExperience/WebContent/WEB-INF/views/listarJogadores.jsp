@@ -45,6 +45,7 @@
                         <div class="col-md-3">
                             <a href="novo_jogador" class="btn btn-primary pull-right h2">Novo Jogador</a>
                         </div>
+                        
                     </div>
                     <!-- /#top -->
                 </form>
@@ -58,6 +59,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nome</th>
+                                    <th>Nascimento</th>
                                     <th class="actions">Ações</th>
                                 </tr>
                             </thead>
@@ -70,8 +72,13 @@
                                             <td>
                                                 ${jogador.nomeJogador}
                                             </td>
+                                            <td>
+                                                <fmt:formatDate value="${jogador.nascimento_jogador}" pattern="dd/MM/yyyy"/>
+                                            </td>
                                             <td class="actions">
                                                 <a class="btn btn-success btn-xs" href="visualizar_jogador?id=${jogador.idJogador}">Visualizar</a>
+                                                <a class="btn btn-success btn-xs" href="alterar_jogador?chave=${jogador.nomeJogador}">Alterar</a>
+                                                <a class="btn btn-success btn-xs" href="excluir_jogador?id=${jogador.idJogador}">Excluir</a>
                                             </td>
                                         </tr>
                             </c:forEach>

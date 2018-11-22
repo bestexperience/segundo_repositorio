@@ -39,8 +39,10 @@ public class CampeonatoDAO {
 		return id;
 	}
 	
-	public Campeonato buscarUsuario(Campeonato campeonato) throws IOException{
-		String sql = "select * from campeonato.campeonato where nome = ?";
+	public Campeonato buscarCampeonato(Campeonato campeonato) throws IOException{
+		String sql = "select c.id, c.nome, c.numeroRodadas, c.usuario_id, u.nome from campeonato c, "
+				+ "usuario u where c.usuario_id = u.id and c.nome like ?";
+		
 		
 		
 		try(Connection conn = ConnectionFactory.getConnection();
@@ -48,9 +50,15 @@ public class CampeonatoDAO {
 			pst.setString(1, campeonato.getNome());
 			
 			try(ResultSet rs = pst.executeQuery();){
+				Usuario usuario;
 				while(rs.next()) {
-					campeonato.setIdCampeonato(rs.getInt("id"));
-					campeonato.setNome(rs.getString("nome"));
+					campeonato.setIdCampeonato(rs.getInt("c.id"));
+					campeonato.setNome(rs.getString("c.nome"));
+					campeonato.setNumeroRodadas(rs.getInt("c.numeroRodadas"));
+					usuario = new Usuario();
+					usuario.setId(rs.getInt("c.usuario_id"));
+					usuario.setNome(rs.getString("u.nome"));
+					campeonato.setUsuario(usuario);
 				}
 			}
 		} catch (SQLException e) {
@@ -62,7 +70,7 @@ public class CampeonatoDAO {
 	}
 	
 	public void excluirCampeonato(Campeonato campeonato) {
-		String sqlDelete = "DELETE FROM campeonato WHERE idCampeonato = ?";
+		String sqlDelete = "DELETE FROM campeonato.campeonato WHERE id = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.getConnection();
 				PreparedStatement stm = conn.prepareStatement(sqlDelete);) {

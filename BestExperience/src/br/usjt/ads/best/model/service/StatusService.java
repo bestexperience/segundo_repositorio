@@ -20,4 +20,8 @@ public class StatusService {
 		int id = dao.inserirPontos(ponto, id_campeonato, id_status);
 		return id;
 	}
+	public void excluirCampeonato(int resultados_definidos) {
+		dao.excluirResultados(resultados_definidos);
+	}
+	
 }

@@ -191,8 +191,37 @@ public class ManterDadosController{
 				e.printStackTrace();
 			}
 		return "usuario";
-		
 	}
+	
+	@RequestMapping("excluir_campeonato")
+	public String excluirCampeonato(Model model, @RequestParam("id") int id, Campeonato campeonato){
+		try {
+			cService = new CampeonatoService();
+			sService = new StatusService();
+			ArrayList<Campeonato> lista;
+			
+			campeonato.setIdCampeonato(id);
+			int resultados_definidos = id;
+			sService.excluirCampeonato(resultados_definidos);
+			cService.excluirCampeonato(campeonato);
+			campeonato = cService.buscarCampeonato(campeonato);
+			
+			String chave = campeonato.getNome();
+			
+			if (chave != null && chave.length() > 0) {
+				lista = cService.listarCampeonatos(chave);
+			} else {
+				lista = cService.listarCampeonatos();
+			}
+			model.addAttribute("lista", lista);
+			return "listarCampeonatos";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
+	}
+	
 	
 	
 	
@@ -233,6 +262,24 @@ public class ManterDadosController{
 			}
 		return "usuario";
 	}
+	
+	@RequestMapping("visualizar_time")
+	public String visualizarTime(Model model, @RequestParam("nome") String chave){
+		
+		try {
+			tService = new TimeService();
+			ArrayList<Time> lista;
+			lista = tService.listarTime(chave);
+			model.addAttribute("lista", lista);
+			return "visualizarTime";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
+	}
+	
+	
 	
 	
 	
@@ -280,6 +327,58 @@ public class ManterDadosController{
 			e.printStackTrace();
 		}
 	return "usuario";
+	}
+	
+	@RequestMapping("alterar_jogador")
+	public String alterarJogador(@RequestParam("chave") String chave, Model model){
+		try {
+			jService = new JogadorService();
+			ArrayList<Jogador> jogador = new ArrayList<>();
+			jogador = jService.listarJogador(chave);
+			model.addAttribute("jogador", jogador);
+			return "alterarJogador";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
+	}
+	
+	@RequestMapping("alterar_efetivar")
+	public String alterarEfetivarJogador(Model model, Jogador jogador){
+		
+		try {
+			ArrayList<Jogador> lista = new ArrayList<>();
+			jService = new JogadorService();
+			jService.atualizar(jogador);
+			
+			lista = jService.listarJogador();
+			
+			model.addAttribute("lista", lista);
+			return "listarJogadores";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
+	}
+	
+	@RequestMapping("excluir_jogador")
+	public String excluirJogador(Model model, @RequestParam("id") int id, Jogador jogador){
+		try {
+			ArrayList<Jogador> lista = new ArrayList<>();
+			jService = new JogadorService();
+			jogador.setIdJogador(id);
+			jService.excluirJogador(jogador);
+
+			lista = jService.listarJogador();
+			model.addAttribute("lista", lista);
+			return "listarJogadores";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
 	}
 	
 	
@@ -379,7 +478,7 @@ public class ManterDadosController{
 		try {
 			cService = new CampeonatoService();
 			campeonato.setNome(nome);
-			campeonato = cService.buscarUsuario(campeonato);
+			campeonato = cService.buscarCampeonato(campeonato);
 			session.setAttribute("campeonato", campeonato);
 			return "gerarTurnos";
 		} catch (IOException e) {

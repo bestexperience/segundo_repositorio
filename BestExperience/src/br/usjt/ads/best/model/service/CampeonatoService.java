@@ -18,8 +18,8 @@ import br.usjt.ads.best.model.entity.Usuario;
 		return dao.inserirCampeonato(campeonato, usuario);
 	}
 	
-	public Campeonato buscarUsuario(Campeonato campeonato) throws IOException {
-		return dao.buscarUsuario(campeonato);
+	public Campeonato buscarCampeonato(Campeonato campeonato) throws IOException {
+		return dao.buscarCampeonato(campeonato);
 	}
 	
 	public void excluirCampeonato(Campeonato campeonato) {

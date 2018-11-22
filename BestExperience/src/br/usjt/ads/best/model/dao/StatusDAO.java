@@ -61,4 +61,17 @@ public class StatusDAO {
 		}
 		return id;
 	}
+	
+	public void excluirResultados(int resultados_definidos) {
+		String sqlDelete = "DELETE FROM campeonato.resultados_definidos WHERE campeonato_id = ?";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.getConnection();
+				PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
+			stm.setInt(1, resultados_definidos);
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

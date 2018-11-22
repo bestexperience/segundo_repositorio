@@ -25,4 +25,12 @@ private JogadorDAO dao;
 	public int inserirJogador(Jogador jogador) throws IOException {
 		return dao.inserirJogador(jogador);
 	}
+	
+	public void atualizar(Jogador jogador) {
+		dao.atualizar(jogador);
+	}
+	
+	public void excluirJogador(Jogador jogador){
+		dao.excluirJogador(jogador);
+	}
 }
