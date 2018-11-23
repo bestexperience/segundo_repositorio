@@ -6,6 +6,7 @@ public class Juiz{
 	private int idJuiz;
 	private String nomeJuiz;
 	private Date data_nascimento;
+	private String descricao;
 	private Cidade cidade;
 	private Estado estado;
 	
@@ -38,6 +39,12 @@ public class Juiz{
 	}
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 	

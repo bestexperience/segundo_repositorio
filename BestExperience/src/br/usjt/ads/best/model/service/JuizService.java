@@ -13,6 +13,10 @@ public class JuizService {
 		this.dao = new JuizDAO();
 	}
 	
+	public Juiz buscarJuiz(int id) throws IOException {
+		return dao.buscarJuiz(id);
+	}
+	
 	public ArrayList<Juiz> listarJuiz(String chave) throws IOException{
 		return dao.listarJuiz(chave);
 	}
@@ -23,5 +27,13 @@ public class JuizService {
 	
 	public int inserirJuiz(Juiz juiz) throws IOException {
 		return dao.inserirJuiz(juiz);
+	}
+	
+	public void atualizarJuiz(Juiz juiz){
+		dao.atualizarJuiz(juiz);
+	}
+	
+	public void excluirJogador(Juiz juiz) {
+		dao.excluirJogador(juiz);
 	}
 }

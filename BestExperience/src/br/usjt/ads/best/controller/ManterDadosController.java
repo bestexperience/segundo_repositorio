@@ -381,6 +381,22 @@ public class ManterDadosController{
 		return "usuario";
 	}
 	
+	@RequestMapping("visualizar_jogador")
+	public String visualizarJogador(@RequestParam("chave") String chave, Model model){
+		try {
+			jService = new JogadorService();
+			ArrayList<Jogador> lista = new ArrayList<>();
+			lista = jService.listarJogador(chave);
+			model.addAttribute("lista", lista);
+			return "visualizarJogador";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
+	}
+	
+	
 	
 	/*Juizes*/
 
@@ -456,6 +472,78 @@ public class ManterDadosController{
 		return "usuario";
 	}
 	
+	@RequestMapping("visualizar_juiz")
+	public String visualizarJuiz(Model model, @RequestParam("nome") String chave){
+		try {
+			juService = new JuizService();
+			ArrayList<Juiz> lista;
+			lista = juService.listarJuiz(chave);
+			model.addAttribute("lista", lista);
+			return "visualizarJuiz";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
+	}
+	
+	@RequestMapping("editar_juiz")
+	public String editarJuiz(Model model, @RequestParam("id") int id){
+		try {
+			juService = new JuizService();
+			cityService = new CidadeService();
+			estadoService = new EstadoService();
+			Juiz juiz = new Juiz();
+			
+			ArrayList<Cidade> cidades;
+			ArrayList<Estado> estados;
+			
+			estados = estadoService.listarEstados();
+			cidades = cityService.listarCidades();
+			
+			juiz = juService.buscarJuiz(id);
+			
+			model.addAttribute("cidades", cidades);
+			model.addAttribute("estados", estados);
+			model.addAttribute("juiz", juiz);
+			return "alterarJuiz";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
+	}
+	
+	@RequestMapping("confirmar_editar_juiz")
+	public String confirmarEditarJuiz(Model model, @RequestParam("nome") String chave){
+		try {
+			juService = new JuizService();
+			ArrayList<Juiz> lista;
+			lista = juService.listarJuiz(chave);
+			model.addAttribute("lista", lista);
+			return "visualizarJuiz";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
+	}
+	/*
+	@RequestMapping("confirmar_excluir_juiz")
+	public String excluirJuiz(Model model, @RequestParam("nome") String chave){
+		try {
+			juService = new JuizService();
+			ArrayList<Juiz> lista;
+			lista = juService.listarJuiz(chave);
+			model.addAttribute("lista", lista);
+			return "visualizarJuiz";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
+	}
+	*/
 	/*
 	@RequestMapping("gerar_turnos")
 	public String gerarTurnos(HttpSession session, Campeonato campeonato){

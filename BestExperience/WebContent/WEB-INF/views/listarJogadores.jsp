@@ -76,7 +76,7 @@
                                                 <fmt:formatDate value="${jogador.nascimento_jogador}" pattern="dd/MM/yyyy"/>
                                             </td>
                                             <td class="actions">
-                                                <a class="btn btn-success btn-xs" href="visualizar_jogador?id=${jogador.idJogador}">Visualizar</a>
+                                                <a class="btn btn-success btn-xs" href="visualizar_jogador?chave=${jogador.nomeJogador}">Visualizar</a>
                                                 <a class="btn btn-success btn-xs" href="alterar_jogador?chave=${jogador.nomeJogador}">Alterar</a>
                                                 <a class="btn btn-success btn-xs" href="excluir_jogador?id=${jogador.idJogador}">Excluir</a>
                                             </td>
