@@ -221,12 +221,27 @@ public class ManterDadosController{
 		}
 		return "usuario";
 	}
-	/*
+	
 	@RequestMapping("atualizar_campeonato")
-	public String prepararAtualizarCampeonatos(HttpSession session,  @RequestParam("id") int id, Campeonato campeonato){
-		
+	public String prepararAtualizarCampeonatos(Model model,  @RequestParam("nome") String chave, Campeonato campeonato){
+
+		try {
+			sService = new StatusService();
+			cService = new CampeonatoService();
+			ArrayList<Status> status;
+			status = sService.listarStatus();
+			campeonato.setNome(chave);
+			campeonato = cService.buscarCampeonato(campeonato);
+			model.addAttribute("campeonato", campeonato);
+			model.addAttribute("status", status);
+			return "alterarCampeonato";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return "listarCampeonatos";
-	}*/
+	}
 	
 	
 	

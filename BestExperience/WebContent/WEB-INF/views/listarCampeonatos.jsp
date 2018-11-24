@@ -81,7 +81,7 @@
                                             <td class="actions">
                                             	<!-- <a class="btn btn-success btn-xs" href="gerar_turnos2&id=${campeonato.idCampeonato}">Gerar Turnos</a> -->
                                                 <a class="btn btn-success btn-xs" href="gerar_turnos?nome=${campeonato.nome}">Visualizar</a>
-                                                <a class="btn btn-success btn-xs" href="atualizar_campeonato?id=${campeonato.idCampeonato}">Atualizar</a>
+                                                <a class="btn btn-success btn-xs" href="atualizar_campeonato?nome=${campeonato.nome}">Atualizar</a>
                                                 <a class="btn btn-success btn-xs" href="excluir_campeonato?id=${campeonato.idCampeonato}">Excluir</a>
                                             </td>
                                         </tr>
