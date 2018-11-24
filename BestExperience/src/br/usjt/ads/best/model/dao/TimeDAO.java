@@ -7,9 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import br.usjt.ads.best.model.entity.Campeonato;
 import br.usjt.ads.best.model.entity.Time;
-import br.usjt.ads.best.model.entity.Usuario;
 
 
 public class TimeDAO {
@@ -75,4 +73,60 @@ public class TimeDAO {
 		}				
 		return lista;
 	}
+	
+public void atualizarTime(Time time) {
+		
+		String sqlUpdate = "UPDATE campeonato.time SET nome=? WHERE id=?";
+		
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.getConnection();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			
+			stm.setString(1, time.getNome());
+			stm.setInt(2, time.getIdTime());
+
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void excluirTime(Time time) {
+		String sqlDelete = "DELETE FROM campeonato.time WHERE id = ?";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.getConnection();
+				PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
+			int id = time.getIdTime();
+			stm.setInt(1, id);
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Time buscarTime(int id) throws IOException {
+		Time time = null;
+		String sql = "select * from campeonato.time where id like ?";
+		try(Connection conn = ConnectionFactory.getConnection();
+			PreparedStatement pst = conn.prepareStatement(sql);){
+			
+			pst.setInt(1, id);
+			
+			try(ResultSet rs = pst.executeQuery();){
+			
+				while(rs.next()) {
+					time = new Time();
+					time.setIdTime(rs.getInt("id"));
+					time.setNome(rs.getString("nome"));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
+		
+		return time;
+	}
+	
+	
 }

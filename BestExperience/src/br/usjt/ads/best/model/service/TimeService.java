@@ -24,4 +24,16 @@ public class TimeService {
 	public ArrayList<Time> listarTime() throws IOException{
 		return dao.listarTime();
 	}
+	/////////////////////////////////////////////////////////
+	public void atualizarTime(Time time) {
+		dao.atualizarTime(time);
+	}
+	
+	public void excluirTime(Time time) {
+		dao.excluirTime(time);
+	}
+	
+	public Time buscarTime(int id) throws IOException {
+		return dao.buscarTime(id);
+	}
 }	

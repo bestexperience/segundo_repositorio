@@ -33,7 +33,7 @@ public class JuizService {
 		dao.atualizarJuiz(juiz);
 	}
 	
-	public void excluirJogador(Juiz juiz) {
-		dao.excluirJogador(juiz);
+	public void excluirJuiz(Juiz juiz) {
+		dao.excluirJuiz(juiz);
 	}
 }

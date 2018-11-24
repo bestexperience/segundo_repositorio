@@ -162,7 +162,7 @@ public class JuizDAO {
 	
 public void atualizarJuiz(Juiz juiz) {
 		
-		String sqlUpdate = "UPDATE campeonato.juiz SET nome=?, data_nascimento=?, descricao=?, cidade_id=?, estado_id=?,  WHERE id=?";
+		String sqlUpdate = "UPDATE campeonato.juiz SET nome=?, data_nascimento=?, descricao=?, cidade_id=?, estado_id=? WHERE id=?";
 		
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.getConnection();
@@ -185,7 +185,7 @@ public void atualizarJuiz(Juiz juiz) {
 		}
 	}
 	
-	public void excluirJogador(Juiz juiz) {
+	public void excluirJuiz(Juiz juiz) {
 		String sqlDelete = "DELETE FROM campeonato.juiz WHERE id = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.getConnection();

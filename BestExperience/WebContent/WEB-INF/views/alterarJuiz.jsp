@@ -21,11 +21,12 @@
     <div id="main" class="container">
         <h3 class="page-header">Alterar Juiz</h3>
         <!-- Formulario para inclusao de clientes -->
-        <form action="_juiz" method="post">
+        <form action="confirmar_editar_juiz" method="post">
             <!-- area de campos do form -->
             <div class="row">
             	<div class="form-group col-md-8">
-	                    <label for="nome">Nome</label>
+	                    <label for="idJuiz">Nome</label>
+	                    <input type="hidden" class="form-control" name="idJuiz" id="idJuiz" required value="${juiz.idJuiz}">
 	                    <input type="text" class="form-control" name="nomeJuiz" id="nome" required maxlength="100" placeholder="nome do juiz" value="${juiz.nomeJuiz}">
 	            </div>
 	            <div class="form-group col-md-4">

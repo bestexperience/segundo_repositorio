@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.usjt.ads.best.model.entity.Campeonato;
+import br.usjt.ads.best.model.entity.Resultados_definidos;
 import br.usjt.ads.best.model.entity.Status;
-import br.usjt.ads.best.model.entity.Usuario;
 
 
 public class StatusDAO {
@@ -32,6 +32,41 @@ public class StatusDAO {
 			throw new IOException(e);
 		}
 		return statusArray;
+	}
+	
+	
+	public ArrayList<Resultados_definidos> listarCampeonatos(int id) throws IOException {
+		ArrayList<Resultados_definidos> lista = new ArrayList<>();
+		String sql = "select id, pontos, campeonato_id, status_id from resultados_definidos where id = ? order by id";
+		try(Connection conn = ConnectionFactory.getConnection();
+			PreparedStatement pst = conn.prepareStatement(sql);){
+			
+			pst.setInt(1, id);
+		
+			try(ResultSet rs = pst.executeQuery();){
+			
+				Resultados_definidos resultados;
+				Campeonato campeonato;
+				Status status = new Status();
+				while(rs.next()) {
+					resultados = new Resultados_definidos();
+					resultados.setId(rs.getInt("id"));
+					resultados.setPontos(rs.getInt("pontos"));
+					campeonato = new Campeonato();
+					campeonato.setIdCampeonato(rs.getInt("campeonato_id"));
+					resultados.setCampeonato(campeonato);
+					status = new Status();
+					status.setId(rs.getInt("status_id"));
+					resultados.setStatus(status);
+					lista.add(resultados);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
+				
+		return lista;
 	}
 	
 	public int inserirPontos(int ponto, int id_campeonato, int id_status) throws IOException {

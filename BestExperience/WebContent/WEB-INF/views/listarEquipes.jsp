@@ -72,8 +72,8 @@
                                             </td>
                                             <td class="actions">
                                                 <a class="btn btn-success btn-xs" href="visualizar_time?nome=${time.nome}">Visualizar</a>
-                                               	<a class="btn btn-success btn-xs" href="atualizar_time?nome=">Atualizar</a>
-                                                <a class="btn btn-success btn-xs" href="excluir_time?id=">Excluir</a>
+                                               	<a class="btn btn-success btn-xs" href="atualizar_time?id=${time.idTime}">Atualizar</a>
+                                                <a class="btn btn-success btn-xs" href="excluir_time?id=${time.idTime}">Excluir</a>
                                             </td>
                                         </tr>
                             </c:forEach>
