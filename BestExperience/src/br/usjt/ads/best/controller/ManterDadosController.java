@@ -168,6 +168,27 @@ public class ManterDadosController{
 		return "usuario";
 	}
 	
+	@RequestMapping("efetivar_atualizacao")
+	public String efetivarAtualizacao(HttpSession session, Campeonato campeonato,
+			@RequestParam("pontos1") int idP1,
+			@RequestParam("pontos2") int idP2,
+			@RequestParam("pontos3") int idP3,
+			@RequestParam("pontos4") int idP4
+			){
+		
+			cService = new CampeonatoService();
+			cService.atualizarCampeonato(campeonato);
+			
+			sService = new StatusService();
+			sService.atualizarResultados(idP1, 1);
+			sService.atualizarResultados(idP2, 2);
+			sService.atualizarResultados(idP3, 3);
+			sService.atualizarResultados(idP4, 4);
+			
+		
+		return "listarCampeonatos";
+	}
+	
 	@RequestMapping("buscar_campeonatos")
 	public String buscarCampeonatos(HttpSession session){
 		return "listarCampeonatos";
@@ -225,7 +246,7 @@ public class ManterDadosController{
 	
 	@RequestMapping("atualizar_campeonato")
 	public String prepararAtualizarCampeonatos(Model model,  @RequestParam("nome") String chave, Campeonato campeonato){
-
+		/*O efetivar atualização esta la em cima**/
 		try {
 			//sService = new StatusService();
 			cService = new CampeonatoService();

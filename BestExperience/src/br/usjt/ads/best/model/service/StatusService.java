@@ -28,5 +28,7 @@ public class StatusService {
 	public ArrayList<Resultados_definidos> listarResultadosDefinidos(int id) throws IOException {
 		return dao.listarResultadosDefinidos(id);
 	}
-	
+	public void atualizarResultados(int pontos, int id_pontos) {
+		dao.atualizarResultados(pontos, id_pontos);
+	}
 }

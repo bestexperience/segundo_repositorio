@@ -100,6 +100,23 @@ public class StatusDAO {
 		return id;
 	}
 	
+public void atualizarResultados(int pontos, int id_pontos) {
+		
+		String sqlUpdate = "UPDATE campeonato.resultados_definidos SET pontos=? WHERE status_id=?";
+		
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.getConnection();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			
+			stm.setInt(1, pontos);
+			stm.setInt(2, id_pontos);
+			
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void excluirResultados(int resultados_definidos) {
 		String sqlDelete = "DELETE FROM campeonato.resultados_definidos WHERE campeonato_id = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu

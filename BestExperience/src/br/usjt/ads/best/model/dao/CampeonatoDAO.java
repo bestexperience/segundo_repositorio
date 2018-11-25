@@ -84,7 +84,7 @@ public class CampeonatoDAO {
 	
 	public void atualizarCampeonato(Campeonato campeonato) {
 		
-		String sqlUpdate = "UPDATE futebol.campeonato SET nome=?, numeroRodadas=? WHERE id=?";
+		String sqlUpdate = "UPDATE campeonato.campeonato SET nome=?, numeroRodadas=? WHERE id=?";
 		
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.getConnection();

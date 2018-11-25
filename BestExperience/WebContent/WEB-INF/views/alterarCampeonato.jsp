@@ -16,7 +16,7 @@
 	<c:import url="MenuUsuario.jsp"/>
 	<div class="container">
 	  <h2>Alteração de Campeonato</h2>
-	  <form class="form-horizontal" action="">
+	  <form class="form-horizontal" action="efetivar_atualizacao">
 	    <div class="form-group">
 	      <label class="control-label col-sm-2" for="nome">Nome</label>
 	      <div class="col-sm-10">
