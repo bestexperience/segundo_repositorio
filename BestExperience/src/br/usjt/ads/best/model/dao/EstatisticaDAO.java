@@ -51,7 +51,7 @@ public class EstatisticaDAO {
 		return id;
 	}
 	
-	public ArrayList<Estatistica> listarJuiz() throws IOException {
+	public ArrayList<Estatistica> listarEstatistica() throws IOException {
 		ArrayList<Estatistica> lista = new ArrayList<>();
 		String sql = "select e.id, e.score, e.chute_fora, e.saves, e.escanteios, e.faltas, e.laterais, e.passes_de_bola, e.defesas, e.bola_fora, e.time_id, e.jogos_id, t.nome, "
 				+ "j.data, j.tempo_extra, j.turno, j.comentarios, j.periodo from estatistica e, time t, jogos j where e.time_id = t.id and e.jogos_id = j.id;";

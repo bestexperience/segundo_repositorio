@@ -79,9 +79,41 @@ public class ManterDadosController{
 		return "listarEquipes";
 	}
 	
+	
+	@RequestMapping("listar_times_visitante")
+	public String listarTimesVisitante(Model model){
+		
+		try {
+			tService = new TimeService();
+			ArrayList<Time> lista;
+			lista = tService.listarTime();
+			model.addAttribute("lista", lista);
+			return "listarTimesVisitante";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "listarTimesVisitante";
+	}
+	
+	
 	@RequestMapping("dados_campeonato")
-	public String dadosDoCampeonato(){
-		///////////////////////
+	public String dadosDoCampeonato(Model model){
+		
+		try {
+			Estatistica estatistica = new Estatistica();
+			ArrayList<Estatistica> lista1;
+			
+			estaService = new EstatisticaService();
+			
+			lista1 = estaService.listarEstatistica();
+			
+			model.addAttribute("lista", lista1);
+			return "dadosDoCampeonato";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return "dadosDoCampeonato";
 	}

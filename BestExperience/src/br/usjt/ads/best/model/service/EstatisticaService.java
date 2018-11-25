@@ -1,6 +1,7 @@
 package br.usjt.ads.best.model.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import br.usjt.ads.best.model.dao.EstatisticaDAO;
 import br.usjt.ads.best.model.entity.Estatistica;
@@ -14,5 +15,9 @@ public class EstatisticaService {
 	
 	public int inserirEstatistica(Estatistica estatistica) throws IOException {
 		return dao.inserirEstatistica(estatistica);
+	}
+	
+	public ArrayList<Estatistica> listarEstatistica() throws IOException {
+		return dao.listarEstatistica();
 	}
 }

@@ -16,6 +16,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter{
         if(uri.endsWith("/") || 
                 uri.endsWith("login") || 
                 uri.endsWith("listar_equipes") || 
+                uri.endsWith("listar_times_visitante") || 
                 uri.endsWith("dados_campeonato") || 
                 uri.endsWith("turno_rodadas") || 
                 uri.endsWith("comissao_executiva") || 
