@@ -633,6 +633,7 @@ public class ManterDadosController{
 		juService.excluirJuiz(juiz);
 		return "listarJuizes";
 	}
+	
 	/*
 	@RequestMapping("gerar_turnos")
 	public String gerarTurnos(HttpSession session, Campeonato campeonato){
