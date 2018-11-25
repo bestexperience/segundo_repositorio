@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import br.usjt.ads.best.model.entity.Campeonato;
 import br.usjt.ads.best.model.entity.Cidade;
 import br.usjt.ads.best.model.entity.Estado;
+import br.usjt.ads.best.model.entity.Estatistica;
 import br.usjt.ads.best.model.entity.Jogador;
+import br.usjt.ads.best.model.entity.Jogos;
 import br.usjt.ads.best.model.entity.Juiz;
 import br.usjt.ads.best.model.entity.Resultados_definidos;
 import br.usjt.ads.best.model.entity.Status;
@@ -22,7 +24,9 @@ import br.usjt.ads.best.model.entity.Usuario;
 import br.usjt.ads.best.model.service.CampeonatoService;
 import br.usjt.ads.best.model.service.CidadeService;
 import br.usjt.ads.best.model.service.EstadoService;
+import br.usjt.ads.best.model.service.EstatisticaService;
 import br.usjt.ads.best.model.service.JogadorService;
+import br.usjt.ads.best.model.service.JogosService;
 import br.usjt.ads.best.model.service.JuizService;
 import br.usjt.ads.best.model.service.StatusService;
 import br.usjt.ads.best.model.service.TimeService;
@@ -41,6 +45,8 @@ public class ManterDadosController{
 	private JuizService juService;
 	private CidadeService cityService;
 	private EstadoService estadoService;
+	private EstatisticaService estaService;
+	private JogosService jogosService;
 	
 	public ManterDadosController(){
 		UService = new UsuarioService();
@@ -51,6 +57,9 @@ public class ManterDadosController{
 		juService = new JuizService();
 		cityService = new CidadeService();
 		estadoService = new EstadoService();
+		estaService = new EstatisticaService();
+		jogosService = new JogosService();
+		
 	}
 	
 	
@@ -72,6 +81,8 @@ public class ManterDadosController{
 	
 	@RequestMapping("dados_campeonato")
 	public String dadosDoCampeonato(){
+		///////////////////////
+		
 		return "dadosDoCampeonato";
 	}
 	
@@ -634,22 +645,7 @@ public class ManterDadosController{
 		return "listarJuizes";
 	}
 	
-	/*
-	@RequestMapping("gerar_turnos")
-	public String gerarTurnos(HttpSession session, Campeonato campeonato){
-		try {
-			cService = new CampeonatoService();
-			campeonato = cService.buscarUsuario(campeonato);
-			session.setAttribute("campeonato", campeonato);
-			return "gerarTurnos";
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return "errorLogin";
-		
-	}*/
+	
 	
 	@RequestMapping("/gerar_turnos")
 	public String gerarTurnos(HttpSession session, @RequestParam("nome") String nome, Campeonato campeonato){
@@ -666,6 +662,49 @@ public class ManterDadosController{
 		
 		return "errorLogin";
 		
+	}
+	
+	@RequestMapping("efetivar_gerar_turnos")
+	public String efetivarGerarTurnos(HttpSession session, Campeonato campeonato, @RequestParam("nome") String nome) throws IOException{
+		Time time = new Time();
+		Jogos jogos = new Jogos();
+		Estatistica esta = new Estatistica();
+		ArrayList<Time> lista;
+		
+		tService = new TimeService();
+		cService = new CampeonatoService();
+		estaService = new EstatisticaService();
+		jogosService = new JogosService();
+		
+		campeonato = cService.buscarCampeonato(campeonato);
+		jogos.setCampeonato(campeonato);
+		lista = tService.listarTime();
+		int id1 = 0;
+		int id2 = 0;
+		for(int iRodadas=0; iRodadas < campeonato.getNumeroRodadas(); iRodadas++)
+		{
+			for(Time t : lista){
+				if(id2 == 0)
+				{
+					id1 = jogosService.inserirJogos(jogos);
+				}
+				
+				if(id2 == 2)
+				{
+					id2 = 0; 
+					id1 = jogosService.inserirJogos(jogos);
+				}
+				//int idTime = t.getIdTime();
+				//tService.buscarTime(idTime);
+				jogos.setIdJogos(id1);
+				esta.setJogos(jogos);
+				esta.setTime(t);
+				estaService.inserirEstatistica(esta);
+				id2++;
+			}
+		}
+		
+		return "gerarTurnos";
 	}
 	
 	

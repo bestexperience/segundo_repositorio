@@ -26,7 +26,7 @@ public class JogosDAO {
 			pst.setInt(3, jogos.getTurno());	
 			pst.setString(4, jogos.getComentarios());
 			pst.setString(5, jogos.getPeriodo());
-			pst.setInt(5, jogos.getCampeonato().getIdCampeonato());
+			pst.setInt(6, jogos.getCampeonato().getIdCampeonato());
 			pst.execute();
 			
 			//obter o id criado

@@ -49,7 +49,7 @@
       <div class="jumbotron">
         <h1>Campeonato</h1>
         <p class="lead">O campeonato ${campeonato.nome} ainda não contem seus turnos. Clique no botão abaixo para gerar os turnos.</p>
-        <p><a class="btn btn-lg btn-success" href="https://getbootstrap.com/docs/3.3/examples/jumbotron-narrow/#" role="button">Gerar Turnos</a></p>
+        <p><a class="btn btn-lg btn-success" href="efetivar_gerar_turnos?nome=${campeonato.nome}" role="button">Gerar Turnos</a></p>
       </div>
 
       <div class="row marketing">
