@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import br.usjt.ads.best.model.dao.StatusDAO;
+import br.usjt.ads.best.model.entity.Resultados_definidos;
 import br.usjt.ads.best.model.entity.Status;
 	
 
@@ -22,6 +23,10 @@ public class StatusService {
 	}
 	public void excluirCampeonato(int resultados_definidos) {
 		dao.excluirResultados(resultados_definidos);
+	}
+	
+	public ArrayList<Resultados_definidos> listarResultadosDefinidos(int id) throws IOException {
+		return dao.listarResultadosDefinidos(id);
 	}
 	
 }

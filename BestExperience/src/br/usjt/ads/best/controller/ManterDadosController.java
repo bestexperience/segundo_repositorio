@@ -15,6 +15,7 @@ import br.usjt.ads.best.model.entity.Cidade;
 import br.usjt.ads.best.model.entity.Estado;
 import br.usjt.ads.best.model.entity.Jogador;
 import br.usjt.ads.best.model.entity.Juiz;
+import br.usjt.ads.best.model.entity.Resultados_definidos;
 import br.usjt.ads.best.model.entity.Status;
 import br.usjt.ads.best.model.entity.Time;
 import br.usjt.ads.best.model.entity.Usuario;
@@ -226,14 +227,19 @@ public class ManterDadosController{
 	public String prepararAtualizarCampeonatos(Model model,  @RequestParam("nome") String chave, Campeonato campeonato){
 
 		try {
-			sService = new StatusService();
+			//sService = new StatusService();
 			cService = new CampeonatoService();
-			ArrayList<Status> status;
-			status = sService.listarStatus();
+			
+			//ArrayList<Status> status;
+			ArrayList<Resultados_definidos> resultados;
+			
+			//status = sService.listarStatus();
 			campeonato.setNome(chave);
 			campeonato = cService.buscarCampeonato(campeonato);
+			resultados = sService.listarResultadosDefinidos(campeonato.getIdCampeonato());
+			model.addAttribute("resultados", resultados);
 			model.addAttribute("campeonato", campeonato);
-			model.addAttribute("status", status);
+			//model.addAttribute("status", status);
 			return "alterarCampeonato";
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

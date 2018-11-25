@@ -35,9 +35,10 @@ public class StatusDAO {
 	}
 	
 	
-	public ArrayList<Resultados_definidos> listarCampeonatos(int id) throws IOException {
+	public ArrayList<Resultados_definidos> listarResultadosDefinidos(int id) throws IOException {
 		ArrayList<Resultados_definidos> lista = new ArrayList<>();
-		String sql = "select id, pontos, campeonato_id, status_id from resultados_definidos where id = ? order by id";
+		String sql = "select r.id, r.pontos, r.campeonato_id, r.status_id, c.nome, s.nome from resultados_definidos r, campeonato c, status s where"
+				+ " r.campeonato_id = c.id and r.status_id = s.id and r.campeonato_id like ? order by status_id;";
 		try(Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement pst = conn.prepareStatement(sql);){
 			
@@ -50,13 +51,15 @@ public class StatusDAO {
 				Status status = new Status();
 				while(rs.next()) {
 					resultados = new Resultados_definidos();
-					resultados.setId(rs.getInt("id"));
-					resultados.setPontos(rs.getInt("pontos"));
+					resultados.setId(rs.getInt("r.id"));
+					resultados.setPontos(rs.getInt("r.pontos"));
 					campeonato = new Campeonato();
-					campeonato.setIdCampeonato(rs.getInt("campeonato_id"));
+					campeonato.setIdCampeonato(rs.getInt("r.campeonato_id"));
+					campeonato.setNome(rs.getString("c.nome"));
 					resultados.setCampeonato(campeonato);
 					status = new Status();
 					status.setId(rs.getInt("status_id"));
+					status.setNome(rs.getString("s.nome"));
 					resultados.setStatus(status);
 					lista.add(resultados);
 				}

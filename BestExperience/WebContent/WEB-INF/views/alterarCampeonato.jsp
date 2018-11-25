@@ -26,24 +26,25 @@
 	    </div>
 	    <div class="form-group">
 	      <label class="control-label col-sm-2" for="nome">Numero de rodadas</label>
-	      <div class="col-sm-10">
+	      <div class="col-sm-4">
 	        <input type="number" class="form-control" id="numeroRodadas" placeholder="Numero de rodadas" name="numeroRodadas" value="${campeonato.numeroRodadas}">
 	      </div>
 	    </div>
 	    
-	    <hr />
 	    
+	    <div class="row">
+	    	<label class="control-label col-sm-2" for="nome">Configuração de Pontos</label>
+	    </div>
+	    <hr />
+	    <c:forEach var="resultados" items="${resultados}">
 	    <div class="form-group">
-			<label class="control-label col-sm-2" for="nome">Configuração de Pontos</label>
-				<div class="col-sm-10">
-					<c:forEach var="status" items="${status}">
-						<p>
-							<label class="control-label col-sm-2" for="nome">${status.nome}</label>
-							<input type="text" name="pontos${status.id}">
-						</p>
-					</c:forEach>
+				<label class="control-label col-sm-2" for="nome">${resultados.status.nome}</label>
+				<div class="col-sm-4">
+							<input type="text" class="form-control" name="pontos${resultados.status.id}" value="${resultados.pontos}">
 				</div>
 		</div>
+		
+		</c:forEach>		
 	    <div class="form-group">        
 	      <div class="col-sm-offset-2 col-sm-10">
 	        <button type="submit" class="btn btn-default">Atualizar</button>
