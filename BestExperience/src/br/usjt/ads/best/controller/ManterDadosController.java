@@ -216,16 +216,21 @@ public class ManterDadosController{
 			UService = new UsuarioService();
 			usuario = UService.buscarUsuarioPeloEmail(usuario);
 			model.addAttribute(usuario);
-			return "redefinirSenha";
+			if(usuario.getId() != 0)
+			{
+				return "redefinirSenha";
+			}else{
+				return "esqueciMinhaSenha";
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "redefinir_senha";
+		return "esqueciMinhaSenha";
 	}
 	
 	@RequestMapping("atualizar_esqueci_senha")
-	public String atualizarEsqueciSenha(Usuario usuario){
+	public String atualizarEsqueciSenha(HttpSession session, Usuario usuario){
 		UService = new UsuarioService();
 		UService.atualizarUsuario(usuario);
 		return "login";

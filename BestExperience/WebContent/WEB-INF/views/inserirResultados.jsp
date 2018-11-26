@@ -25,25 +25,11 @@
 			<c:import url="MenuUsuario.jsp"/>
             <!-- Container Principal -->
             <div id="main" class="container">
-                <form action="listar_resultados_1" method="post">
-                    <div id="top" class="row">
+               <div id="top" class="row">
                         <div class="col-md-3">
                             <h2>Resultados</h2>
                         </div>
-	
-                        <div class="col-md-6">
-                            <div class="input-group h2">
-                                <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Equipes (deixe vazio para trazer todas)">
-                                <span class="input-group-btn">
-                <button class="btn btn-primary" type="submit" name="acao" value="listar">
-                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                                </span>
-                            </div>
                         </div>
-                    </div>
-                    <!-- /#top -->
-                </form>
                 <hr />
                 <c:if test="${not empty lista}">
                 <div id="list" class="row">

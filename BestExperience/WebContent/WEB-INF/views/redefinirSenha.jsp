@@ -47,8 +47,7 @@
 			<small id="resultado" class="form-text text-muted" >&nbsp;</small>
 			
 			<div align="center">
-				<button type="submit" class="btn btn-warning" name="acao"
-					value="cadastrar">Atualizar</button>
+				<button type="submit" class="btn btn-warning" name="acao" value="cadastrar">Atualizar</button>
 			</div>
 		</form>
 	</div>

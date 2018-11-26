@@ -18,11 +18,9 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li><a href="usuario_logado">Perfil</a></li>
-				<li><a href="#">Gerar Turnos</a></li>
-				<li><a href="listar_campeonatos_tabela">Inserir Resultados</a></li>
+				<li><a href="listar_campeonatos_tabela">Campeonatos</a></li>
 				
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Listagem de Dados<span class="caret"></span></a>
+				<li class="dropdown"><a class="dropdown-toggle"	data-toggle="dropdown" href="#">Listagem de Dados<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="buscar_campeonatos">Campeonatos</a></li>
 						<li><a href="buscar_times">Times</a></li>
