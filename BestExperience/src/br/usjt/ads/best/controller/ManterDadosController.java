@@ -96,6 +96,40 @@ public class ManterDadosController{
 		return "listarTimesVisitante";
 	}
 	
+	@RequestMapping("listar_campeonatos_tabela")
+	public String listar_resultados(Model model){
+		
+		try {
+			ArrayList<Campeonato> lista;
+			cService = new CampeonatoService();
+			lista = cService.listarCampeonatos();
+			model.addAttribute("lista", lista);
+			return "listarCampeonatosTabela";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "listarCampeonatosTabela";
+	}
+	///////////////////////////////////////////////
+
+	@RequestMapping("listar_resultados_1")
+	public String inserirResultados(Model model, @RequestParam("id") int id){
+
+		try {
+			estaService = new EstatisticaService();
+			ArrayList<Estatistica> lista;
+			lista = estaService.listarEstatistica(id);
+			
+			model.addAttribute("lista", lista);
+			return "inserirResultados";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "inserirResultados";
+	}
+	
 	
 	@RequestMapping("dados_campeonato")
 	public String dadosDoCampeonato(Model model){
