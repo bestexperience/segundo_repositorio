@@ -2,6 +2,7 @@ package br.usjt.ads.best.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.http.HttpSession;
 
@@ -79,6 +80,13 @@ public class ManterDadosController{
 		return "listarEquipes";
 	}
 	
+	@RequestMapping("alterar_estatistica_pelo_id")
+	public String alterarEstatisticaPeloId(Estatistica estatistica, Jogos jogos){
+		estaService = new EstatisticaService();
+		jogosService = new JogosService();
+		estaService.atualizarEstatistica(estatistica);
+		return "listarEquipes";
+	}
 	
 	@RequestMapping("listar_times_visitante")
 	public String listarTimesVisitante(Model model){
@@ -156,12 +164,14 @@ public class ManterDadosController{
 	public String dadosDoCampeonato(Model model){
 		
 		try {
-			Estatistica estatistica = new Estatistica();
-			ArrayList<Estatistica> lista1;
+			Time time = new Time();
+			ArrayList<Time> lista1;
+			tService = new TimeService();
 			
-			estaService = new EstatisticaService();
 			
-			lista1 = estaService.listarEstatistica();
+			
+			lista1 = tService.listarTime();
+			
 			
 			model.addAttribute("lista", lista1);
 			return "dadosDoCampeonato";
@@ -802,13 +812,18 @@ public class ManterDadosController{
 	
 	
 	
-	@RequestMapping("/gerar_turnos")
-	public String gerarTurnos(HttpSession session, @RequestParam("nome") String nome, Campeonato campeonato){
+	@RequestMapping("gerar_turnos")
+	public String gerarTurnos(Model model, @RequestParam("nome") String nome, Campeonato campeonato){
 		try {
 			cService = new CampeonatoService();
+			jogosService = new JogosService();
+			Jogos jogos = new Jogos();
 			campeonato.setNome(nome);
 			campeonato = cService.buscarCampeonato(campeonato);
-			session.setAttribute("campeonato", campeonato);
+			jogos = jogosService.buscarJogos(campeonato.getIdCampeonato());
+			
+			model.addAttribute("jogos", jogos);
+			model.addAttribute("campeonato", campeonato);
 			return "gerarTurnos";
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -859,7 +874,7 @@ public class ManterDadosController{
 			}
 		}
 		
-		return "gerarTurnos";
+		return "listarCampeonatosTabela";
 	}
 	
 	

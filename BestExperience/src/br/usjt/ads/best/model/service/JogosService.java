@@ -15,5 +15,9 @@ public class JogosService {
 	public int inserirJogos(Jogos jogos) throws IOException {
 		return dao.inserirJogos(jogos);
 	}
+	
+	public Jogos buscarJogos(int chave) throws IOException {
+		return dao.buscarJogos(chave);
+	}
 
 }

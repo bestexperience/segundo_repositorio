@@ -198,6 +198,30 @@ public class EstatisticaDAO {
 		return estatistica;
 	}
 	
+public void atualizarEstatistica(Estatistica estatistica) {
+		
+		String sqlUpdate = "UPDATE campeonato.estatistica SET score=?, chute_fora=?, saves=?, escanteios=?, "
+				+ "faltas=?, laterais=?, passes_de_bola=?, defesas=?, bola_fora=? WHERE id=?";
+		
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.getConnection();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			
+			stm.setInt(1, estatistica.getScore());
+			stm.setInt(2, estatistica.getChute_fora());
+			stm.setInt(3, estatistica.getSaves());
+			stm.setInt(4, estatistica.getEscanteios());
+			stm.setInt(5, estatistica.getFaltas());
+			stm.setInt(6, estatistica.getLaterais());
+			stm.setInt(7, estatistica.getPasses_de_bola());
+			stm.setInt(8, estatistica.getDefesas());
+			stm.setInt(9, estatistica.getBola_fora());
+			stm.setInt(10, estatistica.getIdEstatistica());
 	
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

@@ -27,4 +27,8 @@ public class EstatisticaService {
 	public Estatistica listarEstatistica2(int chave) throws IOException {
 		return dao.listarEstatistica2(chave);
 	}
+	
+	public void atualizarEstatistica(Estatistica estatistica) {
+		dao.atualizarEstatistica(estatistica);
+	}
 }

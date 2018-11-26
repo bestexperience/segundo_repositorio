@@ -54,7 +54,8 @@
 				<br />
 				<c:forEach var="status" items="${status}">
 					<p>
-						<input placeholder="${status.nome}" oninput="this.className = ''"
+					<label>${status.nome}</label>
+						<input placeholder="${status.nome}..." oninput="this.className = ''"
 							name="pontos${status.id}">
 					</p>
 				</c:forEach>

@@ -28,14 +28,6 @@
 						<li><a href="buscar_juizes">Juizes</a></li>
 						<li><a href="buscar_estadios">Estadios</a></li>
 					</ul></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Manutenção<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Jogadores</a></li>
-						<li><a href="#">Times</a></li>
-						<li><a href="#">Juizes</a></li>
-						<li><a href="#">Estadios</a></li>
-					</ul></li>
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

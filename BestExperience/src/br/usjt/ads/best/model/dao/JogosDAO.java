@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import br.usjt.ads.best.model.entity.Campeonato;
 import br.usjt.ads.best.model.entity.Jogos;
 
 
@@ -43,5 +44,37 @@ public class JogosDAO {
 			throw new IOException(e);
 		}
 		return id;
+	}
+	
+	public Jogos buscarJogos(int chave) throws IOException {
+		Jogos jogos = null;
+		//String sql = "select j.id, j.data, j.tempo_extra, j.turno, j.comentarios, j.periodo, campeonato_id where e.time_id = t.id and e.jogos_id = j.id and e.id like ?";
+		String sql = "SELECT * FROM campeonato.jogos where campeonato_id = ?";
+		try(Connection conn = ConnectionFactory.getConnection();
+			PreparedStatement pst = conn.prepareStatement(sql);){
+			
+			pst.setInt(1, chave);
+		
+			try(ResultSet rs = pst.executeQuery();){
+				Campeonato campeonato;
+				while(rs.next()) {
+					jogos = new Jogos();
+					jogos.setIdJogos(rs.getInt("id"));
+					jogos.setData(rs.getDate("data"));
+					jogos.setTempo_extra(rs.getInt("tempo_extra"));
+					jogos.setTurno(rs.getInt("turno"));
+					jogos.setComentarios(rs.getString("comentarios"));
+					jogos.setPeriodo(rs.getString("periodo"));
+					campeonato = new Campeonato();
+					campeonato.setIdCampeonato(rs.getInt("campeonato_id"));
+					jogos.setCampeonato(campeonato);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
+				
+		return jogos;
 	}
 }

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Listagem de Times</title>
+<title>Definir Estatisticas</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -21,7 +21,7 @@
 	<!--Jogos Master-->
 	<div class="container">
   <h2 align="center">Definindo Estatisticas</h2>
-  <form class="form-horizontal" action="">
+  <form class="form-horizontal" action="alterar_estatistica_pelo_id">
     <div class="form-group">
       <div class="col-sm-10">
         <input type="hidden" class="form-control" id="id_estatistia" placeholder="Insira o nome do time" name="idEstatistica" value="${estatistica.idEstatistica}">

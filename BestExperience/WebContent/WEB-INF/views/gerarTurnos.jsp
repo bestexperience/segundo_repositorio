@@ -45,13 +45,23 @@
       <div class="header clearfix" align="center">      
         <h3 class="text-muted">${campeonato.nome}</h3>
       </div>
-
-      <div class="jumbotron">
-        <h1>Campeonato</h1>
-        <p class="lead">O campeonato ${campeonato.nome} ainda não contem seus turnos. Clique no botão abaixo para gerar os turnos.</p>
-        <p><a class="btn btn-lg btn-success" href="efetivar_gerar_turnos?nome=${campeonato.nome}" role="button">Gerar Turnos</a></p>
-      </div>
-
+	  
+	  <c:if test="${jogos == null}">
+	      <div class="jumbotron">
+	        <h1>Campeonato</h1>
+	        <p class="lead">O campeonato ${campeonato.nome} ainda não contem seus turnos. Clique no botão abaixo para gerar os turnos.</p>
+	        <p><a class="btn btn-lg btn-success" href="efetivar_gerar_turnos?nome=${campeonato.nome}" role="button">Gerar Turnos</a></p>
+	      </div>
+		</c:if>
+		
+		<c:if test="${not empty jogos}">
+	      <div class="jumbotron">
+	        <h1>Campeonato</h1>
+	        <p class="lead">O campeonato ${campeonato.nome} ainda não contem seus turnos. Clique no botão abaixo para gerar os turnos.</p>
+	        <p>Os turnos ja foram gerados</p>
+	      </div>
+		</c:if>
+		
       <div class="row marketing">
         <div class="col-lg-6">
           <h4>Rodadas</h4>

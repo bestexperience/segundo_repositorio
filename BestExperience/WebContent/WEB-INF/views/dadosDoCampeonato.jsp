@@ -18,12 +18,12 @@
 <div class="container">
   <h2 align="center">Lista de Jogos</h2>
   <div class="col-md-12" align="center"><h2></h2></div>
-  <c:forEach var="estatistica" items="${lista}" varStatus="idDado">
+  <c:forEach var="time" items="${lista}" varStatus="idDado">
   <div class="col-md-5">
       <div class="thumbnail">
           <img src="img/screen.jpg" alt="Lights" style="width:30%">
           <div class="caption">
-            <p align="center">${estatistica.time.nome}</p>
+            <p align="center">${time.nome}</p>
           </div>
       </div>
    </div>
