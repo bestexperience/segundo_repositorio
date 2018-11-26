@@ -114,13 +114,17 @@ public class ManterDadosController{
 	///////////////////////////////////////////////
 
 	@RequestMapping("listar_resultados_1")
-	public String inserirResultados(Model model, @RequestParam("id") int id){
+	public String listarResultados(Model model, @RequestParam("id") int id){
 
 		try {
+			Campeonato campeonato = new Campeonato();
+			campeonato.setIdCampeonato(id);
 			estaService = new EstatisticaService();
+			Estatistica estatistica = new Estatistica();
 			ArrayList<Estatistica> lista;
 			lista = estaService.listarEstatistica(id);
 			
+			model.addAttribute("campeonato", campeonato);
 			model.addAttribute("lista", lista);
 			return "inserirResultados";
 		} catch (IOException e) {
@@ -128,6 +132,23 @@ public class ManterDadosController{
 			e.printStackTrace();
 		}
 		return "inserirResultados";
+	}
+	
+	@RequestMapping("atualizar_estatistica")
+	public String inserirResultados(Model model, @RequestParam("id") int id){
+
+		try {
+			estaService = new EstatisticaService();
+			Estatistica estatistica = new Estatistica();
+			estatistica = estaService.listarEstatistica2(id);
+			
+			model.addAttribute("estatistica", estatistica);
+			return "alterarEstatistica";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "alterarEstatistica";
 	}
 	
 	

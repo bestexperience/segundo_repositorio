@@ -66,16 +66,15 @@ public class EstatisticaDAO {
 			while(rs.next()) {
 				estatistica = new Estatistica();
 				estatistica.setIdEstatistica(rs.getInt("e.id"));
-				estatistica.setIdEstatistica(rs.getInt("e.score"));
-				estatistica.setIdEstatistica(rs.getInt("e.chute_fora"));
-				estatistica.setIdEstatistica(rs.getInt("e.saves"));
-				estatistica.setIdEstatistica(rs.getInt("e.escanteios"));
-				estatistica.setIdEstatistica(rs.getInt("e.faltas"));
-				estatistica.setIdEstatistica(rs.getInt("e.laterais"));
-				estatistica.setIdEstatistica(rs.getInt("e.passes_de_bola"));
-				estatistica.setIdEstatistica(rs.getInt("e.defesas"));
-				estatistica.setIdEstatistica(rs.getInt("e.bola_fora"));
-				estatistica.setIdEstatistica(rs.getInt("e.time_id"));
+				estatistica.setScore(rs.getInt("e.score"));
+				estatistica.setChute_fora(rs.getInt("e.chute_fora"));
+				estatistica.setSaves(rs.getInt("e.saves"));
+				estatistica.setEscanteios(rs.getInt("e.escanteios"));
+				estatistica.setFaltas(rs.getInt("e.faltas"));
+				estatistica.setLaterais(rs.getInt("e.laterais"));
+				estatistica.setPasses_de_bola(rs.getInt("e.passes_de_bola"));
+				estatistica.setDefesas(rs.getInt("e.defesas"));
+				estatistica.setBola_fora(rs.getInt("e.bola_fora"));
 				time = new Time();
 				time.setIdTime(rs.getInt("e.time_id"));
 				time.setNome(rs.getString("t.nome"));
@@ -102,7 +101,7 @@ public class EstatisticaDAO {
 	public ArrayList<Estatistica> listarEstatistica(int chave) throws IOException {
 		ArrayList<Estatistica> lista = new ArrayList<>();
 		String sql = "select e.id, e.score, e.chute_fora, e.saves, e.escanteios, e.faltas, e.laterais, e.passes_de_bola, e.defesas, e.bola_fora, e.time_id, e.jogos_id, t.nome,"
-				+ "j.data, j.tempo_extra, j.turno, j.comentarios, j.periodo, j.campeonato_id from estatistica e, time t, jogos j where e.time_id = t.id and e.jogos_id = j.id and j.campeonato_id like ?;";
+				+ "j.data, j.tempo_extra, j.turno, j.comentarios, j.periodo, j.campeonato_id from estatistica e, time t, jogos j where e.time_id = t.id and e.jogos_id = j.id and j.campeonato_id like ?";
 		try(Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement pst = conn.prepareStatement(sql);){
 			
@@ -116,16 +115,15 @@ public class EstatisticaDAO {
 				while(rs.next()) {
 					estatistica = new Estatistica();
 					estatistica.setIdEstatistica(rs.getInt("e.id"));
-					estatistica.setIdEstatistica(rs.getInt("e.score"));
-					estatistica.setIdEstatistica(rs.getInt("e.chute_fora"));
-					estatistica.setIdEstatistica(rs.getInt("e.saves"));
-					estatistica.setIdEstatistica(rs.getInt("e.escanteios"));
-					estatistica.setIdEstatistica(rs.getInt("e.faltas"));
-					estatistica.setIdEstatistica(rs.getInt("e.laterais"));
-					estatistica.setIdEstatistica(rs.getInt("e.passes_de_bola"));
-					estatistica.setIdEstatistica(rs.getInt("e.defesas"));
-					estatistica.setIdEstatistica(rs.getInt("e.bola_fora"));
-					estatistica.setIdEstatistica(rs.getInt("e.time_id"));
+					estatistica.setScore(rs.getInt("e.score"));
+					estatistica.setChute_fora(rs.getInt("e.chute_fora"));
+					estatistica.setSaves(rs.getInt("e.saves"));
+					estatistica.setEscanteios(rs.getInt("e.escanteios"));
+					estatistica.setFaltas(rs.getInt("e.faltas"));
+					estatistica.setLaterais(rs.getInt("e.laterais"));
+					estatistica.setPasses_de_bola(rs.getInt("e.passes_de_bola"));
+					estatistica.setDefesas(rs.getInt("e.defesas"));
+					estatistica.setBola_fora(rs.getInt("e.bola_fora"));
 					time = new Time();
 					time.setIdTime(rs.getInt("e.time_id"));
 					time.setNome(rs.getString("t.nome"));
@@ -149,6 +147,55 @@ public class EstatisticaDAO {
 		}
 				
 		return lista;
+	}
+	
+	public Estatistica listarEstatistica2(int chave) throws IOException {
+		Estatistica estatistica = null;
+		String sql = "select e.id, e.score, e.chute_fora, e.saves, e.escanteios, e.faltas, e.laterais, e.passes_de_bola, e.defesas, e.bola_fora, e.time_id, e.jogos_id, t.nome, j.data, j.tempo_extra, j.turno, j.comentarios, j.periodo, j.campeonato_id from estatistica e, "
+				+ "time t, jogos j where e.time_id = t.id and e.jogos_id = j.id and e.id like ?";
+		try(Connection conn = ConnectionFactory.getConnection();
+			PreparedStatement pst = conn.prepareStatement(sql);){
+			
+			pst.setInt(1, chave);
+		
+			try(ResultSet rs = pst.executeQuery();){
+				
+				Time time;
+				Jogos jogos;
+				while(rs.next()) {
+					estatistica = new Estatistica();
+					estatistica.setIdEstatistica(rs.getInt("e.id"));
+					estatistica.setScore(rs.getInt("e.score"));
+					estatistica.setChute_fora(rs.getInt("e.chute_fora"));
+					estatistica.setSaves(rs.getInt("e.saves"));
+					estatistica.setEscanteios(rs.getInt("e.escanteios"));
+					estatistica.setFaltas(rs.getInt("e.faltas"));
+					estatistica.setLaterais(rs.getInt("e.laterais"));
+					estatistica.setPasses_de_bola(rs.getInt("e.passes_de_bola"));
+					estatistica.setDefesas(rs.getInt("e.defesas"));
+					estatistica.setBola_fora(rs.getInt("e.bola_fora"));
+					time = new Time();
+					time.setIdTime(rs.getInt("e.time_id"));
+					time.setNome(rs.getString("t.nome"));
+					estatistica.setTime(time);
+					
+					jogos = new Jogos();
+					
+					jogos.setIdJogos(rs.getInt("e.jogos_id"));
+					jogos.setData(rs.getDate("j.data"));
+					jogos.setTempo_extra(rs.getInt("j.tempo_extra"));
+					jogos.setTurno(rs.getInt("j.turno"));
+					jogos.setComentarios(rs.getString("j.comentarios"));
+					jogos.setPeriodo(rs.getString("j.periodo"));
+					estatistica.setJogos(jogos);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
+				
+		return estatistica;
 	}
 	
 	

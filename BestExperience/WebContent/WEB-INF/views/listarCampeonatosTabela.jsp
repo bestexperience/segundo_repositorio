@@ -41,7 +41,7 @@
 										<td>${campeonato.nome}</td>
 										<td>${campeonato.numeroRodadas}</td>
 										<td class="actions">
-                                             <a class="btn btn-success btn-xs" href="listar_resultados_1?id=${time.id}">Inserir Resultados</a>
+                                             <a class="btn btn-success btn-xs" href="listar_resultados_1?id=${campeonato.idCampeonato}">Inserir Resultados</a>
                                         </td>
 									</tr>
 								</c:forEach>

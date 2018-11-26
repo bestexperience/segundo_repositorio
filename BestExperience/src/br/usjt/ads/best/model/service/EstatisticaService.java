@@ -24,4 +24,7 @@ public class EstatisticaService {
 	public ArrayList<Estatistica> listarEstatistica(int chave) throws IOException {
 		return dao.listarEstatistica(chave);
 	}
+	public Estatistica listarEstatistica2(int chave) throws IOException {
+		return dao.listarEstatistica2(chave);
+	}
 }

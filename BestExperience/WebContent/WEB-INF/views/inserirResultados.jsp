@@ -41,10 +41,6 @@
                                 </span>
                             </div>
                         </div>
-                        
-                        <div class="col-md-3">
-                            <a href="carregar_status" class="btn btn-primary pull-right h2">Novo Campeonato</a>
-                        </div>
                     </div>
                     <!-- /#top -->
                 </form>
@@ -57,32 +53,26 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nome</th>
-                                    <th>Rodadas</th>
-                                    <th>Usuario</th>
+                                    <th>Data do Jogo</th>
+                                    <th>Time</th>
                                     <th class="actions">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-          					<c:forEach var="campeonato" items="${lista}">
+          					<c:forEach var="estatistica" items="${lista}">
                                        <tr>
                                             <td>
-                                               ${campeonato.idCampeonato}
+                                               	${estatistica.idEstatistica}
                                             </td>
                                             <td>
-                                                ${campeonato.nome}
+                                                <fmt:formatDate value="${estatistica.jogos.data}" pattern="dd/MM/yyyy"/>
                                             </td>
                                             <td>
-                                                ${campeonato.numeroRodadas}
+                                                ${estatistica.time.nome}
                                             </td>
-                                            <td>
-                                                ${campeonato.usuario.nome}
-                                            </td>
+                                            
                                             <td class="actions">
-                                            	<!-- <a class="btn btn-success btn-xs" href="gerar_turnos2&id=${campeonato.idCampeonato}">Gerar Turnos</a> -->
-                                                <a class="btn btn-success btn-xs" href="gerar_turnos?nome=${campeonato.nome}">Visualizar</a>
-                                                <a class="btn btn-success btn-xs" href="atualizar_campeonato?nome=${campeonato.nome}">Atualizar</a>
-                                                <a class="btn btn-success btn-xs" href="excluir_campeonato?id=${campeonato.idCampeonato}">Excluir</a>
+                                                <a class="btn btn-success btn-xs" href="atualizar_estatistica?id=${estatistica.idEstatistica}">Atualizar</a>
                                             </td>
                                         </tr>
                             </c:forEach>
