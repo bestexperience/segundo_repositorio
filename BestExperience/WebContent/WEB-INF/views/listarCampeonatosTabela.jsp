@@ -19,21 +19,22 @@
 	<c:import url="MenuUsuario.jsp" />
 	<!--Jogos Master-->
 	<div class="container">
-		<div class="card">
-			<div class="card-header" id="headingTwo">
-			</div>
-				<div class="card-body">
-					<div class="jumbotron text-center valor">
-						<h1>Campeonato</h1>
-					</div>
-						<table class="table">
-							<tr class="jumbotron text-center">
+	 <div id="top" class="row">
+                        <div class="col-md-3">
+                            <h2>Campeonatos</h2>
+                        </div>
+                        </div>
+                <hr />
+                 <div class="table-responsive col-md-12">
+						<table class="table table-striped" cellspacing="0" cellpadding="0">
+						<thead>
+							<tr>
 								<th>Nº</th>
 								<th>Nome</th>
 								<th>Numero de Rodadas</th>
 								<th class="actions">Ações</th>
 							</tr>
-
+						</thead>
 							<tbody>
 								<c:forEach var="campeonato" items="${lista}">
 									<tr>
@@ -41,14 +42,13 @@
 										<td>${campeonato.nome}</td>
 										<td>${campeonato.numeroRodadas}</td>
 										<td class="actions">
-                                             <a class="btn btn-success btn-xs" href="listar_resultados_1?id=${campeonato.idCampeonato}">Inserir Resultados</a>
+                                             <a class="btn btn-success btn-xs" href="listar_resultados_1?id=${campeonato.idCampeonato}">Listar Resultados</a>
                                         </td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
-					</div>
-				</div>
+						</div>
 			</div>	
 </body>
 </html>

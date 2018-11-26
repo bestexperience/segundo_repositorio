@@ -58,7 +58,7 @@
                                             </td>
                                             
                                             <td class="actions">
-                                                <a class="btn btn-success btn-xs" href="atualizar_estatistica?id=${estatistica.idEstatistica}">Atualizar</a>
+                                                <a class="btn btn-success btn-xs" href="atualizar_estatistica?id=${estatistica.idEstatistica}">Inserir Resultados</a>
                                             </td>
                                         </tr>
                             </c:forEach>

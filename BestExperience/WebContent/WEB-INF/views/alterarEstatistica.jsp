@@ -14,13 +14,13 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/style-menu-no-border.css">
 </head>
 <body>
 	<c:import url="MenuUsuario.jsp" />
 	<!--Jogos Master-->
 	<div class="container">
-  <h2 align="center">Alteração de Estatistica</h2>
+  <h2 align="center">Definindo Estatisticas</h2>
   <form class="form-horizontal" action="">
     <div class="form-group">
       <div class="col-sm-10">
