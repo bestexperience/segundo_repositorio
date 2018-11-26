@@ -24,4 +24,16 @@ public class UsuarioService {
 	public Usuario buscarUsuarioId(Usuario usuario) throws IOException {
 		return dao.buscarUsuarioId(usuario);
 	}
+	
+	public Usuario buscarUsuarioId2(Usuario usuario) throws IOException{
+		return dao.buscarUsuarioId2(usuario);
+	}
+	
+	public void atualizarUsuario(Usuario usuario) {
+		dao.atualizarUsuario(usuario);
+	}
+	
+	public Usuario buscarUsuarioPeloEmail(Usuario usuario) throws IOException{
+		return dao.buscarUsuarioPeloEmail(usuario);
+	}
 }

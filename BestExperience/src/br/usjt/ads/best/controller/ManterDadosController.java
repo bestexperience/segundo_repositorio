@@ -177,11 +177,11 @@ public class ManterDadosController{
 	public String turnoRodadas(){
 		return "turnoRodadas";
 	}
-	
+	/*
 	@RequestMapping("comissao_executiva")
 	public String comissaoExecutiva(){
 		return "comissaoExecutiva";
-	}
+	}*/
 	
 	@RequestMapping("novo_usuario")
 	public String novoUsuario(){
@@ -197,10 +197,73 @@ public class ManterDadosController{
 		return "usuario";
 	}
 	
+
 	@RequestMapping("logout")
 	public String logout(HttpSession session){
 		session.invalidate();
 		return "login";
+	}
+	
+	@RequestMapping("esqueci_minha_senha")
+	public String esqueciMinhaSenha(){
+		return "esqueciMinhaSenha";
+	}
+	
+	@RequestMapping("buscar_email_login")
+	public String buscarSenhaENome(Usuario usuario, Model model){
+		
+		try {
+			UService = new UsuarioService();
+			usuario = UService.buscarUsuarioPeloEmail(usuario);
+			model.addAttribute(usuario);
+			return "redefinirSenha";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redefinir_senha";
+	}
+	
+	@RequestMapping("atualizar_esqueci_senha")
+	public String atualizarEsqueciSenha(Usuario usuario){
+		UService = new UsuarioService();
+		UService.atualizarUsuario(usuario);
+		return "login";
+	}
+	
+	@RequestMapping("alterar_usuario")
+	public String alterarUsuario(Model model, @RequestParam("id") int id){
+		
+		try {
+			Usuario usuario = new Usuario();
+			usuario.setId(id);
+			UService = new UsuarioService();
+			usuario = UService.buscarUsuarioId2(usuario);
+			model.addAttribute("usuario", usuario);
+			return "alterarUsuario";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
+	} 
+	
+	
+	@RequestMapping("efetivar_alterar_usuario")
+	public String efetivarAlterarUsuario(Model model, Usuario usuario){
+		
+		try {
+			Usuario usuarioAtualizado = new Usuario();
+			UService = new UsuarioService();
+			UService.atualizarUsuario(usuario);
+			usuarioAtualizado = UService.buscarUsuarioId2(usuario);
+			model.addAttribute("usuario", usuarioAtualizado);
+			return "usuario";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
 	}
 	
 	/*Carregar status, Cadastrar Campeonatos e Listar Campeonatos*/

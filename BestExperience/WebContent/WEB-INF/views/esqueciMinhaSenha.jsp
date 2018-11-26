@@ -16,15 +16,11 @@
 	<c:import url="Menu.jsp" />
 	<div id="main" class="container">
 		<div class=" col-md-12 text-center">
-			<img src="img/cadUsuario.png" class="rounded" alt="Cinque Terre"
+			<img src="img/engrenagem.png" class="rounded" alt="Cinque Terre"
 				width="304" height="300">
 		</div>
 
-		<form action="efetuar_cadastro" method="post" id="regForm">
-			<div class="form-group">
-				<label for="nome">Nome</label> 
-				<input type="text" class="form-control" id="nome" name="nome" required placeholder="Entre com o nome">
-			</div>
+		<form action="buscar_email_login" method="post" id="regForm">
 			<div class="form-group">
 				<label for="email">E-mail</label> 
 				<input type="email"	class="form-control" id="email" name="email" required placeholder="Endereço de E-mail">
@@ -34,20 +30,11 @@
 				<label for="login">Login</label> 
 				<input type="text" class="form-control" id="login" name="login" required placeholder="Defina um login">
 			</div>
-
-			<div class="form-group">
-				<label for="senha1">Senha</label> 
-				<input onkeyup="validaSenha()" type="password"	class="form-control" id="senha1" name="senha" required placeholder="Defina uma senha">
-			</div>
-			<div class="form-group">
-				<label for="senha2">Confirmação de Senha</label> 
-				<input onkeyup="validaSenha()" type="password"	class="form-control" id="senha2" required placeholder="confirmação de senha...">
-			</div>
-			<small id="resultado" class="form-text text-muted" >&nbsp;</small>
+			<small id="resultado" class="form-text text-muted" >Se esqueceu o seu login é necessário entrar em contato com o administrador para redefinir</small>
 			
 			<div align="center">
 				<button type="submit" class="btn btn-warning" name="acao"
-					value="cadastrar">Cadastrar</button>
+					value="cadastrar">Buscar</button>
 				<button type="reset" class="btn btn-warning">Limpar</button>
 			</div>
 		</form>

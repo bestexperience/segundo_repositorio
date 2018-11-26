@@ -28,34 +28,36 @@
 		</div>
 		<h1 align="center">${usuario.nome}</h1>
 
-		<form id="regForm">
+		<form id="regForm" action="efetivar_alterar_usuario">
 
 			<div class="form-group">
 				<!-- <label for="id">ID</label>  -->
-				<input type="hidden" class="form-control" readonly id="id" placeholder="Id" value="${usuario.id}"> 
+				<input type="hidden" class="form-control" readonly id="id" placeholder="Id" name="id" value="${usuario.id}"> 
 				<!-- <small id="idHelp" class="form-text text-muted">Seu ID nunca será alterado</small> -->
 			</div>
 
 			<div class="form-group">
 				<label for="login">Usuário</label> <input type="text"
-					class="form-control" readonly id="login" placeholder="login"
-					value="${usuario.login}">
+					class="form-control"  id="login" placeholder="login" name="login" value="${usuario.login}">
 			</div>
+			
+			<div class="form-group">
+				<label for="senha">Senha</label> <input type="password"
+					class="form-control"  id="senha" placeholder="senha" name="senha" value="${usuario.senha}">
+			</div>
+			
 
 			<div class="form-group">
 				<label for="name">Nome</label> <input type="text"
-					class="form-control" readonly id="name" placeholder="Nome"
-					value="${usuario.nome}">
+					class="form-control"  id="name" placeholder="Nome" name="nome" value="${usuario.nome}">
 			</div>
 
 			<div class="form-group">
-				<label for="exampleInputEmail1">E-mail</label> <input type="email"
-					class="form-control" readonly id="exampleInputEmail1"
-					aria-describedby="emailHelp" placeholder="Enter email"
-					value="${usuario.email}">
+				<label for="exampleInputEmail1">E-mail</label> 
+				<input type="email" class="form-control"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="${usuario.email}">
 			</div>
 			<div align="center">
-				<a class="btn btn-warning " href="alterar_usuario?id=${usuario.id}">Alterar</a>
+				<button type="" class="btn btn-warning">Efetivar Alteração</button>
 			</div>
 		</form>
 	</div>

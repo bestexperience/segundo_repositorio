@@ -13,11 +13,11 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="#">Informações</a></li>
+				<li><a href="#">Home</a></li>
 				<li><a href="listar_times_visitante">Equipes</a></li>
 				<li><a href="dados_campeonato">Dados do Campeonato</a></li>
 				<li><a href="turno_rodadas">Rodadas</a></li>
-				<li><a href="comissao_executiva">Comissão Executiva</a></li>
+				<!-- <li><a href="comissao_executiva">Comissão Executiva</a></li> -->
 				<li><a href="#">Seções</a></li>
 				<li><a href="#">Anos Anteriores</a></li>
 			</ul>

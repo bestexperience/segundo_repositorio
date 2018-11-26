@@ -29,19 +29,19 @@
 				<div class="input-group">
 					<span class="input-group-addon"> <i
 						class="glyphicon glyphicon-user"></i>
-					</span> <input type="text" class="form-control" id="exampleInputEmail1"
-						name="login" placeholder="Nome de Usuario" required>
+					</span> 
+					<input type="text" class="form-control" id="exampleInputEmail1"	name="login" placeholder="Nome de Usuario" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon"> <i
 						class="glyphicon glyphicon-lock"></i>
-					</span> <input type="password" class="form-control"
-						id="exampleInputPassword1" name="senha" placeholder="Senha"
-						required>
+					</span> 
+					<input type="password" class="form-control"	id="exampleInputPassword1" name="senha" placeholder="Senha"	required>
 				</div>
 			</div>
+			<small id="resultado" class="form-text text-muted" ><a href="esqueci_minha_senha">Esqueci a minha senha</a></small>
 			<div align="center">
 				<button type="submit" class="btn btn-warning" name="acao"
 					value="logar">Acessar</button>

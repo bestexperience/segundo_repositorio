@@ -16,13 +16,14 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter{
         if(uri.endsWith("/") || 
                 uri.endsWith("login") || 
                 uri.endsWith("listar_equipes") || 
-                //uri.endsWith("listar_times_visitante") || 
+                uri.endsWith("listar_times_visitante") || 
                 uri.endsWith("dados_campeonato") || 
                 uri.endsWith("turno_rodadas") || 
-                uri.endsWith("comissao_executiva") || 
+               // uri.endsWith("comissao_executiva") || 
                 uri.endsWith("novo_usuario") || 
                 uri.endsWith("fazer_login") || 
-                uri.endsWith("efetuar_cadastro") || 
+                uri.endsWith("efetuar_cadastro") ||
+                uri.endsWith("esqueci_minha_senha") ||
                 
                         uri.contains("css/bootstrap-tagsinput.css")||
                         uri.contains("css/bootstrap.css")||
@@ -30,6 +31,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter{
                         uri.contains("css/form-style.css")||
                         uri.contains("css/style.css")||
                         uri.contains("css/style-menubar.css")||
+                        uri.contains("css/style-menu-no-border.css")||
                         
                         uri.contains("js/bootstrap-tagsinput.min.js")||
                         uri.contains("js/bootstrap.js")||
@@ -41,6 +43,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter{
                         uri.contains("js/npm.js")||
                         
                         uri.contains("img/screen.jpg")|| 
+                        uri.contains("img/engrenagem.png")||
                         uri.contains("img/cadUsuario.png")|| 
                         uri.contains("img/co.png")|| 
                         uri.contains("img/img-sss.jpg")|| 
