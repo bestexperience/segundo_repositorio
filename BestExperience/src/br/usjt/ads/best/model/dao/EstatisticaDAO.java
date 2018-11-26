@@ -101,7 +101,7 @@ public class EstatisticaDAO {
 	public ArrayList<Estatistica> listarEstatistica(int chave) throws IOException {
 		ArrayList<Estatistica> lista = new ArrayList<>();
 		String sql = "select e.id, e.score, e.chute_fora, e.saves, e.escanteios, e.faltas, e.laterais, e.passes_de_bola, e.defesas, e.bola_fora, e.time_id, e.jogos_id, t.nome,"
-				+ "j.data, j.tempo_extra, j.turno, j.comentarios, j.periodo, j.campeonato_id from estatistica e, time t, jogos j where e.time_id = t.id and e.jogos_id = j.id and j.campeonato_id like ?";
+				+ "j.data, j.tempo_extra, j.turno, j.comentarios, j.periodo, j.campeonato_id from estatistica e, time t, jogos j where e.time_id = t.id and e.jogos_id = j.id and j.campeonato_id like ? order by e.jogos_id";
 		try(Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement pst = conn.prepareStatement(sql);){
 			

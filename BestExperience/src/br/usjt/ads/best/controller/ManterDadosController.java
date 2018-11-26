@@ -168,7 +168,7 @@ public class ManterDadosController{
 			ArrayList<Time> lista1;
 			tService = new TimeService();
 			
-			
+			/////////////////////////////////////////////////////
 			
 			lista1 = tService.listarTime();
 			
@@ -851,7 +851,9 @@ public class ManterDadosController{
 		lista = tService.listarTime();
 		int id1 = 0;
 		int id2 = 0;
-		for(int iRodadas=0; iRodadas < campeonato.getNumeroRodadas(); iRodadas++)
+		int numeroDeRodadas = campeonato.getNumeroRodadas();
+		
+		for(int iRodadas = 0; iRodadas <= numeroDeRodadas; iRodadas++)
 		{
 			for(Time t : lista){
 				if(id2 == 0)

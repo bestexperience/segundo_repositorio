@@ -40,6 +40,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Data do Jogo</th>
+                                    <th>ID do Jogo</th>
                                     <th>Time</th>
                                     <th class="actions">Ações</th>
                                 </tr>
@@ -52,6 +53,9 @@
                                             </td>
                                             <td>
                                                 <fmt:formatDate value="${estatistica.jogos.data}" pattern="dd/MM/yyyy"/>
+                                            </td>
+                                            <td>
+                                                ${estatistica.jogos.idJogos}
                                             </td>
                                             <td>
                                                 ${estatistica.time.nome}
