@@ -79,15 +79,15 @@ public class ManterDadosController{
 	public String listarEquipes(){
 		return "listarEquipes";
 	}
-	
+	/*
 	@RequestMapping("alterar_estatistica_pelo_id")
 	public String alterarEstatisticaPeloId(Estatistica estatistica, Jogos jogos){
 		estaService = new EstatisticaService();
 		jogosService = new JogosService();
 		estaService.atualizarEstatistica(estatistica);
 		return "listarEquipes";
-	}
-	
+	}*/
+	/*
 	@RequestMapping("listar_times_visitante")
 	public String listarTimesVisitante(Model model){
 		
@@ -102,8 +102,8 @@ public class ManterDadosController{
 			e.printStackTrace();
 		}
 		return "listarTimesVisitante";
-	}
-	
+	}*/
+	/*
 	@RequestMapping("listar_campeonatos_tabela")
 	public String listar_resultados(Model model){
 		
@@ -118,9 +118,9 @@ public class ManterDadosController{
 			e.printStackTrace();
 		}
 		return "listarCampeonatosTabela";
-	}
-	///////////////////////////////////////////////
-
+	}*/
+	
+	/*
 	@RequestMapping("listar_resultados_1")
 	public String listarResultados(Model model, @RequestParam("id") int id){
 
@@ -140,8 +140,8 @@ public class ManterDadosController{
 			e.printStackTrace();
 		}
 		return "inserirResultados";
-	}
-	
+	}*/
+	/*
 	@RequestMapping("atualizar_estatistica")
 	public String inserirResultados(Model model, @RequestParam("id") int id){
 
@@ -157,9 +157,9 @@ public class ManterDadosController{
 			e.printStackTrace();
 		}
 		return "alterarEstatistica";
-	}
+	}*/
 	
-	
+	/*
 	@RequestMapping("dados_campeonato")
 	public String dadosDoCampeonato(Model model){
 		
@@ -168,7 +168,6 @@ public class ManterDadosController{
 			ArrayList<Time> lista1;
 			tService = new TimeService();
 			
-			/////////////////////////////////////////////////////
 			
 			lista1 = tService.listarTime();
 			
@@ -181,17 +180,12 @@ public class ManterDadosController{
 		}
 		
 		return "dadosDoCampeonato";
-	}
+	}*/
 	
 	@RequestMapping("turno_rodadas")
 	public String turnoRodadas(){
 		return "turnoRodadas";
 	}
-	/*
-	@RequestMapping("comissao_executiva")
-	public String comissaoExecutiva(){
-		return "comissaoExecutiva";
-	}*/
 	
 	@RequestMapping("novo_usuario")
 	public String novoUsuario(){
@@ -811,7 +805,7 @@ public class ManterDadosController{
 	}
 	
 	
-	
+	/*
 	@RequestMapping("gerar_turnos")
 	public String gerarTurnos(Model model, @RequestParam("nome") String nome, Campeonato campeonato){
 		try {
@@ -832,8 +826,8 @@ public class ManterDadosController{
 		
 		return "errorLogin";
 		
-	}
-	
+	}*/
+	/*
 	@RequestMapping("efetivar_gerar_turnos")
 	public String efetivarGerarTurnos(HttpSession session, Campeonato campeonato, @RequestParam("nome") String nome) throws IOException{
 		Time time = new Time();
@@ -879,7 +873,7 @@ public class ManterDadosController{
 		return "listarCampeonatosTabela";
 	}
 	
-	
+	*/
 	/*Menu Usuario*/
 	
 	@RequestMapping("fazer_login")
@@ -935,12 +929,10 @@ public class ManterDadosController{
 		return "errorLogin";
 	}
 	
-	
-	/*Código incompleto*/
+	/*
 	@RequestMapping("gerando_turnos")
 	public String gerandoTurnos(Usuario usuario, HttpSession session){
 			try {
-				/*pegando os times*/
 				tService = new TimeService();
 				ArrayList<Time> lista;
 				lista = tService.listarTime();
@@ -953,7 +945,7 @@ public class ManterDadosController{
 
 		
 		return "errorLogin";
-	}
+	}*/
 	
 	
 }
