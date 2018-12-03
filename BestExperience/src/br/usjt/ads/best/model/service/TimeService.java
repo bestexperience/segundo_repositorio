@@ -13,9 +13,18 @@ public class TimeService {
 		this.dao = new TimeDAO();
 	}
 	
-	public void inserirUsuario(String time) throws IOException{
+	public void inserirTime(Time time) throws IOException{
 		dao.inserirTime(time);
 	}
+	
+	public ArrayList<Time> listarTime(int chave) throws IOException {
+		return dao.listarTime(chave);
+	}
+	
+	public void inserirTimeNome(Time time) throws IOException{
+		dao.inserirTimeNome(time);
+	}
+	
 	
 	public ArrayList<Time> listarTime(String chave) throws IOException{
 		return dao.listarTime(chave);

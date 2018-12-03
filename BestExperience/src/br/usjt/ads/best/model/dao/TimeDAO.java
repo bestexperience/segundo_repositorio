@@ -11,15 +11,36 @@ import br.usjt.ads.best.model.entity.Time;
 
 
 public class TimeDAO {
-	public void inserirTime(String time) throws IOException {
+	public void inserirTime(Time time) throws IOException {
+		int id = -1;
+		String sql = "insert into campeonato.time (nome, campeonato_id) values (?, ?)";
+		
+		try(Connection conn = ConnectionFactory.getConnection();
+			PreparedStatement pst = conn.prepareStatement(sql);){
+			
+			
+				pst.setString(1, time.getNome());
+				pst.setInt(2, time.getCampeonato().getIdCampeonato());
+				pst.execute();
+	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
+	}
+	
+	public void inserirTimeNome(Time time) throws IOException {
 		int id = -1;
 		String sql = "insert into campeonato.time (nome) values (?)";
 		
 		try(Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement pst = conn.prepareStatement(sql);){
 			
-			pst.setString(1, time);
-			pst.execute();
+			
+				pst.setString(1, time.getNome());
+				pst.execute();
+	
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -34,6 +55,33 @@ public class TimeDAO {
 			PreparedStatement pst = conn.prepareStatement(sql);){
 			
 			pst.setString(1, chave);
+		
+			try(ResultSet rs = pst.executeQuery();){
+			
+				Time time;
+				while(rs.next()) {
+					time = new Time();
+					time.setIdTime(rs.getInt("id"));
+					time.setNome(rs.getString("nome"));
+					lista.add(time);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
+				
+		return lista;
+	}
+	
+	
+	public ArrayList<Time> listarTime(int chave) throws IOException {
+		ArrayList<Time> lista = new ArrayList<>();
+		String sql = "select * from campeonato.time where campeonato_id like ?";
+		try(Connection conn = ConnectionFactory.getConnection();
+			PreparedStatement pst = conn.prepareStatement(sql);){
+			
+			pst.setInt(1, chave);
 		
 			try(ResultSet rs = pst.executeQuery();){
 			

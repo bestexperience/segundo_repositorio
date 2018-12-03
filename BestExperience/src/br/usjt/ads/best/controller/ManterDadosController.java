@@ -16,20 +16,24 @@ import br.usjt.ads.best.model.entity.Cidade;
 import br.usjt.ads.best.model.entity.Estado;
 import br.usjt.ads.best.model.entity.Estatistica;
 import br.usjt.ads.best.model.entity.Jogador;
+import br.usjt.ads.best.model.entity.JogoEfetivado;
 import br.usjt.ads.best.model.entity.Jogos;
 import br.usjt.ads.best.model.entity.Juiz;
 import br.usjt.ads.best.model.entity.Resultados_definidos;
 import br.usjt.ads.best.model.entity.Status;
 import br.usjt.ads.best.model.entity.Time;
+import br.usjt.ads.best.model.entity.TimeCampeonato;
 import br.usjt.ads.best.model.entity.Usuario;
 import br.usjt.ads.best.model.service.CampeonatoService;
 import br.usjt.ads.best.model.service.CidadeService;
 import br.usjt.ads.best.model.service.EstadoService;
 import br.usjt.ads.best.model.service.EstatisticaService;
 import br.usjt.ads.best.model.service.JogadorService;
+import br.usjt.ads.best.model.service.JogoEfetivadoService;
 import br.usjt.ads.best.model.service.JogosService;
 import br.usjt.ads.best.model.service.JuizService;
 import br.usjt.ads.best.model.service.StatusService;
+import br.usjt.ads.best.model.service.TimeCampeonatoService;
 import br.usjt.ads.best.model.service.TimeService;
 import br.usjt.ads.best.model.service.UsuarioService;
 
@@ -48,6 +52,8 @@ public class ManterDadosController{
 	private EstadoService estadoService;
 	private EstatisticaService estaService;
 	private JogosService jogosService;
+	private TimeCampeonatoService timeCampeonatoService;
+	private JogoEfetivadoService jeService;
 	
 	public ManterDadosController(){
 		UService = new UsuarioService();
@@ -60,6 +66,8 @@ public class ManterDadosController{
 		estadoService = new EstadoService();
 		estaService = new EstatisticaService();
 		jogosService = new JogosService();
+		timeCampeonatoService = new TimeCampeonatoService();
+		jeService = new JogoEfetivadoService();
 		
 	}
 	
@@ -79,108 +87,23 @@ public class ManterDadosController{
 	public String listarEquipes(){
 		return "listarEquipes";
 	}
-	/*
-	@RequestMapping("alterar_estatistica_pelo_id")
-	public String alterarEstatisticaPeloId(Estatistica estatistica, Jogos jogos){
-		estaService = new EstatisticaService();
-		jogosService = new JogosService();
-		estaService.atualizarEstatistica(estatistica);
-		return "listarEquipes";
-	}*/
-	/*
-	@RequestMapping("listar_times_visitante")
-	public String listarTimesVisitante(Model model){
-		
-		try {
-			tService = new TimeService();
-			ArrayList<Time> lista;
-			lista = tService.listarTime();
-			model.addAttribute("lista", lista);
-			return "listarTimesVisitante";
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "listarTimesVisitante";
-	}*/
-	/*
-	@RequestMapping("listar_campeonatos_tabela")
-	public String listar_resultados(Model model){
-		
-		try {
-			ArrayList<Campeonato> lista;
-			cService = new CampeonatoService();
-			lista = cService.listarCampeonatos();
-			model.addAttribute("lista", lista);
-			return "listarCampeonatosTabela";
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "listarCampeonatosTabela";
-	}*/
-	
-	/*
-	@RequestMapping("listar_resultados_1")
-	public String listarResultados(Model model, @RequestParam("id") int id){
 
-		try {
-			Campeonato campeonato = new Campeonato();
-			campeonato.setIdCampeonato(id);
-			estaService = new EstatisticaService();
-			Estatistica estatistica = new Estatistica();
-			ArrayList<Estatistica> lista;
-			lista = estaService.listarEstatistica(id);
-			
-			model.addAttribute("campeonato", campeonato);
-			model.addAttribute("lista", lista);
-			return "inserirResultados";
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "inserirResultados";
-	}*/
-	/*
-	@RequestMapping("atualizar_estatistica")
-	public String inserirResultados(Model model, @RequestParam("id") int id){
-
-		try {
-			estaService = new EstatisticaService();
-			Estatistica estatistica = new Estatistica();
-			estatistica = estaService.listarEstatistica2(id);
-			
-			model.addAttribute("estatistica", estatistica);
-			return "alterarEstatistica";
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "alterarEstatistica";
-	}*/
 	
-	/*
-	@RequestMapping("dados_campeonato")
-	public String dadosDoCampeonato(Model model){
-		
+	@RequestMapping("tabela_time_campeonato")
+	public String listarTimeCampeonato(Model model){
 		try {
-			Time time = new Time();
-			ArrayList<Time> lista1;
-			tService = new TimeService();
-			
-			
-			lista1 = tService.listarTime();
-			
-			
-			model.addAttribute("lista", lista1);
-			return "dadosDoCampeonato";
+			timeCampeonatoService = new TimeCampeonatoService();
+			ArrayList<TimeCampeonato> lista;
+			lista = timeCampeonatoService.listarTimeCampeonato();
+			model.addAttribute("lista", lista);
+			return "listarTimeCampeonato";
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return "dadosDoCampeonato";
-	}*/
+		return "login";
+	}
 	
 	@RequestMapping("turno_rodadas")
 	public String turnoRodadas(){
@@ -445,12 +368,41 @@ public class ManterDadosController{
 	/*Cadastro de Times*/
 	@RequestMapping("cadastrar_times")
 	public String papararCadastroDeTimes(HttpSession session){
-		return "cadastroDeTimesNovo";
+		try {
+			Campeonato campeonato;
+			ArrayList<Campeonato> lista2;
+			cService = new CampeonatoService();
+			
+			lista2 = cService.listarCampeonatos();
+			session.setAttribute("lista2", lista2);
+			return "cadastroDeTimesNovo";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
 	}
 	
 	@RequestMapping("efetivar_time")
-	public String cadastrarTimes(HttpSession session){
-		return "cadastroDeTimesNovo";
+	public String cadastrarTimes(Model model, Time time){
+		try {
+				tService = new TimeService();
+				
+				if(time.getCampeonato().getIdCampeonato() == 0)
+				{
+					tService.inserirTimeNome(time);
+					return "listarEquipes";
+				}else if(time.getCampeonato().getIdCampeonato() != 0){
+					tService.inserirTime(time);
+					return "listarEquipes";
+			
+				}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
 	}
 	
 	/*Listar Times*/
@@ -649,6 +601,160 @@ public class ManterDadosController{
 	}
 	
 	
+	@RequestMapping("inserir_jogo")
+	public String preparaInserirJogo(HttpSession session, @RequestParam("id") int chave){
+		try {
+			
+			cService = new CampeonatoService();
+			Campeonato campeonato = new Campeonato();
+			campeonato = cService.buscarCampeonatoPeloId(chave);
+			
+			ArrayList<Time> lista = new ArrayList<>();
+			
+			lista = tService.listarTime(chave);
+			
+			session.setAttribute("campeonato", campeonato);
+			session.setAttribute("lista", lista);
+			
+			return "definindoJogos";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
+	}
+	
+	@RequestMapping("efetivar_inserir_jogo")
+	public String inserirJogo(HttpSession session, JogoEfetivado jogo){
+		try {
+			tService = new TimeService();
+			Time timeMandante = new Time();
+			Time timeVisitante = new Time();
+			jeService = new JogoEfetivadoService();
+			jeService.inserirJogo(jogo);
+			TimeCampeonato tCampeonatoMandante = new TimeCampeonato();
+			TimeCampeonato tCampeonatoVisitante = new TimeCampeonato();
+			
+			TimeCampeonato tCampeonatoMandantePos = new TimeCampeonato();
+			TimeCampeonato tCampeonatoVisitantePos = new TimeCampeonato();
+			
+			timeCampeonatoService = new TimeCampeonatoService();
+			
+			timeMandante = tService.buscarTime(jogo.getTime_mandante().getIdTime());
+			timeVisitante = tService.buscarTime(jogo.getTime_visitante().getIdTime());
+			
+			tCampeonatoMandante = timeCampeonatoService.buscarTimeCampeonato(timeMandante.getIdTime());
+			tCampeonatoVisitante = timeCampeonatoService.buscarTimeCampeonato(timeVisitante.getIdTime());
+			
+			if(tCampeonatoMandante != null)
+			{
+				tCampeonatoMandantePos.setTime(timeMandante);
+				if(jogo.getPlacar_mandante() > jogo.getPlacar_visitante())
+				{
+					tCampeonatoMandantePos.setPontos(tCampeonatoMandante.getPontos() + 3);
+					tCampeonatoMandantePos.setVitorias(tCampeonatoMandante.getVitorias() + 1);
+				}else{
+					tCampeonatoMandantePos.setPontos(tCampeonatoMandante.getPontos() + 0);
+					tCampeonatoMandantePos.setVitorias(tCampeonatoMandante.getVitorias() + 0);
+				}
+				tCampeonatoMandantePos.setJogos(tCampeonatoMandante.getJogos() + 1);
+				
+				if(jogo.getPlacar_mandante() == jogo.getPlacar_visitante())
+				{
+					tCampeonatoMandantePos.setEmpates(tCampeonatoMandante.getEmpates() + 1);
+				}
+				if(jogo.getPlacar_mandante() < jogo.getPlacar_visitante())
+				{
+					tCampeonatoMandantePos.setDerrotas(tCampeonatoMandante.getDerrotas() + 1);
+				}else{
+					tCampeonatoMandantePos.setDerrotas(tCampeonatoMandante.getDerrotas() + 0);
+				}
+				
+				if(jogo.getPlacar_mandante() != 0)
+				{
+					tCampeonatoMandantePos.setGols_marcados(tCampeonatoMandante.getGols_marcados() + jogo.getPlacar_mandante());
+				}else{
+					tCampeonatoMandantePos.setGols_marcados(tCampeonatoMandante.getGols_marcados() + 0);
+				}
+				
+				if(jogo.getPlacar_visitante() > 0)
+				{
+					tCampeonatoMandantePos.setGols_sofridos(tCampeonatoMandante.getGols_sofridos() + jogo.getPlacar_visitante());
+				}else{
+					tCampeonatoMandantePos.setGols_sofridos(tCampeonatoMandante.getGols_sofridos() + 0);
+				}
+				
+				tCampeonatoMandantePos.setSaldo_de_gols(tCampeonatoMandante.getSaldo_de_gols() + jogo.getPlacar_mandante());
+	
+				timeCampeonatoService.inserirTimeCampeonato(tCampeonatoMandantePos);
+			}
+			
+			if(tCampeonatoMandante == null){
+				tCampeonatoMandantePos.setTime(timeMandante);
+				if(jogo.getPlacar_mandante() > jogo.getPlacar_visitante())
+				{
+					tCampeonatoMandantePos.setPontos(3);
+					tCampeonatoMandantePos.setVitorias(1);
+				}else{
+					tCampeonatoMandantePos.setPontos(0);
+					tCampeonatoMandantePos.setVitorias(0);
+				}
+				tCampeonatoMandantePos.setJogos(1);
+				
+				if(jogo.getPlacar_mandante() == jogo.getPlacar_visitante())
+				{
+					tCampeonatoMandantePos.setEmpates(1);
+				}
+				if(jogo.getPlacar_mandante() < jogo.getPlacar_visitante())
+				{
+					tCampeonatoMandantePos.setDerrotas(1);
+				}else{
+					tCampeonatoMandantePos.setDerrotas(0);
+				}
+				
+				if(jogo.getPlacar_mandante() != 0)
+				{
+					tCampeonatoMandantePos.setGols_marcados(jogo.getPlacar_mandante());
+				}else{
+					tCampeonatoMandantePos.setGols_marcados(0);
+				}
+				
+				if(jogo.getPlacar_visitante() > 0)
+				{
+					tCampeonatoMandantePos.setGols_sofridos(jogo.getPlacar_visitante());
+				}else{
+					tCampeonatoMandantePos.setGols_sofridos(0);
+				}
+				
+				tCampeonatoMandantePos.setSaldo_de_gols(jogo.getPlacar_mandante());
+				
+				timeCampeonatoService.inserirTimeCampeonato(tCampeonatoMandantePos);
+			}
+			/*
+			if(tCampeonatoVisitante != null)
+			{
+				timeCampeonatoService.inserirTimeCampeonato();
+			}
+			if(tCampeonatoMandante == null && tCampeonatoVisitante == null){
+				timeCampeonatoService.inserirTimeCampeonato();
+			}
+			
+			*/
+			
+			/*
+			session.setAttribute("campeonato", campeonato);
+			session.setAttribute("lista", lista);
+			*/
+			return "usuario";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "usuario";
+	}
+	
+	
+	
 	
 	/*Juizes*/
 
@@ -805,75 +911,6 @@ public class ManterDadosController{
 	}
 	
 	
-	/*
-	@RequestMapping("gerar_turnos")
-	public String gerarTurnos(Model model, @RequestParam("nome") String nome, Campeonato campeonato){
-		try {
-			cService = new CampeonatoService();
-			jogosService = new JogosService();
-			Jogos jogos = new Jogos();
-			campeonato.setNome(nome);
-			campeonato = cService.buscarCampeonato(campeonato);
-			jogos = jogosService.buscarJogos(campeonato.getIdCampeonato());
-			
-			model.addAttribute("jogos", jogos);
-			model.addAttribute("campeonato", campeonato);
-			return "gerarTurnos";
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return "errorLogin";
-		
-	}*/
-	/*
-	@RequestMapping("efetivar_gerar_turnos")
-	public String efetivarGerarTurnos(HttpSession session, Campeonato campeonato, @RequestParam("nome") String nome) throws IOException{
-		Time time = new Time();
-		Jogos jogos = new Jogos();
-		Estatistica esta = new Estatistica();
-		ArrayList<Time> lista;
-		
-		tService = new TimeService();
-		cService = new CampeonatoService();
-		estaService = new EstatisticaService();
-		jogosService = new JogosService();
-		
-		campeonato = cService.buscarCampeonato(campeonato);
-		jogos.setCampeonato(campeonato);
-		lista = tService.listarTime();
-		int id1 = 0;
-		int id2 = 0;
-		int numeroDeRodadas = campeonato.getNumeroRodadas();
-		
-		for(int iRodadas = 0; iRodadas <= numeroDeRodadas; iRodadas++)
-		{
-			for(Time t : lista){
-				if(id2 == 0)
-				{
-					id1 = jogosService.inserirJogos(jogos);
-				}
-				
-				if(id2 == 2)
-				{
-					id2 = 0; 
-					id1 = jogosService.inserirJogos(jogos);
-				}
-				//int idTime = t.getIdTime();
-				//tService.buscarTime(idTime);
-				jogos.setIdJogos(id1);
-				esta.setJogos(jogos);
-				esta.setTime(t);
-				estaService.inserirEstatistica(esta);
-				id2++;
-			}
-		}
-		
-		return "listarCampeonatosTabela";
-	}
-	
-	*/
 	/*Menu Usuario*/
 	
 	@RequestMapping("fazer_login")
@@ -929,23 +966,6 @@ public class ManterDadosController{
 		return "errorLogin";
 	}
 	
-	/*
-	@RequestMapping("gerando_turnos")
-	public String gerandoTurnos(Usuario usuario, HttpSession session){
-			try {
-				tService = new TimeService();
-				ArrayList<Time> lista;
-				lista = tService.listarTime();
-
-				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		
-		return "errorLogin";
-	}*/
 	
 	
 }

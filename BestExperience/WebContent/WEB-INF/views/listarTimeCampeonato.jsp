@@ -16,34 +16,39 @@
 <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-	<c:import url="MenuUsuario.jsp" />
+	<c:import url="Menu.jsp" />
 	<!--Jogos Master-->
 	<div class="container">
-	 <div id="top" class="row">
-                        <div class="col-md-3">
-                            <h2>Campeonatos</h2>
-                        </div>
-                        </div>
-                <hr />
+	 	<h2>Tabela</h2>
                  <div class="table-responsive col-md-12">
 						<table class="table table-striped" cellspacing="0" cellpadding="0">
 						<thead>
 							<tr>
-								<th>Nº</th>
-								<th>Nome</th>
-								<th>Numero de Rodadas</th>
-								<th class="actions">Ações</th>
+								<th>Classificação</th>
+						        <th>P</th>
+						        <th>J</th>
+						        <th>V</th>
+						        <th>E</th>
+						        <th>D</th>
+						        <th>GP</th> <!--Gol pró(marcados)-->
+						        <th>GC</th> <!--Gol sofridos, gols contra-->
+						        <th>SG</th> <!--Saldo de gols (GP - GC)-->
+						        <th>%</th>  <!--Aproveitamento-->
 							</tr>
 						</thead>
 							<tbody>
-								<c:forEach var="campeonato" items="${lista}">
+								<c:forEach var="timeCampeonato" items="${lista}">
 									<tr>
-										<td>${campeonato.idCampeonato}</td>
-										<td>${campeonato.nome}</td>
-										<td>${campeonato.numeroRodadas}</td>
-										<td class="actions">
-                                             <a class="btn btn-success btn-xs" href="listar_resultados_1?id=${campeonato.idCampeonato}">Listar Resultados</a>
-                                        </td>
+										<td>${timeCampeonato.classificacao} - ${timeCampeonato.time.nome}</td>
+								        <td>${timeCampeonato.pontos}</td>
+								        <td>${timeCampeonato.jogos}</td>
+								        <td>${timeCampeonato.vitorias}</td>
+								        <td>${timeCampeonato.empates}</td>
+								        <td>${timeCampeonato.derrotas}</td>
+								        <td>${timeCampeonato.gols_marcados}</td>
+								        <td>${timeCampeonato.gols_sofridos}</td>
+								        <td>${timeCampeonato.saldo_de_gols}</td>
+								        <td>${timeCampeonato.aproveitamento}</td>
 									</tr>
 								</c:forEach>
 							</tbody>

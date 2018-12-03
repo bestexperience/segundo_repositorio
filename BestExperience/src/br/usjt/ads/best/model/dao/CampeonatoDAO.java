@@ -65,6 +65,68 @@ public class CampeonatoDAO {
 			e.printStackTrace();
 			throw new IOException(e);
 		}
+		return campeonato;
+	}
+		
+		public Campeonato buscarCampeonatoPeloId(int chave) throws IOException{
+			String sql = "select c.id, c.nome, c.numeroRodadas, c.usuario_id, u.nome from campeonato c, "
+					+ "usuario u where c.usuario_id = u.id and c.id like ?";
+			Campeonato campeonato = new Campeonato();
+			
+			
+			try(Connection conn = ConnectionFactory.getConnection();
+					PreparedStatement pst = conn.prepareStatement(sql);){
+				pst.setInt(1, chave);
+				
+				try(ResultSet rs = pst.executeQuery();){
+					Usuario usuario;
+					while(rs.next()) {
+						campeonato.setIdCampeonato(rs.getInt("c.id"));
+						campeonato.setNome(rs.getString("c.nome"));
+						campeonato.setNumeroRodadas(rs.getInt("c.numeroRodadas"));
+						usuario = new Usuario();
+						usuario.setId(rs.getInt("c.usuario_id"));
+						usuario.setNome(rs.getString("u.nome"));
+						campeonato.setUsuario(usuario);
+					}
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new IOException(e);
+			}
+		
+		return campeonato;
+	}
+	
+	
+	public Campeonato buscarCampeonato(String nome) throws IOException{
+		Campeonato campeonato = null;
+		String sql = "select c.id, c.nome, c.numeroRodadas, c.usuario_id, u.nome from campeonato c, "
+				+ "usuario u where c.usuario_id = u.id and c.nome like ?";
+		
+		try(Connection conn = ConnectionFactory.getConnection();
+				PreparedStatement pst = conn.prepareStatement(sql);){
+			pst.setString(1, nome);
+			
+			try(ResultSet rs = pst.executeQuery();){
+				
+				Usuario usuario;
+				
+				while(rs.next()) {
+					campeonato = new Campeonato();
+					campeonato.setIdCampeonato(rs.getInt("c.id"));
+					campeonato.setNome(rs.getString("c.nome"));
+					campeonato.setNumeroRodadas(rs.getInt("c.numeroRodadas"));
+					usuario = new Usuario();
+					usuario.setId(rs.getInt("c.usuario_id"));
+					usuario.setNome(rs.getString("u.nome"));
+					campeonato.setUsuario(usuario);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
 		
 		return campeonato;
 	}

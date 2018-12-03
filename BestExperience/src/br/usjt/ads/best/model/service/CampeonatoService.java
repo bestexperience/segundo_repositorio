@@ -22,6 +22,14 @@ import br.usjt.ads.best.model.entity.Usuario;
 		return dao.buscarCampeonato(campeonato);
 	}
 	
+	public Campeonato buscarCampeonatoPeloId(int chave) throws IOException{
+		return dao.buscarCampeonatoPeloId(chave);
+	}
+	
+	public Campeonato buscarCampeonato(String nome) throws IOException{
+		return dao.buscarCampeonato(nome);
+	}
+	
 	public void excluirCampeonato(Campeonato campeonato) {
 		dao.excluirCampeonato(campeonato);
 	}

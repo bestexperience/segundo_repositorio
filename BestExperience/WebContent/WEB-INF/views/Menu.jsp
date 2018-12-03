@@ -15,7 +15,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="#">Home</a></li>
 				<li><a href="listar_times_visitante">Equipes</a></li>
-				<li><a href="dados_campeonato">Dados do Campeonato</a></li>
+				<li><a href="tabela_time_campeonato">Classificação</a></li>
 				<li><a href="turno_rodadas">Rodadas</a></li>
 				<!-- <li><a href="comissao_executiva">Comissão Executiva</a></li> -->
 				<li><a href="#">Seções</a></li>

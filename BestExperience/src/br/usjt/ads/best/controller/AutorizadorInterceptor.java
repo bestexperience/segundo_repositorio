@@ -19,7 +19,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter{
                 uri.endsWith("listar_times_visitante") || 
                 uri.endsWith("dados_campeonato") || 
                 uri.endsWith("turno_rodadas") || 
-               // uri.endsWith("comissao_executiva") || 
+                uri.endsWith("tabela_time_campeonato") || 
                 uri.endsWith("novo_usuario") || 
                 uri.endsWith("fazer_login") || 
                 uri.endsWith("efetuar_cadastro") ||

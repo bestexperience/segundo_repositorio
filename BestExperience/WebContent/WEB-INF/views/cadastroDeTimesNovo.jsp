@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -7,35 +6,8 @@
 <title>Cadastro de Times</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="./css/style.css">
-<script type="text/javascript" src="js/jquery-1.6.2.js"></script>
-
-<script type="text/javascript">
-	      		$(document).ready(function(){
-	      			$('#add-btn').click(function(){
-	      				var input_val;
-	      				var nomes_times = $('#new-opt').val();
-	      				$.ajax({
-	      					type:'POST',
-	      					data: {
-	      						
-	      						nomes_times: nomes_times,
-	      						acao:'inserirTimes'
-	      						
-	      					},
-	      					
-	      					url:'manterdados.do',
-	      					success: function(result){
-	      							$('#mySelect').html(result);
-	      							document.getElementById('new-opt').value='';
-	      					}
-	      					
-	      				});
-	      			});
-	      		});
-      		</script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="./css/style-menu-no-border.css">
 
 </head>
 <body>
@@ -46,31 +18,36 @@
 			<img src="img/co.png" class="rounded" alt="Cinque Terre" width="304"
 				height="300">
 		</div>
-
-		<form id="regForm" class="regFormMargin" action="efetivar_time"
-			method="post">
+		<hr>
+		<br/>
+		<br/>
+		<form action="efetivar_time" method="post">
 			<h1 align="center">Inserir Times</h1>
-			<div class="form-group">
-				<label>Times</label> <input type="text" class="form-control"
-					id="new-opt" placeholder=""> <small id="idHelp"
-					class="form-text text-muted">Informe os times acima</small>
+			<div class="row">
+			<div class="form-group col-md-6">
+				<label for="nome">Time</label> 
+				<input type="text" class="form-control" id="nome" name="nome"/> 
+				<small class="form-text text-muted">Informe os times acima</small>
 			</div>
-
-			<div class="form-group">
-				<select multiple class="form-control" id="mySelect" size="10">
-					<option>Adicione um time aqui</option>
-				</select>
 			</div>
-			<br />
+			<div class="row">
+			<div class="form-group col-md-6">
+                    <label for="campeonato">Lista de Campeonatos</label>
+                    <select class="form-control" name="campeonato.idCampeonato" id="campeonato">
+                    			<option value="0" selected>Escolha um campeonato</option>
+	                    		<c:forEach var="campeonato" items="${lista2}">
+	                    			<option value="${campeonato.idCampeonato}">${campeonato.nome}</option>
+	                    		</c:forEach>
+                    </select>
+             </div>             
+             </div>
+             <div class="col-md-12" align="center" id="actions">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <a href="#" class="btn btn-default">Cancelar</a>
+              </div>
 		</form>
-		<div align="center">
-			<button id="add-btn" class="btn btn-warning">Adicionar time</button>
-			<button onclick="myFunction()" class="btn btn-warning">Remover
-				time selecionado</button>
-		</div>
 
 	</div>
-	<script src="js/form-select.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
