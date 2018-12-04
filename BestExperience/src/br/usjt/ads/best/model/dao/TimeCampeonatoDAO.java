@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import br.usjt.ads.best.model.entity.Cidade;
-import br.usjt.ads.best.model.entity.Estado;
 import br.usjt.ads.best.model.entity.Time;
 import br.usjt.ads.best.model.entity.TimeCampeonato;
 
@@ -120,5 +118,29 @@ public class TimeCampeonatoDAO {
 		}
 		
 		return timeC;
+	}
+	
+public void atualizarTimeCampeonato(TimeCampeonato timeC) {
+		
+		String sqlUpdate = "UPDATE campeonato.time_campeonato SET pontos=?, jogos=?, vitorias=?, empates=?, derrotas=?, gols_marcados=?, gols_sofridos=?, saldo_de_gols=?, aproveitamento=? WHERE time_id=?";
+		
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.getConnection();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			
+			stm.setInt(1, timeC.getPontos());
+			stm.setInt(2, timeC.getJogos());
+			stm.setInt(3, timeC.getVitorias());
+			stm.setInt(4, timeC.getEmpates());
+			stm.setInt(5, timeC.getDerrotas());
+			stm.setInt(6, timeC.getGols_marcados());
+			stm.setInt(7, timeC.getGols_sofridos());
+			stm.setInt(8, timeC.getSaldo_de_gols());
+			stm.setDouble(9, timeC.getAproveitamento());
+			stm.setInt(10, timeC.getTime().getIdTime());
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

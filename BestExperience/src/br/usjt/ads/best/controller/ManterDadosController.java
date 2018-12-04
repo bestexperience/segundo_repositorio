@@ -686,7 +686,7 @@ public class ManterDadosController{
 				
 				tCampeonatoMandantePos.setSaldo_de_gols(tCampeonatoMandante.getSaldo_de_gols() + jogo.getPlacar_mandante());
 	
-				timeCampeonatoService.inserirTimeCampeonato(tCampeonatoMandantePos);
+				timeCampeonatoService.atualizarTimeCampeonato(tCampeonatoMandantePos);
 			}
 			
 			if(tCampeonatoMandante == null){

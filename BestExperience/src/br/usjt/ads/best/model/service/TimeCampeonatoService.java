@@ -24,4 +24,8 @@ public class TimeCampeonatoService {
 	public TimeCampeonato buscarTimeCampeonato(int id) throws IOException {
 		return dao.buscarTimeCampeonato(id);
 	}
+	
+	public void atualizarTimeCampeonato(TimeCampeonato timeC) {
+		dao.atualizarTimeCampeonato(timeC);
+	}
 }
