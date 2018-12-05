@@ -730,21 +730,100 @@ public class ManterDadosController{
 				
 				timeCampeonatoService.inserirTimeCampeonato(tCampeonatoMandantePos);
 			}
-			/*
+			
+			
+			////////////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			
 			if(tCampeonatoVisitante != null)
 			{
-				timeCampeonatoService.inserirTimeCampeonato();
-			}
-			if(tCampeonatoMandante == null && tCampeonatoVisitante == null){
-				timeCampeonatoService.inserirTimeCampeonato();
+				tCampeonatoVisitantePos.setTime(timeVisitante);
+				if( jogo.getPlacar_visitante()  > jogo.getPlacar_mandante())
+				{
+					tCampeonatoVisitantePos.setPontos(tCampeonatoVisitante.getPontos() + 3);
+					tCampeonatoVisitantePos.setVitorias(tCampeonatoVisitante.getVitorias() + 1);
+				}else{
+					tCampeonatoVisitantePos.setPontos(tCampeonatoVisitante.getPontos() + 0);
+					tCampeonatoVisitantePos.setVitorias(tCampeonatoVisitante.getVitorias() + 0);
+				}
+				tCampeonatoVisitantePos.setJogos(tCampeonatoVisitante.getJogos() + 1);
+				
+				if(jogo.getPlacar_mandante() == jogo.getPlacar_visitante())
+				{
+					tCampeonatoVisitantePos.setEmpates(tCampeonatoVisitante.getEmpates() + 1);
+				}
+				if(jogo.getPlacar_visitante() < jogo.getPlacar_mandante())
+				{
+					tCampeonatoVisitantePos.setDerrotas(tCampeonatoVisitante.getDerrotas() + 1);
+				}else{
+					tCampeonatoVisitantePos.setDerrotas(tCampeonatoVisitante.getDerrotas() + 0);
+				}
+				
+				if(jogo.getPlacar_visitante() != 0)
+				{
+					tCampeonatoVisitantePos.setGols_marcados(tCampeonatoVisitante.getGols_marcados() + jogo.getPlacar_visitante());
+				}else{
+					tCampeonatoVisitantePos.setGols_marcados(tCampeonatoVisitante.getGols_marcados() + 0);
+				}
+				
+				if(jogo.getPlacar_mandante() > 0)
+				{
+					tCampeonatoVisitantePos.setGols_sofridos(tCampeonatoVisitante.getGols_sofridos() + jogo.getPlacar_mandante());
+				}else{
+					tCampeonatoVisitantePos.setGols_sofridos(tCampeonatoVisitante.getGols_sofridos() + 0);
+				}
+				
+				tCampeonatoVisitantePos.setSaldo_de_gols(tCampeonatoVisitante.getSaldo_de_gols() + jogo.getPlacar_visitante());
+	
+				timeCampeonatoService.atualizarTimeCampeonato(tCampeonatoVisitantePos);
 			}
 			
-			*/
+			if(tCampeonatoMandante == null){
+				tCampeonatoVisitantePos.setTime(timeVisitante);
+				if(jogo.getPlacar_visitante() > jogo.getPlacar_mandante())
+				{
+					tCampeonatoVisitantePos.setPontos(3);
+					tCampeonatoVisitantePos.setVitorias(1);
+				}else{
+					tCampeonatoVisitantePos.setPontos(0);
+					tCampeonatoVisitantePos.setVitorias(0);
+				}
+				tCampeonatoVisitantePos.setJogos(1);
+				
+				if(jogo.getPlacar_mandante() == jogo.getPlacar_visitante())
+				{
+					tCampeonatoVisitantePos.setEmpates(1);
+				}
+				if(jogo.getPlacar_visitante() < jogo.getPlacar_mandante())
+				{
+					tCampeonatoVisitantePos.setDerrotas(1);
+				}else{
+					tCampeonatoVisitantePos.setDerrotas(0);
+				}
+				
+				if(jogo.getPlacar_visitante() != 0)
+				{
+					tCampeonatoVisitantePos.setGols_marcados(jogo.getPlacar_visitante());
+				}else{
+					tCampeonatoVisitantePos.setGols_marcados(0);
+				}
+				
+				if(jogo.getPlacar_mandante() > 0)
+				{
+					tCampeonatoVisitantePos.setGols_sofridos(jogo.getPlacar_mandante());
+				}else{
+					tCampeonatoVisitantePos.setGols_sofridos(0);
+				}
+				
+				tCampeonatoVisitantePos.setSaldo_de_gols(jogo.getPlacar_visitante());
+				
+				timeCampeonatoService.inserirTimeCampeonato(tCampeonatoVisitantePos);
+			}
 			
-			/*
-			session.setAttribute("campeonato", campeonato);
-			session.setAttribute("lista", lista);
-			*/
+			
+			
+			
+			
 			return "usuario";
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
