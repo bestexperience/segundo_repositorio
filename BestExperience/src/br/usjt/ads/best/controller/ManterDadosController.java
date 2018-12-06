@@ -280,6 +280,8 @@ public class ManterDadosController{
 	
 	@RequestMapping("buscar_campeonatos")
 	public String buscarCampeonatos(HttpSession session){
+		ArrayList<Campeonato> lista = null;
+		session.setAttribute("lista", lista);
 		return "listarCampeonatos";
 	}
 	
@@ -404,6 +406,9 @@ public class ManterDadosController{
 	/*Listar Times*/
 	@RequestMapping("buscar_times")
 	public String listarTimes(HttpSession session){
+		ArrayList<Time> lista = null;
+		session.setAttribute("lista", lista);
+		
 		return "listarEquipes";
 	}
 	
@@ -486,6 +491,8 @@ public class ManterDadosController{
 	/*Jogadores*/
 	@RequestMapping("buscar_jogador")
 	public String buscarJogador(HttpSession session){
+		ArrayList<Jogador> lista = null;
+		session.setAttribute("lista", lista);
 		return "listarJogadores";
 	}
 	
@@ -835,6 +842,8 @@ public class ManterDadosController{
 
 	@RequestMapping("buscar_juizes")
 	public String buscarJuiz(HttpSession session){
+		ArrayList<Juiz> lista = null;
+		session.setAttribute("lista", lista);
 		return "listarJuizes";
 	}
 	
@@ -1044,16 +1053,15 @@ public class ManterDadosController{
 	
 
 	@RequestMapping("turno_rodadas")
-	public String turnoRodadas(Model model){
+	public String turnoRodadas(Model model , @RequestParam("id") int id){
 		try {
 			
 			JogoEfetivado jf = new JogoEfetivado();
 			jeService = new JogoEfetivadoService();
 			ArrayList<JogoEfetivado> lista;
 			
-			int id_master = 1;
 			
-			lista = jeService.listarJogosEfetivado(id_master);
+			lista = jeService.listarJogosEfetivado(id);
 			
 			model.addAttribute("lista", lista);
 			
