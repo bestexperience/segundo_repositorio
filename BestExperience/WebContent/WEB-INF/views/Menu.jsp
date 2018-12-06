@@ -16,7 +16,12 @@
 				<li><a href="#">Home</a></li>
 				<li><a href="listar_times_visitante">Equipes</a></li>
 				<li><a href="tabela_time_campeonato">Classificação</a></li>
-				<li><a href="turno_rodadas">Rodadas</a></li>
+				<li class="dropdown"><a class="dropdown-toggle"	data-toggle="dropdown" href="#">Turnos<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="turno_rodadas">Master</a></li>
+						<li><a href="turno_rodadas">Senior</a></li>
+					</ul></li>
+				
 				<!-- <li><a href="comissao_executiva">Comissão Executiva</a></li> -->
 				<li><a href="#">Seções</a></li>
 				<li><a href="#">Anos Anteriores</a></li>

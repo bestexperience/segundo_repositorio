@@ -105,10 +105,6 @@ public class ManterDadosController{
 		return "login";
 	}
 	
-	@RequestMapping("turno_rodadas")
-	public String turnoRodadas(){
-		return "turnoRodadas";
-	}
 	
 	@RequestMapping("novo_usuario")
 	public String novoUsuario(){
@@ -1043,6 +1039,33 @@ public class ManterDadosController{
 		}
 		
 		return "errorLogin";
+	}
+	
+	
+
+	@RequestMapping("turno_rodadas")
+	public String turnoRodadas(Model model){
+		try {
+			
+			JogoEfetivado jf = new JogoEfetivado();
+			jeService = new JogoEfetivadoService();
+			ArrayList<JogoEfetivado> lista;
+			
+			int id_master = 1;
+			
+			lista = jeService.listarJogosEfetivado(id_master);
+			
+			model.addAttribute("lista", lista);
+			
+			return "turnoRodadas";
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return "turnoRodadas";
 	}
 	
 	
