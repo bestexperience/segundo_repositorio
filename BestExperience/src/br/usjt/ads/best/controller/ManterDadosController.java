@@ -1180,6 +1180,74 @@ public class ManterDadosController{
 		return "turnoRodadas";
 	}
 	
+	@RequestMapping("listar_times_visitante")
+	public String listarTimesVisitante(Model model, @RequestParam("id") int id){
+		try {
+			
+			tService = new TimeService();
+			Time time = new Time();
+			ArrayList<Time> lista = new ArrayList<>();
+			lista = tService.listarTime(id);
+			Campeonato c = new Campeonato();
+			cService = new CampeonatoService();
+			c = cService.buscarCampeonatoId(id);
+			
+			model.addAttribute("campeonato", c);
+			model.addAttribute("lista", lista);
+			
+			return "listarTimesVisitante";
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return "turnoRodadas";
+	}
+	
+	@RequestMapping("listar_juizes_visitante")
+	public String listarJuizesVisitante(Model model){
+		try {
+			
+			ArrayList<Juiz> lista = new ArrayList<>();
+			juService = new JuizService();
+			lista = juService.listarJuiz();
+			
+			model.addAttribute("lista", lista);
+			
+			return "listarJuizVisitante";
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return "turnoRodadas";
+	}
+	
+	@RequestMapping("listar_jogadores_visitante")
+	public String listarJogadoresVisitante(Model model){
+		try {
+			
+			ArrayList<Jogador> lista = new ArrayList<>();
+			jService = new JogadorService();
+			lista = jService.listarJogadorETime();
+			
+			model.addAttribute("lista", lista);
+			
+			return "listarJogadoresVisitante";
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return "turnoRodadas";
+	}
+	
 	
 	
 }

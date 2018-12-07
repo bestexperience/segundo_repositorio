@@ -25,6 +25,8 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter{
                 uri.endsWith("efetuar_cadastro") ||
                 uri.endsWith("esqueci_minha_senha") ||
                 uri.endsWith("atualizar_esqueci_senha") ||
+                uri.endsWith("listar_juizes_visitante") ||
+                uri.endsWith("listar_jogadores_visitante") ||
                 
                         uri.contains("css/bootstrap-tagsinput.css")||
                         uri.contains("css/bootstrap.css")||

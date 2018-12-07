@@ -21,8 +21,7 @@
 			<div id="jogosMaster" aria-labelledby="headingTwo">
 				<div >
 					<div class="jumbotron text-center valor">
-						<h1>Time</h1>
-						<h2>Categoria: ${campeonato.tipo}</h2>
+						<h1>Jogadores</h1>
 						<input class="form-control" id="myInput" type="text" placeholder="Search..">
 					</div>
 						
@@ -30,15 +29,27 @@
 							<tr class="jumbotron text-center">
 								<th>Nº</th>
 								<th>Nome</th>
+								<th>Data de Nascimento</th>
+								<th>Time</th>
 							</tr>
 							
 							
 							<tbody  id="myTable">
-								<c:forEach var="time" items="${lista}">
-									<tr>
-										<td>${time.idTime}</td>
-										<td>${time.nome}</td>
-									</tr>
+								<c:forEach var="jogador" items="${lista}">
+									 <tr>
+                                            <td>
+                                               ${jogador.idJogador}
+                                            </td>
+                                            <td>
+                                                ${jogador.nomeJogador}
+                                            </td>
+                                            <td>
+                                                <fmt:formatDate value="${jogador.nascimento_jogador}" pattern="dd/MM/yyyy"/>
+                                            </td>
+                                            <td>
+                                                ${jogador.time.nome}
+                                            </td>
+                                     </tr>
 								</c:forEach>
 							</tbody>
 						</table>
@@ -47,5 +58,15 @@
 			</div>
 		</div>
 
+		<script>
+			$(document).ready(function(){
+			  $("#myInput").on("keyup", function() {
+			    var value = $(this).val().toLowerCase();
+			    $("#myTable tr").filter(function() {
+			      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			    });
+			  });
+			});
+		</script>
 </body>
 </html>

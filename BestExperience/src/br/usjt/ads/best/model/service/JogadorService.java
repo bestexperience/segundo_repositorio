@@ -49,4 +49,8 @@ private JogadorDAO dao;
 	public Jogador buscarJogador(int chave) throws IOException {
 		return dao.buscarJogador(chave);
 	}
+	
+	public ArrayList<Jogador> listarJogadorETime() throws IOException {
+		return dao.listarJogadorETime();
+	}
 }

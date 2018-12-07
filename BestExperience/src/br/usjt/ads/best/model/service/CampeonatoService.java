@@ -45,4 +45,8 @@ import br.usjt.ads.best.model.entity.Usuario;
 	public ArrayList<Campeonato> listarCampeonatos() throws IOException{
 		return dao.listarCampeonatos();
 	}
+	
+	public Campeonato buscarCampeonatoId(int chave) throws IOException{
+		return dao.buscarCampeonatoId(chave);
+	}
 }

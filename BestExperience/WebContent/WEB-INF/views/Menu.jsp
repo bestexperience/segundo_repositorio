@@ -14,7 +14,14 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li><a href="#">Home</a></li>
-				<li><a href="listar_times_visitante">Equipes</a></li>
+				<li><a href="listar_juizes_visitante">Juizes</a></li>
+				<li><a href="listar_jogadores_visitante">Jogadores</a></li>
+				<li class="dropdown"><a class="dropdown-toggle"	data-toggle="dropdown" href="#">Equipes<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="listar_times_visitante?id=1">Master</a></li>
+						<li><a href="listar_times_visitante?id=2">Senior</a></li>
+					</ul></li>
+				
 				
 				<li class="dropdown"><a class="dropdown-toggle"	data-toggle="dropdown" href="#">Classificação<span class="caret"></span></a>
 					<ul class="dropdown-menu">

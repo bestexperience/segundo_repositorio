@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.usjt.ads.best.model.entity.Jogador;
+import br.usjt.ads.best.model.entity.Time;
 
 public class JogadorDAO {
 	public int inserirJogador(Jogador jogador) throws IOException {
@@ -117,6 +118,35 @@ public class JogadorDAO {
 				jogador.setIdJogador(rs.getInt("id"));
 				jogador.setNomeJogador(rs.getString("nome"));
 				jogador.setNascimento_jogador(rs.getDate("nascimento_jogador"));
+				lista.add(jogador);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}				
+		return lista;
+	}
+	
+	public ArrayList<Jogador> listarJogadorETime() throws IOException {
+		ArrayList<Jogador> lista = new ArrayList<>();
+		String sql = "select j.id, j.nome, j.nascimento_jogador, j.gols, j.time_id, t.nome from jogador j, campeonato.time t where j.time_id = t.id";
+		try(Connection conn = ConnectionFactory.getConnection();
+			PreparedStatement pst = conn.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();){
+			
+			Time time;
+			Jogador jogador;
+			while(rs.next()) {
+				jogador = new Jogador();
+				
+				jogador.setIdJogador(rs.getInt("j.id"));
+				jogador.setNomeJogador(rs.getString("j.nome"));
+				jogador.setNascimento_jogador(rs.getDate("j.nascimento_jogador"));
+				jogador.setGols(rs.getInt("j.gols"));
+				time = new Time();
+				time.setIdTime(rs.getInt("j.time_id"));
+				time.setNome(rs.getString("t.nome"));
+				jogador.setTime(time);
 				lista.add(jogador);
 			}
 		} catch (SQLException e) {
