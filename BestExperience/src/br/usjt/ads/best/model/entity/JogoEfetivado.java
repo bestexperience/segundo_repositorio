@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class JogoEfetivado {
 	private int id_sumula;
+	private int turno;
 	private Date data;
 	private Time time_visitante;
 	private int placar_visitante;
@@ -53,6 +54,14 @@ public class JogoEfetivado {
 	public void setCampeonato(Campeonato campeonato) {
 		this.campeonato = campeonato;
 	}
+	public int getTurno() {
+		return turno;
+	}
+	public void setTurno(int turno) {
+		this.turno = turno;
+	}
+	
+	
 	
 	
 }

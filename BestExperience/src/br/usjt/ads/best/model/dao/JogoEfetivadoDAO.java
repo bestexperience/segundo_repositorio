@@ -14,23 +14,23 @@ import br.usjt.ads.best.model.entity.Time;
 public class JogoEfetivadoDAO {
 	public void inserirJogo(JogoEfetivado jogo) throws IOException {
 		int id = -1;
-		String sql = "insert into campeonato.jogo_efetivado (data, time_visitante, placar_visitante, time_mandante, placar_mandante, campeonato_id) values (?, ?, ?, ?, ?, ?)";
+		String sql = "insert into campeonato.jogo_efetivado (turno, data, time_visitante, placar_visitante, time_mandante, placar_mandante, campeonato_id) values (?, ?, ?, ?, ?, ?, ?)";
 		
 		try(Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement pst = conn.prepareStatement(sql);){
 			
-			
+			pst.setInt(1, jogo.getTurno());
 			if(jogo.getData() != null) {
-				pst.setDate(1, new java.sql.Date(jogo.getData().getTime()));
+				pst.setDate(2, new java.sql.Date(jogo.getData().getTime()));
 			} else {
-				pst.setDate(1,  null);
+				pst.setDate(2,  null);
 			}
-			pst.setInt(2, jogo.getTime_visitante().getIdTime());
-			pst.setInt(3, jogo.getPlacar_visitante());
+			pst.setInt(3, jogo.getTime_visitante().getIdTime());
+			pst.setInt(4, jogo.getPlacar_visitante());
 			
-			pst.setInt(4, jogo.getTime_mandante().getIdTime());
-			pst.setInt(5, jogo.getPlacar_mandante());
-			pst.setInt(6, jogo.getCampeonato().getIdCampeonato());
+			pst.setInt(5, jogo.getTime_mandante().getIdTime());
+			pst.setInt(6, jogo.getPlacar_mandante());
+			pst.setInt(7, jogo.getCampeonato().getIdCampeonato());
 			pst.execute();
 	
 			
@@ -42,7 +42,7 @@ public class JogoEfetivadoDAO {
 	
 	public ArrayList<JogoEfetivado> listarJogosEfetivado(int chave) throws IOException {
 		ArrayList<JogoEfetivado> lista = new ArrayList<>();
-		String sql = "select jf.id_sumula, jf.data, jf.time_mandante, jf.placar_mandante, jf.time_visitante, jf.placar_visitante, jf.campeonato_id, t.nome, t2.nome from jogo_efetivado jf, time t, time t2 where  jf.time_mandante = t.id and  jf.time_visitante = t2.id and jf.campeonato_id like ?;";
+		String sql = "select jf.id_sumula, jf.turno, jf.data, jf.time_mandante, jf.placar_mandante, jf.time_visitante, jf.placar_visitante, jf.campeonato_id, t.nome, t2.nome from jogo_efetivado jf, time t, time t2 where  jf.time_mandante = t.id and  jf.time_visitante = t2.id and jf.campeonato_id like ?;";
 		try(Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement pst = conn.prepareStatement(sql);){
 			
@@ -57,6 +57,7 @@ public class JogoEfetivadoDAO {
 				while(rs.next()) {
 					jf = new JogoEfetivado();
 					jf.setId_sumula(rs.getInt("jf.id_sumula"));
+					jf.setTurno(rs.getInt("jf.turno"));
 					jf.setData(rs.getDate("jf.data"));
 					
 					/*Time mandante*/

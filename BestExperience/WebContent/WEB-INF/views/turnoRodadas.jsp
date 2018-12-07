@@ -18,78 +18,39 @@
 </head>
 <body>
 	<c:import url="Menu.jsp" />
-
-	<div class="jumbotron text-center">
-		<h1>Turno 1</h1>
-	</div>
-
-	<div class="container">
-		<table class="table">
-
-			<tr class="jumbotron text-center">
-				<th>Data</th>
-				<th>Mandante</th>
-				<th>Placar</th>
-				<th>Visitante</th>
-				<th>Árbitro</th>
-			</tr>
-
-			<tbody>
-				<c:forEach var="jf" items="${lista}">
-				<tr>
-					<td><fmt:formatDate value="${jf.data}" pattern="dd/MM/yyyy"/></td>
-					<td>${jf.time_mandante.nome}</td>
-					<td>${jf.placar_mandante} x ${jf.placar_visitante}</td>
-					<td>${jf.time_visitante.nome}</td>
-					<td>Fulano</td>
-				</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
-	<!-- 
-	<div class="jumbotron text-center">
-		<h1>Turno 2</h1>
-	</div>
-
-	<div class="container">
-		<table class="table">
-
-			<tr class="jumbotron text-center">
-				<th>Rodada</th>
-				<th>Data</th>
-				<th>Hora</th>
-				<th>Mandante</th>
-				<th>Placar</th>
-				<th>Visitante</th>
-				<th>Árbitro</th>
-			</tr>
-
-			<tbody>
-				<tr>
-					<td>8</td>
-					<td>xx/xx/xxxx</td>
-					<td>xx:xx</td>
-					<td>Colômbia</td>
-					<td>0 x 0</td>
-					<td>Bélgica</td>
-					<td>Fulano</td>
-				</tr>
-
-				<tr>
-					<td>8</td>
-					<td>xx/xx/xxxx</td>
-					<td>xx:xx</td>
-					<td>Japão</td>
-					<td>0 x 0</td>
-					<td>Dinamarca</td>
-					<td>Fulano</td>
-				</tr>
-
-			</tbody>
-		</table>
-	</div>
+	<c:forEach var = "i" begin = "1" end = "${contador}">
+		<div class="jumbotron text-center">
+			<h1>Turno <c:out value = "${i}"/></h1>
+		</div>
 	
-	-->
+		<div class="container">
+			<table class="table">
+	
+				<tr class="jumbotron text-center">
+					<th>Data</th>
+					<th>Mandante</th>
+					<th>Placar</th>
+					<th>Visitante</th>
+					<th>Árbitro</th>
+				</tr>
+	
+				<tbody>
+					<c:forEach var="jf" items="${lista}">
+					<c:if test="${jf.turno == i}">
+					<tr>
+						<td><fmt:formatDate value="${jf.data}" pattern="dd/MM/yyyy"/></td>
+						<td>${jf.time_mandante.nome}</td>
+						<td>${jf.placar_mandante} x ${jf.placar_visitante}</td>
+						<td>${jf.time_visitante.nome}</td>
+						<td>Fulano</td>
+					</tr>
+					</c:if>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</c:forEach>
+	
+	
 </body>
 </html>

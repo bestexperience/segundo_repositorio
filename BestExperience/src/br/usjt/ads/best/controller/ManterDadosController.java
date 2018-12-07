@@ -900,13 +900,15 @@ public class ManterDadosController{
 	
 
 	@RequestMapping("atualizar_quantidade_gols_jogador")
-	public String atualizarQuantidadeDeGols(HttpSession session, Jogador jogador, @RequestParam("quantidade") int quantidade) throws IOException{
+	public String atualizarQuantidadeDeGols(HttpSession session, Jogador jogador, @RequestParam("quantidade") int quantidade){
 		
-		jService = new JogadorService();
-		Jogador jogador2 = new Jogador();
-		
-		jogador2 = jService.buscarJogador(jogador.getIdJogador());
-		jogador2.setGols(jogador.getGols());
+		try {
+			jService = new JogadorService();
+			Jogador jogador2 = new Jogador();
+			
+			jogador2 = jService.buscarJogador(jogador.getIdJogador());
+			
+			jogador2.setGols(jogador.getGols());
 			jService.atualizarGolsJogador(jogador2);
 			
 			if(quantidade > 0)
@@ -918,6 +920,11 @@ public class ManterDadosController{
 					return "golsPorJogador";
 				}
 			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		return "usuario";
 		
@@ -1151,7 +1158,9 @@ public class ManterDadosController{
 			
 			
 			lista = jeService.listarJogosEfetivado(id);
-			
+			jf = lista.get(lista.size()-1);
+			int contador = jf.getTurno();
+			model.addAttribute("contador", contador);
 			model.addAttribute("lista", lista);
 			
 			return "turnoRodadas";

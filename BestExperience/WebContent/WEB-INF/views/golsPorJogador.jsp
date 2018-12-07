@@ -36,13 +36,12 @@
       
     <div class="form-group col-md-5">
       <label for="gols">Quantidade de gols feitos</label>
-        <input type="number" class="form-control" id="gols" name="gols" required>
+        <input type="number" class="form-control" id="gols" name="gols" required/>
       <br>
     </div>
     
-    <div class="col-md-12" align="" id="actions">
+    <div class="col-md-12" id="actions">
                     <button type="submit" class="btn btn-primary">Salvar</button>
-                    <a href="#" class="btn btn-default">Cancelar</a>
     </div>
       <br>
   </form>

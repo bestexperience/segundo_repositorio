@@ -62,9 +62,15 @@
       <br>
     </div>
     
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-6">
       <label for="tim">Data do Jogo</label>
-      <input type="text" class="form-control" name="data" id="data" placeholder="formato dd/mm/yyyy">
+      <input type="text" class="form-control" name="data" id="data" placeholder="Formato dd/mm/yyyy">
+      <br>
+    </div>
+    
+    <div class="form-group col-md-6">
+      <label for="turno">Digite o numero do turno</label>
+      <input type="number" class="form-control" name="turno" id="turno" placeholder="Em qual turno estamos?" required>
       <br>
     </div>
    
