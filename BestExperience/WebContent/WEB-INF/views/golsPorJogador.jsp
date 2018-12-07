@@ -26,10 +26,10 @@
                     <select class="form-control" name="jogador.idJogador" id="time">
                     		<option selected>Escolha um jogador</option>
                     		<c:forEach var="jogador" items="${listaMandante}">
-                    		<option value="${jogador.idJogador}">${jogador.nomeJogador}</option>
+                    			<option value="${jogador.idJogador}">${jogador.nomeJogador}</option>
                     		</c:forEach>
                     		<c:forEach var="jogador" items="${listaVisitante}">
-                    		<option value="${jogador.idJogador}">${jogador.nomeJogador}</option>
+                    			<option value="${jogador.idJogador}">${jogador.nomeJogador} - ${jogador.time.nome}</option>
                     		</c:forEach>
                     </select>
             </div>

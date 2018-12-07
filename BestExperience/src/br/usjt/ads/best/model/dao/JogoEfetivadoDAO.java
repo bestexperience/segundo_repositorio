@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import br.usjt.ads.best.model.entity.Campeonato;
 import br.usjt.ads.best.model.entity.JogoEfetivado;
+import br.usjt.ads.best.model.entity.Juiz;
 import br.usjt.ads.best.model.entity.Time;
 
 public class JogoEfetivadoDAO {
@@ -90,5 +91,18 @@ public class JogoEfetivadoDAO {
 		}
 				
 		return lista;
+	}
+	
+	
+	public void excluirJogo(int id) {
+		String sqlDelete = "DELETE FROM campeonato.jogo_efetivado WHERE id_sumula = ?";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.getConnection();
+				PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
+			stm.setInt(1, id);
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

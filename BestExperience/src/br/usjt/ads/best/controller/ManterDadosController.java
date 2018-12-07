@@ -1160,7 +1160,7 @@ public class ManterDadosController{
 	
 
 	@RequestMapping("turno_rodadas")
-	public String turnoRodadas(Model model, @RequestParam("id") int id){
+	public String turnoRodadas(Model model, @RequestParam("id") int id) throws IOException{
 		try {
 			
 			JogoEfetivado jf = new JogoEfetivado();
@@ -1178,12 +1178,9 @@ public class ManterDadosController{
 			return "turnoRodadas";
 			
 		} catch (IOException e) {
+			return "index";
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		
-		
-		return "turnoRodadas";
 	}
 	
 	@RequestMapping("listar_times_visitante")
@@ -1254,6 +1251,48 @@ public class ManterDadosController{
 		return "turnoRodadas";
 	}
 	
+	@RequestMapping("listar_jogos_efetivado_excluir")
+	public String listar_jogos_efetivado_excluir(Model model){
+		
+		try {
+			JogoEfetivado jf = new JogoEfetivado();
+			jeService = new JogoEfetivadoService();
+			ArrayList<JogoEfetivado> lista;
+			ArrayList<JogoEfetivado> lista2;
+			
+			int id = 1;
+			
+			lista = jeService.listarJogosEfetivado(id);
+			
+			
+			int id2 = 2;
+			lista2 = jeService.listarJogosEfetivado(id2);
+			
+			jf = lista.get(lista.size()-1);
+			int contador = jf.getTurno();
+			
+			model.addAttribute("contador", contador);
+			model.addAttribute("lista", lista);
+			model.addAttribute("lista2", lista2);
+			
+			return "listarJogosEfetivadosExcluir";
+		} catch (IOException e) {
+			return "usuario";
+		}
+		
+	}
+	
+	@RequestMapping("listar_jogos_efetivado_excluir_efetivar")
+	public String listar_jogos_efetivado_excluir_efetivar(Model model, @RequestParam("id") int id0){
+		
+			jeService = new JogoEfetivadoService();
+			jeService.excluirJogo(id0);
+			
+			
+			return "usuario";
+
 	
 	
+	
+}
 }

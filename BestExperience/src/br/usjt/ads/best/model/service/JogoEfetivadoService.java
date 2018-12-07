@@ -20,4 +20,8 @@ public class JogoEfetivadoService {
 	public ArrayList<JogoEfetivado> listarJogosEfetivado(int chave) throws IOException {
 		return dao.listarJogosEfetivado(chave);
 	}
+	
+	public void excluirJogo(int id) {
+		dao.excluirJogo(id);
+	}
 }

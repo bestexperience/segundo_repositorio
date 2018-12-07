@@ -193,18 +193,25 @@ public class JogadorDAO {
 	
 	public ArrayList<Jogador> buscarJogadorPeloTime(int id) throws IOException {
 		ArrayList<Jogador> lista = new ArrayList<>();
-		String sql = "select * from campeonato.jogador where time_id like ?";
+		String sql = "select j.id, j.nome, j.nascimento_jogador, j.gols, j.time_id, t.nome from jogador j, campeonato.time t where j.time_id = t.id and j.time_id = ?";
+		
 		try(Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement pst = conn.prepareStatement(sql);){
 			
 			pst.setInt(1, id);
 			try(ResultSet rs = pst.executeQuery();){
 				Jogador jogador;
+				Time time;
 				while(rs.next()) {
 					jogador = new Jogador();
-					jogador.setIdJogador(rs.getInt("id"));
-					jogador.setNomeJogador(rs.getString("nome"));
-					jogador.setNascimento_jogador(rs.getDate("nascimento_jogador"));
+					jogador.setIdJogador(rs.getInt("j.id"));
+					jogador.setNomeJogador(rs.getString("j.nome"));
+					jogador.setNascimento_jogador(rs.getDate("j.nascimento_jogador"));
+					jogador.setGols(rs.getInt("j.gols"));
+					time = new Time();
+					time.setIdTime(rs.getInt("j.time_id"));
+					time.setNome(rs.getString("t.nome"));
+					jogador.setTime(time);
 					lista.add(jogador);
 				}
 			}

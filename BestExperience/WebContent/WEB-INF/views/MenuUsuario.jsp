@@ -32,6 +32,12 @@
 						<li><a href="buscar_jogador">Jogadores</a></li>
 						<li><a href="buscar_juizes">Juizes</a></li>
 					</ul></li>
+					
+					
+					<li class="dropdown"><a class="dropdown-toggle"	data-toggle="dropdown" href="#">Manutenção<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="listar_jogos_efetivado_excluir">Listar jogos efetivados</a></li>
+					</ul></li>
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
