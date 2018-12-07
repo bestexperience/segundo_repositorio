@@ -30,6 +30,7 @@
 								<th>Nº</th>
 								<th>Nome</th>
 								<th>Data de Nascimento</th>
+								<th>Gols</th>
 								<th>Time</th>
 							</tr>
 							
@@ -43,9 +44,16 @@
                                             <td>
                                                 ${jogador.nomeJogador}
                                             </td>
+                                            
                                             <td>
                                                 <fmt:formatDate value="${jogador.nascimento_jogador}" pattern="dd/MM/yyyy"/>
                                             </td>
+                                            
+                                            
+                                            <td>
+                                                ${jogador.gols}
+                                            </td>
+                                            
                                             <td>
                                                 ${jogador.time.nome}
                                             </td>

@@ -14,6 +14,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter{
 		
 		String uri = request.getRequestURI();
         if(uri.endsWith("/") || 
+        		uri.endsWith("home") || 
                 uri.endsWith("login") || 
                 uri.endsWith("listar_equipes") || 
                 uri.endsWith("listar_times_visitante") || 
@@ -50,7 +51,10 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter{
                         uri.contains("img/cadUsuario.png")|| 
                         uri.contains("img/co.png")|| 
                         uri.contains("img/img-sss.jpg")|| 
-                        uri.contains("img/usuario.png")){
+                        uri.contains("img/usuario.png") ||
+                        uri.contains("img/soccer2.jpg") ||
+                        uri.contains("img/grass.jpg") ||
+        				uri.contains("img/soccer.jpg")){
             return true;
         }
 		

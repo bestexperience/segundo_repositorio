@@ -73,6 +73,12 @@ public class ManterDadosController{
 	
 	
 	/*Menu inicial*/
+	
+	@RequestMapping("home")
+	public String home(){
+		return "index";
+	}
+	
 	@RequestMapping("/")
 	public String login1(){
 		return "login";
