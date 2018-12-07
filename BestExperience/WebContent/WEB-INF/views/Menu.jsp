@@ -15,7 +15,13 @@
 			<ul class="nav navbar-nav">
 				<li><a href="#">Home</a></li>
 				<li><a href="listar_times_visitante">Equipes</a></li>
-				<li><a href="tabela_time_campeonato">Classificação</a></li>
+				
+				<li class="dropdown"><a class="dropdown-toggle"	data-toggle="dropdown" href="#">Classificação<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="tabela_time_campeonato?id=1">Master</a></li>
+						<li><a href="tabela_time_campeonato?id=2">Senior</a></li>
+					</ul></li>
+				
 				<li class="dropdown"><a class="dropdown-toggle"	data-toggle="dropdown" href="#">Turnos<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="turno_rodadas?id=1">Master</a></li>

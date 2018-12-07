@@ -72,7 +72,7 @@
                                                 ${time.nome}
                                             </td>
                                             <td class="actions">
-                                                <a class="btn btn-success btn-xs" href="visualizar_time?nome=${time.nome}">Visualizar</a>
+                                                <a class="btn btn-success btn-xs" href="visualizar_time?id=${time.idTime}">Visualizar</a>
                                                	<a class="btn btn-success btn-xs" href="atualizar_time?id=${time.idTime}">Atualizar</a>
                                                 <a class="btn btn-success btn-xs" href="excluir_time?id=${time.idTime}">Excluir</a>
                                             </td>

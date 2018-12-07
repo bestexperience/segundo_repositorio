@@ -45,4 +45,8 @@ public class TimeService {
 	public Time buscarTime(int id) throws IOException {
 		return dao.buscarTime(id);
 	}
+	
+	public ArrayList<Time> listarTimeECampeonato() throws IOException {
+		return dao.listarTimeECampeonato();
+	}
 }	

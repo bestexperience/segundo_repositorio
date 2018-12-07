@@ -6,6 +6,7 @@ public class Jogador {
 	private int idJogador;
 	private String nomeJogador;
 	private Date nascimento_jogador;
+	private int gols;
 	private Time time;
 	
 	public int getIdJogador() {
@@ -32,6 +33,14 @@ public class Jogador {
 	public void setNascimento_jogador(Date nascimento_jogador) {
 		this.nascimento_jogador = nascimento_jogador;
 	}
+	public int getGols() {
+		return gols;
+	}
+	public void setGols(int gols) {
+		this.gols = gols;
+	}
+	
+	
 	
 	
 }

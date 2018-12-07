@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.usjt.ads.best.model.entity.Campeonato;
 import br.usjt.ads.best.model.entity.Time;
 
 
@@ -174,6 +175,36 @@ public void atualizarTime(Time time) {
 		}
 		
 		return time;
+	}
+	
+	public ArrayList<Time> listarTimeECampeonato() throws IOException {
+		ArrayList<Time> lista = new ArrayList<>();
+		String sql = "select t.id, t.nome, t.campeonato_id, c.nome, c.tipo from campeonato.time t, campeonato c where t.campeonato_id = c.id";
+		try(Connection conn = ConnectionFactory.getConnection();
+			PreparedStatement pst = conn.prepareStatement(sql);){
+		
+			try(ResultSet rs = pst.executeQuery();){
+			
+				Time time;
+				Campeonato campeonato;
+				while(rs.next()) {
+					time = new Time();
+					time.setIdTime(rs.getInt("t.id"));
+					time.setNome(rs.getString("t.nome"));
+					campeonato = new Campeonato();
+					campeonato.setIdCampeonato(rs.getInt("t.campeonato_id"));
+					campeonato.setNome(rs.getString("c.nome"));
+					campeonato.setTipo(rs.getString("c.tipo"));
+					time.setCampeonato(campeonato);
+					lista.add(time);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
+				
+		return lista;
 	}
 	
 	

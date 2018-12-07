@@ -43,6 +43,39 @@ public class JogadorDAO {
 		return id;
 	}
 	
+	public int inserirJogadorETime(Jogador jogador) throws IOException {
+		int id = -1;
+		String sql = "INSERT INTO campeonato.jogador (nome, nascimento_jogador, time_id) VALUES (?, ?, ?)";
+		
+		try(Connection conn = ConnectionFactory.getConnection();
+			PreparedStatement pst = conn.prepareStatement(sql);){
+			
+			pst.setString(1, jogador.getNomeJogador());
+			if(jogador.getNascimento_jogador() != null) {
+				pst.setDate(2, new java.sql.Date(jogador.getNascimento_jogador().getTime()));
+			} else {
+				pst.setDate(2,  null);
+			}
+			pst.setInt(3, jogador.getTime().getIdTime());	
+			
+			pst.execute();
+			
+			//obter o id criado
+			String query = "select LAST_INSERT_ID()";
+			try(PreparedStatement pst1 = conn.prepareStatement(query);
+				ResultSet rs = pst1.executeQuery();){
+
+				if (rs.next()) {
+					id = rs.getInt(1);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
+		return id;
+	}
+	
 
 	public ArrayList<Jogador> listarJogador(String chave) throws IOException {
 		ArrayList<Jogador> lista = new ArrayList<>();
@@ -127,4 +160,70 @@ public class JogadorDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public ArrayList<Jogador> buscarJogadorPeloTime(int id) throws IOException {
+		ArrayList<Jogador> lista = new ArrayList<>();
+		String sql = "select * from campeonato.jogador where time_id like ?";
+		try(Connection conn = ConnectionFactory.getConnection();
+			PreparedStatement pst = conn.prepareStatement(sql);){
+			
+			pst.setInt(1, id);
+			try(ResultSet rs = pst.executeQuery();){
+				Jogador jogador;
+				while(rs.next()) {
+					jogador = new Jogador();
+					jogador.setIdJogador(rs.getInt("id"));
+					jogador.setNomeJogador(rs.getString("nome"));
+					jogador.setNascimento_jogador(rs.getDate("nascimento_jogador"));
+					lista.add(jogador);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
+				
+		return lista;
+	}
+	
+public void atualizarGolsJogador(Jogador jogador) {
+		
+		String sqlUpdate = "UPDATE campeonato.jogador SET gols=? WHERE id=?";
+		
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.getConnection();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			
+			stm.setInt(1, jogador.getGols());
+			stm.setInt(2, jogador.getIdJogador());
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+public Jogador buscarJogador(int chave) throws IOException {
+	Jogador jogador = new Jogador();
+	String sql = "select * from campeonato.jogador where id like ?";
+	try(Connection conn = ConnectionFactory.getConnection();
+		PreparedStatement pst = conn.prepareStatement(sql);){
+		
+		pst.setInt(1, chave);
+	
+		try(ResultSet rs = pst.executeQuery();){
+		
+			while(rs.next()) {
+				jogador = new Jogador();
+				jogador.setIdJogador(rs.getInt("id"));
+				jogador.setNomeJogador(rs.getString("nome"));
+			}
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+		throw new IOException(e);
+	}
+			
+	return jogador;
+}
+
 }

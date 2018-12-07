@@ -37,6 +37,16 @@
 	            </div>
             </div>
     
+    		<div class="form-group">
+                    <label for="time">Time</label>
+                    <select class="form-control" name="time.idTime" id="time">
+                    		<option selected>Escolha um time</option>
+                    		<c:forEach var="time" items="${lista}">
+                    		<option value="${time.idTime}">${time.nome} - ${time.campeonato.tipo}</option>
+                    		</c:forEach>
+                    </select>
+            </div>
+    		
             <hr />
             <div id="actions" class="row">
                 <div class="col-md-12">

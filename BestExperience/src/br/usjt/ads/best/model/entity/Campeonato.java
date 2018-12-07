@@ -4,6 +4,7 @@ public class Campeonato {
 	private int idCampeonato;
 	private String nome;
 	private int numeroRodadas;
+	private String tipo;
 	private Usuario usuario;
 	
 	public int getIdCampeonato() {
@@ -30,6 +31,12 @@ public class Campeonato {
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 	

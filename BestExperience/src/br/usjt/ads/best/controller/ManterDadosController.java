@@ -434,13 +434,22 @@ public class ManterDadosController{
 	}
 	
 	@RequestMapping("visualizar_time")
-	public String visualizarTime(Model model, @RequestParam("nome") String chave){
+	public String visualizarTime(Model model, @RequestParam("id") int chave){
 		
 		try {
+			Time time = new Time();
+			Jogador jogador = new Jogador();
+			ArrayList<Jogador> lista;
 			tService = new TimeService();
-			ArrayList<Time> lista;
-			lista = tService.listarTime(chave);
+			jService = new JogadorService();
+			
+			lista = jService.buscarJogadorPeloTime(chave);
+			
+			
+			time = tService.buscarTime(chave);
+			
 			model.addAttribute("lista", lista);
+			model.addAttribute("time", time);
 			return "visualizarTime";
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -519,6 +528,19 @@ public class ManterDadosController{
 	
 	@RequestMapping("novo_jogador")
 	public String novoJogador(HttpSession session){
+		
+		try {
+			ArrayList<Time> lista;
+			tService = new TimeService();
+			lista = tService.listarTimeECampeonato();
+			
+			session.setAttribute("lista", lista);
+			return "novoJogador";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return "novoJogador";
 	}
 	
@@ -526,8 +548,20 @@ public class ManterDadosController{
 	public String cadastrarJogador(HttpSession session, Jogador jogador){
 		try {
 			jService = new JogadorService();
-			jService.inserirJogador(jogador);
 			
+			
+			if(jogador.getTime().getIdTime() == 0)
+			{
+				jService.inserirJogador(jogador);
+			}
+			else{
+				jService.inserirJogadorETime(jogador);
+			}
+			
+			
+			ArrayList<Jogador> lista = new ArrayList<>();
+			
+			session.setAttribute("lista", lista);
 			return "listarJogadores";
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -823,6 +857,35 @@ public class ManterDadosController{
 				timeCampeonatoService.inserirTimeCampeonato(tCampeonatoVisitantePos);
 			}
 			
+			if(jogo.getPlacar_mandante() > 0 || jogo.getPlacar_visitante() > 0)
+			{
+				int quantidade = jogo.getPlacar_mandante() + jogo.getPlacar_visitante();
+				
+				int idMandante = jogo.getTime_mandante().getIdTime();
+				int idVisitante = jogo.getTime_visitante().getIdTime();
+				
+				////////////////////////////////////////////////////////////
+				jService = new JogadorService();
+				
+				ArrayList<Jogador> listaMandante;
+				ArrayList<Jogador> listaVisitante;
+				listaMandante = jService.buscarJogadorPeloTime(idMandante);
+				listaVisitante = jService.buscarJogadorPeloTime(idVisitante);
+				
+				if(jogo.getPlacar_mandante() > 0)
+				{	
+					session.setAttribute("listaMandante", listaMandante);
+				}
+				if(jogo.getPlacar_visitante() > 0)
+				{
+					session.setAttribute("listaVisitante", listaVisitante);
+				}
+				
+				session.setAttribute("quantidade", quantidade);
+				
+				return "golsPorJogador";
+			}
+			
 			
 			
 			
@@ -833,6 +896,31 @@ public class ManterDadosController{
 			e.printStackTrace();
 		}
 		return "usuario";
+	}
+	
+
+	@RequestMapping("atualizar_quantidade_gols_jogador")
+	public String atualizarQuantidadeDeGols(HttpSession session, Jogador jogador, @RequestParam("quantidade") int quantidade) throws IOException{
+		
+		jService = new JogadorService();
+		Jogador jogador2 = new Jogador();
+		
+		jogador2 = jService.buscarJogador(jogador.getIdJogador());
+		jogador2.setGols(jogador.getGols());
+			jService.atualizarGolsJogador(jogador2);
+			
+			if(quantidade > 0)
+			{
+				quantidade =  quantidade - jogador.getGols();
+				if(quantidade > 0)
+				{
+					session.setAttribute("quantidade", quantidade);
+					return "golsPorJogador";
+				}
+			}
+		
+		return "usuario";
+		
 	}
 	
 	
@@ -1053,12 +1141,13 @@ public class ManterDadosController{
 	
 
 	@RequestMapping("turno_rodadas")
-	public String turnoRodadas(Model model , @RequestParam("id") int id){
+	public String turnoRodadas(Model model, @RequestParam("id") int id){
 		try {
 			
 			JogoEfetivado jf = new JogoEfetivado();
 			jeService = new JogoEfetivadoService();
 			ArrayList<JogoEfetivado> lista;
+			
 			
 			
 			lista = jeService.listarJogosEfetivado(id);
