@@ -33,10 +33,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="turno_rodadas?id=1">Master</a></li>
 						<li><a href="turno_rodadas?id=2">Senior</a></li>
-					</ul></li>
-				
-				<!-- <li><a href="comissao_executiva">Comissão Executiva</a></li> -->
-				<li><a href="#">Seções</a></li>
+					</ul></li>	
 				
 				<li class="dropdown"><a class="dropdown-toggle"	data-toggle="dropdown" href="#">Anos Anteriores<span class="caret"></span></a>
 					<ul class="dropdown-menu">

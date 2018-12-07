@@ -20,7 +20,7 @@
   <p>The form below contains two dropdown menus (select lists):</p>
 	<form action="atualizar_quantidade_gols_jogador" method="post">
  
-    <input type="text" class="form-control" id="contador" name="quantidade" value="${quantidade}"/>
+    <input type="hidden" class="form-control" id="contador" name="quantidade" value="${quantidade}"/>
     <div class="form-group col-md-5">
                     <label for="time">Jogadores</label>
                     <select class="form-control" name="jogador.idJogador" id="time">

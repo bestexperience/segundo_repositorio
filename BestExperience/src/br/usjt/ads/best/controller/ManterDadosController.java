@@ -1167,8 +1167,6 @@ public class ManterDadosController{
 			jeService = new JogoEfetivadoService();
 			ArrayList<JogoEfetivado> lista;
 			
-			
-			
 			lista = jeService.listarJogosEfetivado(id);
 			jf = lista.get(lista.size()-1);
 			int contador = jf.getTurno();
@@ -1264,7 +1262,6 @@ public class ManterDadosController{
 			
 			lista = jeService.listarJogosEfetivado(id);
 			
-			
 			int id2 = 2;
 			lista2 = jeService.listarJogosEfetivado(id2);
 			
@@ -1287,7 +1284,6 @@ public class ManterDadosController{
 		
 			jeService = new JogoEfetivadoService();
 			jeService.excluirJogo(id0);
-			
 			
 			return "usuario";
 
