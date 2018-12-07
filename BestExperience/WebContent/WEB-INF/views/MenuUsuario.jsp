@@ -28,11 +28,9 @@
 				
 				<li class="dropdown"><a class="dropdown-toggle"	data-toggle="dropdown" href="#">Incluir/Visualizar/Editar<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="buscar_campeonatos">Campeonatos</a></li>
 						<li><a href="buscar_times">Times</a></li>
 						<li><a href="buscar_jogador">Jogadores</a></li>
 						<li><a href="buscar_juizes">Juizes</a></li>
-						<li><a href="buscar_estadios">Estadios</a></li>
 					</ul></li>
 
 			</ul>

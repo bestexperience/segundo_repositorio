@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-            <title>Buscar Time</title>
+            <title>Visualizar Time</title>
 			<link rel="stylesheet" href="./css/style-menubar.css">
 		
 		    <meta charset="utf-8">

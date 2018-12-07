@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Listagem de Times</title>
+<title>Pagina Inicial</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -15,7 +15,6 @@
 	<style>
 		.borda{
 			border-radius: 10px;
-			
 		}
 		a{
 			border-radius:10px;

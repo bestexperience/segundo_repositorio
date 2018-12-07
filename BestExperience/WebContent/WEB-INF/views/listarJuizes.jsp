@@ -83,7 +83,7 @@
                                                 ${juiz.estado.nomeEstado}
                                             </td>
                                             <td class="actions">
-                                                <a class="btn btn-success btn-xs" href="visualizar_juiz?nome=${juiz.nomeJuiz}">Visualizar</a>
+                                                <!-- <a class="btn btn-success btn-xs" href="visualizar_juiz?nome=${juiz.nomeJuiz}">Visualizar</a> -->
                                                 <a class="btn btn-success btn-xs" href="editar_juiz?id=${juiz.idJuiz}">Editar</a>
                                                 <a class="btn btn-success btn-xs" href="excluir_juiz?id=${juiz.idJuiz}">Excluir</a>
                                             </td>
