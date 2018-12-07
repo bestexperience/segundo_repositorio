@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@
 	<c:import url="Menu.jsp" />
 	<!--Jogos Master-->
 	<div class="container">
-	 	<h2>Tabela</h2>
+	 	<h2>Tabela - ${campeonato.nome}</h2>
                  <div class="table-responsive col-md-12">
 						<table class="table table-striped" cellspacing="0" cellpadding="0">
 						<thead>
@@ -38,6 +39,7 @@
 						</thead>
 							<tbody>
 								<c:forEach var="timeCampeonato" items="${lista}">
+								<c:if test="${timeCampeonato.time.campeonato.idCampeonato == id}">
 									<tr>
 										<td>${timeCampeonato.classificacao} - ${timeCampeonato.time.nome}</td>
 								        <td>${timeCampeonato.pontos}</td>
@@ -48,8 +50,11 @@
 								        <td>${timeCampeonato.gols_marcados}</td>
 								        <td>${timeCampeonato.gols_sofridos}</td>
 								        <td>${timeCampeonato.saldo_de_gols}</td>
-								        <td>${timeCampeonato.aproveitamento}</td>
+								        <td><fmt:formatNumber type="number" value="${(timeCampeonato.pontos / (timeCampeonato.jogos * 3)) * 100}" pattern="####.##"/></td>
+								        
+								        
 									</tr>
+								</c:if>
 								</c:forEach>
 							</tbody>
 						</table>

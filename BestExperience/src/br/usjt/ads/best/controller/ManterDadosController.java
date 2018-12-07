@@ -90,12 +90,18 @@ public class ManterDadosController{
 
 	
 	@RequestMapping("tabela_time_campeonato")
-	public String listarTimeCampeonato(Model model){
+	public String listarTimeCampeonato(Model model, @RequestParam("id") int id){
 		try {
 			timeCampeonatoService = new TimeCampeonatoService();
 			ArrayList<TimeCampeonato> lista;
 			lista = timeCampeonatoService.listarTimeCampeonato();
+			Campeonato campeonato = new Campeonato();
+			cService = new CampeonatoService();
+			campeonato = cService.buscarCampeonatoPeloId(id);
+			
+			model.addAttribute("id", id);
 			model.addAttribute("lista", lista);
+			model.addAttribute("campeonato", campeonato);
 			return "listarTimeCampeonato";
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

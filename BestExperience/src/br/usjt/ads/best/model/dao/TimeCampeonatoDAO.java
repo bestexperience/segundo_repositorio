@@ -7,13 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.usjt.ads.best.model.entity.Campeonato;
 import br.usjt.ads.best.model.entity.Time;
 import br.usjt.ads.best.model.entity.TimeCampeonato;
 
 public class TimeCampeonatoDAO {
 	public ArrayList<TimeCampeonato> listarTimeCampeonato() throws IOException {
 		ArrayList<TimeCampeonato> lista = new ArrayList<>();
-		String sql = "select tc.classificacao, tc.time_id, tc.pontos, tc.jogos, tc.vitorias, tc.empates, tc.derrotas, tc.gols_marcados, tc.gols_sofridos, tc.saldo_de_gols, tc.aproveitamento, t.id, t.nome from time_campeonato tc, time t where tc.time_id = t.id";
+		String sql = "select tc.classificacao, tc.time_id, tc.pontos, tc.jogos, tc.vitorias, tc.empates, tc.derrotas, tc.gols_marcados, tc.gols_sofridos, tc.saldo_de_gols, tc.aproveitamento, t.id, t.nome, t.campeonato_id from time_campeonato tc, time t where tc.time_id = t.id";
 		
 		try(Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement pst = conn.prepareStatement(sql);
@@ -21,12 +22,17 @@ public class TimeCampeonatoDAO {
 			
 			Time time;
 			TimeCampeonato timeC;
+			Campeonato campeonato;
 			while(rs.next()) {
 				timeC = new TimeCampeonato();
 				timeC.setClassificacao(rs.getInt("tc.classificacao"));
 				time = new Time();
 				time.setIdTime(rs.getInt("tc.time_id"));
 				time.setNome(rs.getString("t.nome"));
+				campeonato = new Campeonato();
+				campeonato.setIdCampeonato(rs.getInt("t.campeonato_id"));
+				time.setCampeonato(campeonato);
+				
 				timeC.setTime(time);
 				timeC.setPontos(rs.getInt("tc.pontos"));
 				timeC.setJogos(rs.getInt("tc.jogos"));
